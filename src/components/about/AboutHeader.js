@@ -3,11 +3,11 @@ import React from 'react';
 export default function AboutHeader() {
   return (
     <div className="aboutHeader">
-      <div>
+      <div className="aboutTitle">
         <h1>Healing</h1>
         <p>Some cool one liner!</p>
       </div>
-      <div>
+      <div className="aboutContent">
         <p>
           At Healing, we believe there is a better way to do things. A more
           valuable way where customers are earned rather than bought.
