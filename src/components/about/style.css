@@ -7,21 +7,21 @@ body {
   height: 100vh;
 }
 .aboutHeader {
-  background-color: #fff;
-  padding: 8rem;
-  display: flex;
+  /* background-color: #fff;
+  padding: 8rem; */
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 }
 .aboutHeader .aboutTitle h1 {
-  font-size: 4rem;
-  padding: 0.1rem 0;
+  /* font-size: 4rem; */
+  /* padding: 0.1rem 0; */
 }
 .aboutHeader .aboutTitle {
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
 }
 .aboutHeader .aboutContent {
-  width: 50rem;
+  /* width: 50rem; */
 }
 .aboutBody {
   background-color: rgb(199, 230, 238);
