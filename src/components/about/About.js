@@ -5,7 +5,7 @@ import './style.css';
 
 export default function About() {
   return (
-    <div>
+    <div data-testid="about-page">
       <AboutHeader />
       <AboutBody />
     </div>

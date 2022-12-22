@@ -4,7 +4,7 @@ export default function AboutHeader() {
   return (
     <div className="aboutHeader bg-white px-32 py-12 flex flex-col justify-center">
       <div className="aboutTitle py-8">
-        <h1 className='text-6xl py-2'>Healing</h1>
+        <h1 className="text-6xl py-2">Healing</h1>
         <p>Some cool one liner!</p>
       </div>
       <div className="aboutContent w-9/12 h-24">
