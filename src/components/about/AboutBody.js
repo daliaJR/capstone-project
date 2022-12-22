@@ -3,7 +3,7 @@ import therapistImg from '../../images/therapist_.svg';
 
 export default function AboutBody() {
   return (
-    <div className="aboutBody">
+    <div className="aboutBody bg-cyan-100 flex justify-center align-middle min- h-96">
       <div className="imgView">
         <img src={therapistImg} alt="therapist" />
       </div>
