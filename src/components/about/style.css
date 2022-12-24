@@ -34,13 +34,13 @@ body {
 }
 .aboutBody .imgView {
   width: 40%;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end; */
 }
 .aboutBody .imgView img {
-  width: 15rem;
-  height: 15rem;
+  /* width: 15rem;
+  height: 15rem; */
 }
 .aboutBody .body {
   width: 40rem;

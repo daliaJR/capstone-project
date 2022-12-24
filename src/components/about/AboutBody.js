@@ -3,9 +3,9 @@ import therapistImg from '../../images/therapist_.svg';
 
 export default function AboutBody() {
   return (
-    <div className="aboutBody bg-cyan-100 flex justify-center align-middle min- h-96">
-      <div className="imgView">
-        <img src={therapistImg} alt="therapist" />
+    <div className="aboutBody bg-cyan-100 lg:flex lg:justify-center lg:align-middle h-88 w-full">
+      <div className="imgView flex lg:justify-end lg:align-bottom sm:justify-center sm:align-top sm:w-full bg-red-200">
+        <img src={therapistImg} alt="therapist" className='w-60	h-60' />
       </div>
       <div className="body">
         <h2>Our Funding</h2>
