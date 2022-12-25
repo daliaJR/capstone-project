@@ -2,12 +2,12 @@ import React from 'react';
 
 export default function AboutHeader() {
   return (
-    <div className="aboutHeader bg-slate-500 sm:h-fut sm:w-88  sm:px-20 lg:px-32 py-12 lg:flex lg:flex-col lg:justify-center ">
+    <div className="aboutHeader sm:h-fit sm:w-88  sm:px-20 lg:px-32 py-12 lg:flex lg:flex-col lg:justify-center ">
       <div className="aboutTitle py-8 bg-white sm:px-10">
         <h1 className="text-6xl py-2">Healing</h1>
         <p>Some cool one liner!</p>
       </div>
-      <div className="aboutContent sm:h-fit h-24 bg-red-300 sm:px-10 sm:py-4">
+      <div className="aboutContent sm:h-fit h-24 sm:px-10 sm:py-4">
         <p>
           At Healing, we believe there is a better way to do things. A more
           valuable way where customers are earned rather than bought.
