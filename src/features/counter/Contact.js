@@ -74,26 +74,26 @@ export default function contact() {
         </div>
       </section>
 
-      <section className="section3 flex mb-7">
-        <div className="userInfo">
+      <section className="section3 flex mb-7 justify-between">
+        <div className="userInfo w-1/2">
 
           <div className='mb-5'>
             <p className='mb-2 ml-1'>Full Name:</p>
-            <input type="text" id="name" className='shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline'/>
+            <input type="text" id="name" placeholder='Enter your full name here...' className='placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline'/>
           </div>
 
           <div className='mb-5'>
             <p className='mb-2 ml-1'>Email:</p>
-            <input type="email" id="email" className='shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline'/>
+            <input type="email" id="email" placeholder='Enter your email address here...' className='placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline'/>
           </div>
 
           <div className='mb-5'>
             <p className='mb-2 ml-1'>Details:</p>
-            <input type="text" id="details" className=' shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline'/>
+            <textarea type="text" id="details" placeholder="Enter your details here..." className='placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline resize-none'/>
           </div>
         </div>
-        <div className="findUs w-full flex justify-end">
-          <div className='rounded-3xl bg-boxcolor box-content p-8 object-cover w-1/5 mr-5'>
+        <div className="findUs w-2/5 flex justify-end items-center ">
+          <div className='rounded-3xl bg-boxcolor w-3/4 box-content p-8 object-cover h-3/5 mr-5 '>
             <p className='text-2xl mb-3 font-family-poppin'>Find Us At:</p>
             <p className='text-2xl text-secondary'>Nergiz plaza</p>
             <p className='text-2xl text-secondary'>3rd Floor</p>
