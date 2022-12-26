@@ -2,7 +2,22 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'light-yellow': ' #FEE89E',
+        'light-blue': '#2DD3E3',
+        'sky-blue': '#EAF8F9',
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
+      lineHeight: {
+        18: '4.75rem',
+      },
+      width: {
+        90: '23rem',
+      },
+    },
   },
   plugins: [],
 };
