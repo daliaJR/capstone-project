@@ -21,11 +21,11 @@ top: 106px;
 export default function Home() {
   function moveRight() {
     const carousel = document.querySelector('.hide_scrollbar');
-    carousel.scrollBy(380, 0);
+    carousel.scrollBy(395, 0);
   }
   function moveLeft() {
     const carousel = document.querySelector('.hide_scrollbar');
-    carousel.scrollBy(-380, 0);
+    carousel.scrollBy(-395, 0);
   }
   return (
     <div>
@@ -118,11 +118,11 @@ export default function Home() {
             Recent BLOGs
           </h2>
           <div
-            className="flex space-x-3 overflow-x-scroll px-3 hide_scrollbar "
+            className="flex space-x-3 overflow-x-scroll px-3 hide_scrollbar scroll-smooth"
             id="iid"
           >
             <button
-              className="absolute z-10 -left-14 top-1/2 "
+              className="absolute z-10 -left-10 md:-left-14 top-1/2 "
               type="button"
               onClick={moveLeft}
             >
@@ -130,7 +130,7 @@ export default function Home() {
             </button>
             <button
               type="button"
-              className="absolute z-10 -right-14 top-1/2 "
+              className="absolute z-10 -right-10 md:-right-14 top-1/2 "
               onClick={moveRight}
             >
               <img src={next} alt="" />
