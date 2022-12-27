@@ -5,6 +5,7 @@ import Resource from './pages/Resource';
 import './App.css';
 import Contact from './features/counter/Contact';
 import ThankYou from './pages/ThankYou';
+import Footer from "./components/Footer"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/resource" element={<Resource />} />
           <Route path="/thankyou" element={<ThankYou />} />
+          <Route path="/footer" element={<Footer />} />
         </Routes>
       </Router>
     </div>
