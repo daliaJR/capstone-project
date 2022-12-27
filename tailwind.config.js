@@ -4,14 +4,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        secondary: "#718096",
-        boxcolor:"#EAF8F9",
-        buttoncolor:"#2DD3E3",
+        secondary: '#718096',
+        boxcolor: '#EAF8F9',
+        buttoncolor: '#2DD3E3',
         'light-yellow': ' #FEE89E',
         'light-blue': '#2DD3E3',
         'sky-blue': '#EAF8F9',
+        'light-gray': '#878787',
       },
-      
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
       },
@@ -24,4 +24,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
