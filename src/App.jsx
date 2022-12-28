@@ -4,7 +4,9 @@ import Home from './components/Home';
 import './App.css';
 import Contact from './features/counter/Contact';
 import About from './components/about/About';
-import EditProfile from './components/profile/EditProfile'
+import EditProfile from './components/profile/EditProfile';
+import EditProfile1 from './components/profile/EditProfile1';
+
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route path="/contact" element={<Contact/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/editProfile" element={<EditProfile/>} />
+          <Route path="/editProfile1" element={<EditProfile1/>} />
+
 
         </Routes>
       </Router>
