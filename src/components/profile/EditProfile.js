@@ -13,49 +13,59 @@ export default function EditProfile(){
                 </div>
                 <div className="inputData">
                     <div className="flex flex-col gap-[2rem]">
-                        <h1 className="uppercase">profile info</h1>
+                        <h2 className="uppercase font-bold	">profile info</h2>
                         <form className="flex flex-col gap-6">
-                            <div>
-                                <label htmlFor="fullName">Full Name:</label>
+                            <div className="flex justify-between">
+                                <label htmlFor="fullName" className="w-[10rem]">Full Name:</label>
                                 <input className="border rounded-md focus:shadow-outline" name="name" id="fullName" type="text" />
                             </div>
-                            <div className="">
-                                <label htmlFor="education">Educational Level:</label>
+                            <div className="flex justify-between">
+                                <label htmlFor="education" className="w-[10rem]">Educational Level:</label>
                                 <input className="border rounded-md focus:shadow-outline" name="education" id="education" type="text" />
                             </div>
-                            <div>
-                                <label htmlFor="hobbies">Hobbies:</label>
+                            <div className="flex justify-between">
+                                <label htmlFor="hobbies" className="w-[10rem]">Hobbies:</label>
                                 <input className="border rounded-md focus:shadow-outline" name="hobbies" id="hobbies" type="text" />
                             </div>
-                            <div>
-                                <label htmlFor="familySize">Family Size:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="familySize" id="familySize" type="number" />
+                            <div className="flex justify-between">
+                                <label htmlFor="familySize" className="w-[10rem]">Family Size:</label>
+                                <input className="border rounded-md focus:shadow-outline w-10 self-start" name="familySize" id="familySize" type="number" />
                                 <span className="px-2">Member(s)</span>
                             </div>
-                            <div>
-                                <label htmlFor="gender">Gender:</label>
+                            <div className="flex justify-between">
+                                <label htmlFor="gender" className="w-[10rem]">Gender:</label>
                                 <input className="border rounded-md focus:shadow-outline" name="gender" id="gender" type="text" />
                             </div>
-                            <div>
-                                <label htmlFor="gender">Birthdate:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="gender" id="gender" type="date" />
+                            <div className="flex justify-between">
+                                <label htmlFor="date" className="w-[10rem]">Birthdate:</label>
+                                <input className="border rounded-md focus:shadow-outline" name="date" id="date" type="date" />
                             </div>
-                            <div>
-                                <label htmlFor="email">Email:</label>
+                            <div className="flex justify-between">
+                                <label htmlFor="email" className="w-[10rem]">Email:</label>
                                 <input className="border rounded-md focus:shadow-outline" name="email" id="email" type="email" />
                             </div>
-                            <div>
-                                <label htmlFor="email">Email:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="email" id="email" type="email" />
-                            </div>
-                            <div>
-                                <label htmlFor="phone">Phone Number:</label>
+                            <div className="flex justify-between">
+                                <label htmlFor="phone" className="w-[10rem]">Phone Number:</label>
                                 <input className="border rounded-md focus:shadow-outline" name="phone" id="phone" type="number" />
                             </div>
-                            <div>
+                            <div className="flex justify-between">
                                 <label htmlFor="uploadId">Upload ID:</label>
                                 <input className="border rounded-md focus:shadow-outline" name="uploadId" id="uploadId" type="text" />
                             </div>
+                        </form>
+                    </div>
+                    <div className="flex flex-col gap-[2rem] pt-10">
+                        <h2 className="uppercase font-bold	">Security</h2>
+                        <form className="flex flex-col gap-6">
+                            <div className="flex justify-between">
+                                <label htmlFor="password" className="w-[10rem]">Password:</label>
+                                <input className="border rounded-md focus:shadow-outline" name="password" id="password" type="password" />
+                            </div>
+                            <div className="flex justify-between">
+                                <label htmlFor="confirmPassword" className="w-[10rem]">Confirm Password:</label>
+                                <input className="border rounded-md focus:shadow-outline" name="confirmPassword" id="confirmPassword" type="password" />
+                            </div>
+
                         </form>
                     </div>
 
