@@ -5,7 +5,9 @@ import Resource from './pages/Resource';
 import './App.css';
 import Contact from './features/counter/Contact';
 import ThankYou from './pages/ThankYou';
-import Footer from "./components/Footer"
+import Footer from './components/Footer';
+import Payment from './pages/Payment';
+import BuyTicket from './pages/BuyTicket';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/resource" element={<Resource />} />
           <Route path="/thankyou" element={<ThankYou />} />
           <Route path="/footer" element={<Footer />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/buyticket" element={<BuyTicket />} />
         </Routes>
       </Router>
     </div>
