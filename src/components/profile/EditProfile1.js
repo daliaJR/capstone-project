@@ -1,5 +1,10 @@
 import React from "react";
 import profileImg from '../../images/profileImg.png';
+import lock from '../../images/lock.svg';
+import plus from '../../images/plus.svg';
+// import editProfile from '../../images/editProfileImg.png';
+
+
 
 export default function EditProfile(){
     return(
@@ -9,7 +14,11 @@ export default function EditProfile(){
             </div>
             <div className="flex justify-center gap-[8rem] p-[8rem]">
                 <div className="hidden md:flex">
-                  <img src={profileImg} alt="prfileImage" className="w-56 h-56" />
+                  <div className=" relative left-0 bottom-0">
+                    <img src={profileImg} alt="prfileImage" className="w-56 h-56 pl-7 relative z-10" />
+                    {/* <img src={editProfile} alt="editProfile" className="w-12 h-12 absolute lg:left-[6rem] lg:bottom-[49rem] z-20" /> */}
+                  </div>
+
                 </div>
                 <div className="inputDataField  p-4">
                     <form className="flex flex-col gap-6">
@@ -17,40 +26,57 @@ export default function EditProfile(){
                             <h2 className="uppercase font-bold text-xl">profile info</h2>
                             <div className="flex justify-between">
                                 <label htmlFor="fullName" className="w-[10rem]">Full Name:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="name" id="fullName" type="text" />
+                                <input className="border rounded-md focus:shadow-outline w-[12rem]" name="name" id="fullName" type="text" />
                             </div>
                             <div className="flex justify-between">
                                 <label htmlFor="education" className="w-[10rem]">Educational Level:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="education" id="education" type="text" />
+                                <select className="form-select border rounded-md focus:shadow-outline w-[12rem]"name="education" id="education">
+                                    <option value="educational-level">{}</option>
+                                    <option value="high-school">High school graduate or equivalent</option>
+                                    <option value="bachelor">Bachelor degree</option>
+                                    <option value="master">Master degree</option>
+                                    <option value="doctorate">Doctorate degree</option>
+
+                                </select>
                             </div>
                             <div className="flex justify-between">
                                 <label htmlFor="hobbies" className="w-[10rem]">Hobbies:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="hobbies" id="hobbies" type="text" />
+                                <input className="border rounded-md focus:shadow-outline w-[12rem]" name="hobbies" id="hobbies" type="text" />
                             </div>
                             <div className="flex justify-between">
                                 <label htmlFor="familySize" className="w-[10rem]">Family Size:</label>
-                                <input className="border rounded-md focus:shadow-outline w-10 self-end" name="familySize" id="familySize" type="number" />
-                                <span className="px-2">Member(s)</span>
+                                <div className="flex justify-start w-[12rem]  gap-3">
+                                    <input className="border rounded-md focus:shadow-outline w-10" name="familySize" id="familySize" type="number" />
+                                    <span className="px-2">Member(s)</span>
+                                </div>
                             </div>
+                           
                             <div className="flex justify-between">
                                 <label htmlFor="gender" className="w-[10rem]">Gender:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="gender" id="gender" type="text" />
+                                <select className="form-select border rounded-md focus:shadow-outline w-[12rem]" name="gender" id="gender">
+                                    <option value="gender">{}</option>
+                                    <option value="male">male</option>
+                                    <option value="femail">female</option>
+                                </select>
                             </div>
                             <div className="flex justify-between">
                                 <label htmlFor="date" className="w-[10rem]">Birthdate:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="date" id="date" type="date" />
+                                <input className="border rounded-md focus:shadow-outline w-[12rem]" name="date" id="date" type="date" />
                             </div>
                             <div className="flex justify-between">
                                 <label htmlFor="email" className="w-[10rem]">Email:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="email" id="email" type="email" />
+                                <input className="border rounded-md focus:shadow-outline w-[12rem]" name="email" id="email" type="email" />
                             </div>
                             <div className="flex justify-between">
                                 <label htmlFor="phone" className="w-[10rem]">Phone Number:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="phone" id="phone" type="number" />
+                                <input className="border rounded-md focus:shadow-outline w-[12rem]" name="phone" id="phone" type="number" />
                             </div>
                             <div className="flex justify-between">
                                 <label htmlFor="uploadId">Upload ID:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="uploadId" id="uploadId" type="text" />
+                                <div className="relative p-0 m-0">
+                                    <input className="border rounded-md focus:shadow-outline w-[12rem] pl-7 m-0 h-6" name="uploadId" id="uploadId" type="text" />
+                                    <img src={plus} alt="add file" className="absolute right-2 bottom-1 w-4 h-4"/>
+                                </div>
                             </div>
                                                         
                         </div>
@@ -58,11 +84,18 @@ export default function EditProfile(){
                             <h2 className="uppercase font-bold text-xl">Security</h2>
                             <div className="flex justify-between">
                                 <label htmlFor="password" className="w-[10rem]">Password:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="password" id="password" type="password" />
+                                <div className="relative p-0 m-0">
+                                    <input className="border rounded-md focus:shadow-outline w-[12rem] pl-7 m-0 h-6" name="password" id="password" type="password" />
+                                    <img src={lock} alt="lock" className="absolute right-2 bottom-1 w-4 h-4"/>
+                                </div>
                             </div>        
+
                             <div className="flex justify-between">
                                 <label htmlFor="confirmPassword" className="w-[10rem]">Confirm Password:</label>
-                                <input className="border rounded-md focus:shadow-outline" name="confirmPassword" id="confirmPassword" type="password" />
+                                <div className="relative p-0 m-0">
+                                    <input className="border rounded-md focus:shadow-outline w-[12rem] pl-7 m-0 h-6" name="confirmPassword" id="confirmPassword" type="password" />
+                                    <img src={lock} alt="lock" className="absolute right-2 bottom-1 w-4 h-4"/>
+                                </div>
                             </div>                   
                             
                         </div>
