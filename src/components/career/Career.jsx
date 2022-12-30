@@ -3,8 +3,10 @@ import Button from '../Button';
 
 export default function Career() {
   return (
-    <div>
+    <div className="w-screen">
       <MainSection />
+      <PhilosophySection />
+      <Position />
     </div>
   );
 }
@@ -19,8 +21,8 @@ function MainSection() {
         </p>
       </div>
 
-      <div className="w-3/4 my-32">
-        <p>
+      <div className="w-3/4 my-24">
+        <p className="text-dark-gray">
           Our SEO software cuts through mountains of data to surface critical
           insights. We build and maintain systems that process massive amounts
           of data (we&apos;re talking 36 trillion records per day and multiple
@@ -31,10 +33,73 @@ function MainSection() {
         </p>
       </div>
 
-      <div className="w-3/4">
-        <p className="mb-6">What role will you play?</p>
-        <Button text="SEE OUR OPEN LIST" />
+      <div className="w-3/4 mb-10">
+        <p className="mb-6 text-dark-gray">What role will you play?</p>
+        <Button text="SEE OUR OPEN LIST" onClick={() => {}} />
       </div>
     </div>
+  );
+}
+
+function PhilosophySection() {
+  return (
+    <div className="bg-light-yellow w-screen flex flex-col items-center py-4 text-dark-gray">
+      <h1 className="text-4xl w-3/4">OUR HIRING PHILOSOPHY</h1>
+      <p className="w-3/4">
+        To build the very best SEO tools, we need a workforce that reflects the
+        diversity of our communities and customers. We want Online Therapy to be
+        a place where everyone feels welcome and engaged, bar none. It&apos;s
+        our mission and promise to interview a diverse and representative slate
+        of candidates before making an offer for our open roles.
+      </p>
+    </div>
+  );
+}
+const positionsData = [
+  {
+    title: 'Senior Software Developer | Backend | Remote in the USA',
+    describtion:
+      'Moz is looking for a Senior Software Developer to join our Application Development team.',
+    major: 'Engineering',
+    position: 'Application Development',
+  },
+  {
+    title:
+      'Moz is looking for a Senior Software Developer to join our Application Development team.',
+    describtion:
+      'Moz is looking for a Senior Software Developer to join our Rapid Prototyping Team (RPT). This team is responsible for working closely with product managers to take ideas for new features and quickly validate their technical and business feasibility.',
+    major: 'Engineering',
+    position: 'Rapid Prototyping',
+  },
+];
+
+function Position() {
+  return (
+    <section className="flex justify-center flex-col items-center">
+      <div className="w-4/5 my-7">
+        <h1 className="text-4xl text-dark-gray">CURRENT OPEN POSITIONS</h1>
+        <p className="text-secondary">
+          Please send us an email with the application title as the subject with
+          an attached CV in PDF format!
+        </p>
+      </div>
+
+      <div className="w-4/5">
+        {positionsData.map((vacancy) => {
+          return (
+            <div className="flex justify-between border-b border-black my-3 ">
+              <div className="w-4/5">
+                <h1 className="text-light-blue text-2xl">{vacancy.title}</h1>
+                <p className="text-dark-gray">{vacancy.describtion}</p>
+              </div>
+              <div className="w-1/6">
+                <h1 className="text-light-blue text-2xl">{vacancy.major}</h1>
+                <p className="text-dark-gray ">{vacancy.position}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }

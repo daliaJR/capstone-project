@@ -1,7 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-export default function Button({text, onClick}) {
+export default function Button({ text, onClick }) {
   return (
-    <button className='px-4 py-2 bg-buttoncolor' style={{borderRadius:6}} onClick={onClick}>{text}</button>
-  )
+    <button
+      type="button"
+      className="px-4 py-2 bg-buttoncolor"
+      style={{ borderRadius: 6 }}
+      onClick={onClick}
+    >
+      {text}
+    </button>
+  );
 }
