@@ -6,6 +6,7 @@ import './App.css';
 import Contact from './features/counter/Contact';
 import ThankYou from './pages/ThankYou';
 import Footer from "./components/Footer"
+import Career from './components/career/Career';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/resource" element={<Resource />} />
           <Route path="/thankyou" element={<ThankYou />} />
           <Route path="/footer" element={<Footer />} />
+          <Route path="/about/career" element={<Career />} />
         </Routes>
       </Router>
     </div>
