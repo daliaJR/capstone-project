@@ -15,14 +15,14 @@ function MainSection() {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="w-3/4">
-        <h1 className="md:text-4xl text-xl">CAREERS AT HEALING</h1>
+        <h1 className="md:text-4xl text-2xl">CAREERS AT HEALING</h1>
         <p className="text-secondary">
           Be a part of making people feel better.
         </p>
       </div>
 
       <div className="w-3/4 my-24">
-        <p className="text-dark-gray">
+        <p className="text-dark-gray md:text-xl text-sm">
           Our SEO software cuts through mountains of data to surface critical
           insights. We build and maintain systems that process massive amounts
           of data (we&apos;re talking 36 trillion records per day and multiple
@@ -34,7 +34,9 @@ function MainSection() {
       </div>
 
       <div className="w-3/4 mb-10">
-        <p className="mb-6 text-dark-gray">What role will you play?</p>
+        <p className="mb-6 text-dark-gray md:text-xl text-sm">
+          What role will you play?
+        </p>
         <Button text="SEE OUR OPEN LIST" onClick={() => {}} />
       </div>
     </div>
@@ -44,8 +46,8 @@ function MainSection() {
 function PhilosophySection() {
   return (
     <div className="bg-light-yellow w-screen flex flex-col items-center py-4 text-dark-gray">
-      <h1 className="text-4xl w-3/4">OUR HIRING PHILOSOPHY</h1>
-      <p className="w-3/4">
+      <h1 className="md:text-4xl text-2xl w-3/4">OUR HIRING PHILOSOPHY</h1>
+      <p className="w-3/4 md:text-xl text-sm">
         To build the very best SEO tools, we need a workforce that reflects the
         diversity of our communities and customers. We want Online Therapy to be
         a place where everyone feels welcome and engaged, bar none. It&apos;s
@@ -71,30 +73,68 @@ const positionsData = [
     major: 'Engineering',
     position: 'Rapid Prototyping',
   },
+  {
+    title: 'Senior Product Analyst | Remote in Canada',
+    describtion:
+      'Moz is looking for a Product Analyst to define our suite of product metrics.',
+    major: 'Engineering',
+    position: 'Business Intelligence',
+  },
+  {
+    title: 'Engineering Manager | Remote in Canada',
+    describtion:
+      'Moz is seeking an Engineering Manager within our Application Development team.',
+    major: 'Engineering',
+    position: ' ',
+  },
+  {
+    title: 'Sr. Data Engineer | Remote in Canada',
+    describtion:
+      'Moz is looking for a talented Senior Software Developer to join our Data Collection team.',
+    major: 'Engineering',
+    position: 'Data Collection',
+  },
+  {
+    title: 'Sr. Data Engineer | Remote in Canada',
+    describtion:
+      'Moz is looking for a talented Senior Software Developer to join our Data Collection team.',
+    major: 'Engineering',
+    position: 'Data Collection',
+  },
 ];
 
 function Position() {
   return (
     <section className="flex justify-center flex-col items-center">
-      <div className="w-4/5 my-7">
-        <h1 className="text-4xl text-dark-gray">CURRENT OPEN POSITIONS</h1>
+      <div className="w-4/5 mt-10">
+        <h1 className="md:text-4xl text-2xl text-dark-gray">
+          CURRENT OPEN POSITIONS
+        </h1>
         <p className="text-secondary">
           Please send us an email with the application title as the subject with
           an attached CV in PDF format!
         </p>
       </div>
 
-      <div className="w-4/5">
+      <div className="w-4/5 my-10">
         {positionsData.map((vacancy) => {
           return (
-            <div className="flex justify-between border-b border-black my-3 ">
-              <div className="w-4/5">
-                <h1 className="text-light-blue text-2xl">{vacancy.title}</h1>
-                <p className="text-dark-gray">{vacancy.describtion}</p>
+            <div className="md:flex justify-between border-b  border-black my-3 ">
+              <div className="w-4/5 md:my-0 my-3 md:mb-2">
+                <h1 className="text-light-blue md:text-2xl text-xl">
+                  {vacancy.title}
+                </h1>
+                <p className="text-dark-gray md:text-xl text-sm">
+                  {vacancy.describtion}
+                </p>
               </div>
-              <div className="w-1/6">
-                <h1 className="text-light-blue text-2xl">{vacancy.major}</h1>
-                <p className="text-dark-gray ">{vacancy.position}</p>
+              <div className="w-1/6 md:my-0 my-3 md:mb-2">
+                <h1 className="text-light-blue md:text-2xl text-xl">
+                  {vacancy.major}
+                </h1>
+                <p className="text-dark-gray md:text-xl text-sm">
+                  {vacancy.position}
+                </p>
               </div>
             </div>
           );
