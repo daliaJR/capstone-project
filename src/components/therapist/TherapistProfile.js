@@ -1,6 +1,6 @@
 import React from "react";
 import profileImg from '../../images/profileImg.png';
-import editProfile from '../../images/editProfileImg.png';
+// import editProfile from '../../images/editProfileImg.png';
 
 
 export default function EditProfile(){
@@ -11,7 +11,7 @@ export default function EditProfile(){
                 <div className="hidden md:flex">
                   <div className=" relative left-0 bottom-0">
                     <img src={profileImg} alt="prfileImage" className="w-56 h-56 pl-7 relative top-0 left-0 bottom-0 z-10" />
-                    <img src={editProfile} alt="editProfile" className="w-12 h-12 absolute left-[6rem]  z-20" />
+                    {/* <img src={editProfile} alt="editProfile" className="w-12 h-12 absolute left-[6rem]  z-20" /> */}
                   </div>
 
                 </div>
