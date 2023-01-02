@@ -13,6 +13,7 @@ import BuyTicket from './pages/BuyTicket';
 import Career from './components/career/Career';
 import TherapistProfile from './components/therapist/TherapistProfile';
 
+
 function App() {
   return (
     <div className="py-8">
