@@ -8,6 +8,8 @@ import ThankYou from './pages/ThankYou';
 import Footer from './components/Footer';
 import Payment from './pages/Payment';
 import BuyTicket from './pages/BuyTicket';
+import Footer from "./components/Footer"
+import Career from './components/career/Career';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path="/footer" element={<Footer />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/buyticket" element={<BuyTicket />} />
+          <Route path="/about/career" element={<Career />} />
         </Routes>
       </Router>
     </div>
