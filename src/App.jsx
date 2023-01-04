@@ -8,7 +8,6 @@ import ThankYou from './pages/ThankYou';
 import Footer from './components/Footer';
 import Payment from './pages/Payment';
 import BuyTicket from './pages/BuyTicket';
-import Footer from "./components/Footer"
 import Career from './components/career/Career';
 
 function App() {
