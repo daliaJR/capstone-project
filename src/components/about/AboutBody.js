@@ -8,7 +8,7 @@ export default function AboutBody() {
         <img src={therapistImg} alt="therapist" className="w-60	h-60" />
       </div>
       <div className="body flex flex-col justify-center items-center p-8 gap-4 lg:w-[36rem]">
-        <h2 className="text-4xl lg:text-2xl lg:self-start">Our Funding</h2>
+        <h2 className="text-4xl lg:text-5xl lg:self-start">Our Funding</h2>
         <p className="">
           Healing was founded by Payam Abubakr in 2021. It was called Healing
           Online, and started as a blog and an online community where some of

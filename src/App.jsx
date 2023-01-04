@@ -7,7 +7,7 @@ import Contact from './features/counter/Contact';
 import About from './components/about/About';
 import EditProfile from './components/profile/EditProfile';
 import ThankYou from './pages/ThankYou';
-import Footer from './components/Footer';
+import Footer from "./components/Footer"
 import Payment from './pages/Payment';
 import BuyTicket from './pages/BuyTicket';
 import Career from './components/career/Career';
@@ -25,6 +25,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/resource" element={<Resource />} />
           <Route path="/thankyou" element={<ThankYou />} />
+          <Route path="/about" element={<About />} />
           <Route path="/therapistProfile" element={<TherapistProfile />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/payment" element={<Payment />} />
