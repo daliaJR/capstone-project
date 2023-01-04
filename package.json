@@ -14,6 +14,7 @@
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
+    "swiper": "^8.4.5",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -23,7 +24,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc.json"
   },
   "eslintConfig": {
     "extends": [
