@@ -7,6 +7,9 @@ import Contact from './features/counter/Contact';
 import ThankYou from './pages/ThankYou';
 import Footer from './components/Footer';
 import Login from './components/Login';
+import Signup from './components/Signup';
+import AddNewCard from './components/AddNewCard';
+
 
 function App() {
   return (
@@ -19,6 +22,8 @@ function App() {
           <Route path="/thankyou" element={<ThankYou />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/addnewcard" element={<AddNewCard />} />
         </Routes>
       </Router>
       <Footer />
