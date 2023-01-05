@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 // import Login from './components/Login';
 import Signup from './components/Signup';
 // import AddNewCard from './components/AddNewCard';
-import Footer from "./components/Footer"
 import Payment from './pages/Payment';
 import BuyTicket from './pages/BuyTicket';
 import Career from './components/career/Career';
