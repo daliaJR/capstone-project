@@ -16,6 +16,7 @@ import BuyTicket from './pages/BuyTicket';
 import Career from './components/career/Career';
 import TherapistProfile from './components/therapist/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
+import AddNewCard from './pages/AddNewCard';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/buyticket" element={<BuyTicket />} />
           <Route path="/about/career" element={<Career />} />
           <Route path="/therapistcreate" element={<TherapistCreate />} />
+          <Route path="/addnewcard" element={<AddNewCard />} />
         </Routes>
       </Router>
       <Footer />
