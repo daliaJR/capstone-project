@@ -1,10 +1,7 @@
-.footer-container{ 
-
-    
-    background: #FEE89E;
-    
-    }
-    /* .homee{
+.footer-container {
+  background: #fee89e;
+}
+/* .homee{
    
     height: 78.69px;
     left: 65.14%;
@@ -20,8 +17,8 @@
     letter-spacing: 0.1px;
     color: #718096;
     } */
-    
-    /* .blogss{
+
+/* .blogss{
       
         height: 78.69px;
         left: 72.43%;
@@ -74,46 +71,38 @@
     font-size: 20px;
     line-height: 30px;
     /* or 150% */
-    
-    /* display: flex;
+
+/* display: flex;
     align-items: center;
     text-align: right;
     letter-spacing: 0.1px;
     
     color: #718096;
     
-    } */ 
-    
-    /* .socialmedia{
+    } */
+
+/* .socialmedia{
         display: flex;
         gap: 1.3rem ;
         font-size: 1.5rem ;
         align-items: center;
     } */
-    
-    .facebook{
-    
-    left: 4.17%;
-    right: 4.17%;
-    top: 4.17%;
-    bottom: 4.17%;
-    
-    }
-    
-    
-     .google{
-        
-        left: 4.17%;
-        right: 4.17%;
-        top: 4.17%;
-        bottom: 4.17%;
-        
 
-        
-        
-    } 
-    
-    /* .img3{
+.facebook {
+  left: 4.17%;
+  right: 4.17%;
+  top: 4.17%;
+  bottom: 4.17%;
+}
+
+.google {
+  left: 4.17%;
+  right: 4.17%;
+  top: 4.17%;
+  bottom: 4.17%;
+}
+
+/* .img3{
     
     position: absolute;
     left: -12.5%;
@@ -123,9 +112,7 @@
     background: #1A1A1A;
     } */
     
-   
-    
-    
+
     
     .header1{
         width: 500px;
@@ -163,6 +150,7 @@
     }  
     
      /* .input-area{
+
         position: absolute;
         left: 16px;
         right: 74px;
@@ -173,21 +161,21 @@
         border-radius: 6px; */
 
 
-    .footer-input{
-        
-    position: absolute;
-    left: 16px;
-    right: 74px;
-    top: 8px;
-    bottom: 8px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.1px;
-    
-    color: #718096;
-    }
+
+.footer-input {
+  position: absolute;
+  left: 16px;
+  right: 74px;
+  top: 8px;
+  bottom: 8px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1px;
+
+  color: #718096;
+}
