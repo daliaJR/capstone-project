@@ -8,7 +8,7 @@ import './footer.css';
 
 function FooterSection() {
   return (
-    <div className="footer-container py-5 sticky ">
+    <div className="footer-container ">
       <div className=" flex max-w-7xl mx-auto ">
         <div className="w-1/2">
           <h1 className="text-2xl text-start font-semibold">Subscribe</h1>
