@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Resource from './pages/Resource';
 import './App.css';
+import Navbar from './components/Navbar/Navbar';
 import Contact from './features/counter/Contact';
 import About from './components/about/About';
 import EditProfile from './components/profile/EditProfile';
@@ -14,11 +15,14 @@ import Career from './components/career/Career';
 import TherapistProfile from './components/therapist/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
 
+
 function App() {
   return (
     <div className="py-8">
+     
       <Router>
         <Routes>
+        <Route path="/navbar" element={<Navbar/>} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/editProfile" element={<EditProfile />} />
@@ -32,6 +36,7 @@ function App() {
           <Route path="/buyticket" element={<BuyTicket />} />
           <Route path="/about/career" element={<Career />} />
           <Route path="/therapistcreate" element={<TherapistCreate />} />
+          
         </Routes>
       </Router>
     </div>
