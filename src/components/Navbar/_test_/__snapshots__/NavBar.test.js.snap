@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar renders correctly 1`] = `
+<div>
+  <div
+    className="fixed inset-x-0 top-0 px-sides flex justify-between items-center bg-blue-light h-navbar z-50"
+  >
+    <div
+      className="flex justify-between items-center cursor-pointer leading-tight"
+    >
+      <img
+        alt="logo"
+        className="w-8 lg:w-12"
+        src="Logo.svg"
+      />
+      <div
+        className="text-3xl lg:text-title ml-2"
+      >
+        Healing
+      </div>
+    </div>
+    <div
+      className="lg:hidden flex items-center"
+    >
+      <button
+        className="outline-none mobile-menu-button"
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className=" w-6 h-6 hover:text-blue-dark "
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          x-show="!showMenu"
+        >
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      className="hidden lg:flex justify-between items-center flex-no-wrap"
+    >
+      <a
+        className="ml-8 hover:text-yellow-primary hover:underline text-paragraph"
+        href="#"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+      <a
+        className="ml-8 hover:text-yellow-primary hover:underline text-paragraph"
+        href="#"
+        onClick={[Function]}
+      >
+        Blogs
+      </a>
+      <div
+        className="ml-8 relative"
+        onFocus={[Function]}
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <div
+          className="my-2"
+        >
+          <a
+            className="hover:text-yellow-primary hover:underline text-paragraph"
+            href="#"
+            onClick={[Function]}
+          >
+            About ᐁ
+          </a>
+        </div>
+      </div>
+      <a
+        className="ml-8 hover:text-yellow-primary hover:underline text-paragraph"
+        href="#"
+        onClick={[Function]}
+      >
+        Contact Us
+      </a>
+      <button
+        className="w-28 ml-8 rounded-lg h-12 bg-blue-dark text-paragraph hover:text-blue-dark hover:bg-white hover:border-blue-dark border-2 border-transparent"
+        type="button"
+      >
+        Log In
+      </button>
+      <div />
+    </div>
+  </div>
+  <div
+    className="hidden flex justify-end transition duration-500"
+    id="mobile-menu"
+  >
+    <div
+      className="fixed inset-0 opacity-75 bg-black z-10"
+      onClick={[Function]}
+    />
+    <div
+      className="fixed w-3/4 h-screen flex flex-col justify-evenly items-center mt-navbar bg-white py-4 z-20"
+    >
+      <button
+        className="w-28 rounded-lg h-12 bg-blue-dark text-paragraph hover:text-blue-dark hover:bg-white hover:border-blue-dark border-2 border-transparent"
+        type="button"
+      >
+        Log In
+      </button>
+      <a
+        className="hover:text-yellow-primary hover:underline text-paragraph"
+        href="#"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+      <a
+        className="hover:text-yellow-primary hover:underline text-paragraph"
+        href="#"
+        onClick={[Function]}
+      >
+        Blogs
+      </a>
+      <div>
+        <div
+          className="my-2 text-center"
+          onClick={[Function]}
+        >
+          <a
+            className="hover:text-yellow-primary hover:underline text-paragraph"
+            href="#"
+          >
+            About ᐁ
+          </a>
+        </div>
+      </div>
+      <a
+        className="hover:text-yellow-primary hover:underline text-paragraph"
+        href="#"
+        onClick={[Function]}
+      >
+        Contact Us
+      </a>
+      <div />
+    </div>
+  </div>
+</div>
+`;

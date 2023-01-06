@@ -17,12 +17,15 @@ import Career from './components/career/Career';
 import TherapistProfile from './components/therapist/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
 import AddNewCard from './pages/AddNewCard';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <div className="py-8">
       <Router>
+        <Navbar />
         <Routes>
+
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/editProfile" element={<EditProfile />} />
