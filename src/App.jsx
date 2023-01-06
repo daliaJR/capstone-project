@@ -14,7 +14,7 @@ import BuyTicket from './pages/BuyTicket';
 import Career from './components/career/Career';
 import TherapistProfile from './components/therapist/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
-
+import RequirementsPage from './components/RequirementsPage/RequirementsPage';
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
       <Router>
         <Routes>
         <Route path="/navbar" element={<Navbar/>} />
+        <Route path="/RequirementsPage" element={<RequirementsPage/>} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/editProfile" element={<EditProfile />} />
