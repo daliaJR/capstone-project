@@ -10,22 +10,14 @@ export default function Signup() {
   const navigate = useNavigate();
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(() => {})
+      .catch(() => {});
     navigate('/');
   }
   function signInWithFacebook() {
     signInWithPopup(auth, facebookProvider)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(() => {})
+      .catch(() => {});
   }
 
   return (

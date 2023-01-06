@@ -6,7 +6,6 @@ import google1 from '../images/google.png';
 
 export default function Login() {
   const navigate = useNavigate();
-  // function loginWithFacebook() {}
   return (
     <div className="flex justify-around h-screen items-center pb-44">
       <div>
