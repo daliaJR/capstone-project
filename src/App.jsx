@@ -17,6 +17,7 @@ import Career from './components/career/Career';
 import TherapistProfile from './components/therapist/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
 import AddNewCard from './pages/AddNewCard';
+import RequirementsPage from './components/RequirementsPage/RequirementsPage'
 import Navbar from './components/Navbar/Navbar';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/requirements" element={<RequirementsPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/editProfile" element={<EditProfile />} />
           <Route path="/contact" element={<Contact />} />
