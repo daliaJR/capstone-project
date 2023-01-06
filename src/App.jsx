@@ -18,11 +18,13 @@ import TherapistProfile from './components/therapist/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
 import AddNewCard from './pages/AddNewCard';
 import RequirementsPage from './components/RequirementsPage/RequirementsPage'
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <div className="py-8">
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/requirements" element={<RequirementsPage />} />
