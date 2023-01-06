@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import log from '../images/log.png';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
 
 export default function Login() {
+  const navigate = useNavigate();
+  // function loginWithFacebook() {}
   return (
     <div className="flex justify-around h-screen items-center pb-44">
       <div>
@@ -34,7 +37,10 @@ export default function Login() {
               <div>
                 <button
                   className="opacity-50 text-black font-semibold  inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2 -ml-4 "
-                  type="submit"
+                  type="button"
+                  onClick={() => {
+                    navigate('/signup');
+                  }}
                 >
                   Signup
                 </button>
