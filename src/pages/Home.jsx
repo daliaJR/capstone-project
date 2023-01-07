@@ -30,13 +30,12 @@ export default function Home() {
   return (
     <div>
       <section className="relative min-h-[90vh] ">
-        <div className="h-[106px] bg-sky-blue">f</div>
         <div className="max-w-7xl relative mx-auto flex flex-col py-6 px-5">
-          <div className="relative lg:absolute flex flex-col  lg:left-3 lg:top-40 z-20 mb-10">
+          <div className="relative xl:absolute flex flex-col  xl:left-3 xl:top-40 z-20 mb-10">
             <h2 className="text-[2.2rem] uppercase mx-auto -mb-1">
               We are here to
             </h2>
-            <h1 className="uppercase text-[8rem] leading-[8rem] mx-auto mb-6 lg:mb-16">
+            <h1 className="uppercase text-[8rem] leading-[8rem] mx-auto mb-6 xl:mb-16">
               Help
             </h1>
             <button className="blue_button mx-auto min-w-min" type="button">
@@ -46,13 +45,13 @@ export default function Home() {
           <img
             src={image1}
             alt=""
-            className="relative lg:absolute w-[709px] h-[425px] mx-auto lg:right-3 lg:top-28 z-10"
+            className="relative xl:absolute w-[709px] h-[425px] mx-auto xl:right-3 xl:top-28 z-10"
           />
         </div>
         <img
           src={image5}
           alt=""
-          className="absolute  w-full top-[106px] left-0 -z-10"
+          className="absolute  w-full top-0 left-0 -z-10"
         />
       </section>
       <section className="bg-light-yellow">

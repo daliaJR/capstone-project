@@ -1,5 +1,5 @@
 import React from 'react';
-import therapistImg from '../../images/therapist_.svg';
+import therapistImg from '../images/therapist_.svg';
 
 export default function AboutBody() {
   return (

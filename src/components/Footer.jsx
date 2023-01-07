@@ -3,19 +3,17 @@ import fb from '../images/fb.png';
 import google1 from '../images/google.png';
 import tele from '../images/tele.png';
 import twitter from '../images/twitter.png';
-import './footer.css';
-// import { Box } from '@mui/material';
 
 function FooterSection() {
   return (
-    <div className="footer-container ">
-      <div className=" flex max-w-7xl mx-auto ">
-        <div className="w-1/2">
-          <h1 className="text-2xl text-start font-semibold">Subscribe</h1>
-          <p className="text-lg text-black opacity-50 text-start font-medium mb-4">
+    <div className="bg-light-yellow py-8 font-poppins">
+      <div className=" flex max-w-6xl mx-auto flex-col md:flex-row">
+        <div className="w-3/4 md:w-1/2 mx-auto md:mx-0 text-center md:text-start mb-5 md:mb-0 pl-0 md:pl-10">
+          <h1 className="text-2xl font-semibold">Subscribe</h1>
+          <p className="text-lg text-black opacity-50 font-medium mb-1">
             We will never to spam you or share your email
           </p>
-          <div className="flex items-center max-w-fit">
+          <div className="flex items-center max-w-fit mx-auto md:mx-0">
             <input
               type="text"
               placeholder="Enter your e-mail"
@@ -30,7 +28,7 @@ function FooterSection() {
           </div>
         </div>
 
-        <div className="w-1/2 flex flex-col justify-center">
+        <div className="w-3/4 lg:w-1/2 mx-auto md:mx-0 flex flex-col justify-center">
           <div className="flex space-x-10 mx-auto">
             <button className="text-black opacity-50 " type="submit">
               Home
@@ -45,7 +43,7 @@ function FooterSection() {
               Contact
             </button>
           </div>
-          <div className="flex space-x-5 mx-auto mt-5 ">
+          <div className="flex space-x-10 mx-auto mt-5 ">
             <img className="facebook" src={fb} alt="facebook" />
             <img className="google" src={google1} alt="google" />
             <img className="twitter" src={twitter} alt="google" />
