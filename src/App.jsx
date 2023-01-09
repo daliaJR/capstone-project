@@ -34,6 +34,7 @@ function App() {
           <Route path="/therapistcreate" element={<TherapistCreate />} />
         </Routes>
       </Router>
+      <Footer />
     </div>
   );
 }
