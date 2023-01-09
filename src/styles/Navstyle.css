@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins';
+  background-color: #fcfcfc;
+  text-decoration: none;
+}
+
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0px;
+  height: 100%;
+}
+
+.navbar {
+  margin-top: 0;
+  top: 0px;
+  clear: both;
+  height: 106px;
+  background-color: #eaf8f9;
+  position: relative;
+}
+
+.Logo {
+  font-weight: 400;
+  font-size: 50px;
+  margin-left: 5px;
+  display: flex;
+  margin-left: 35px;
+}
+
+.hamburger_menu {
+  display: none;
+  position: relative;
+  z-index: 40;
+  margin-right: 25px;
+}
+
+.loginbtn {
+  width: 114px;
+  height: 40px;
+  justify-content: right;
+  align-items: center;
+  margin-right: 35px;
+  background-color: #2dd3e3;
+  border-radius: 4px;
+  text-align: center;
+  padding: 0px;
+  font-weight: 300;
+  padding-top: 4px;
+}
+.loginbtn:hover {
+  cursor: pointer;
+}
+.nav-elements ul {
+  flex: content;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.nav-elements ul li:not(:last-child) {
+  margin-right: 30px;
+}
+@media screen and (min-width: 1000px) {
+  .nav-elements ul li:not(:last-child) {
+    margin-right: 60px;
+  }
+}
+.nav-elements ul li {
+  list-style-type: none;
+}
+
+.nav-elements ul a {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+  text-decoration: none;
+}
+
+.dropdown {
+  text-align: center;
+  display: flex;
+  position: relative;
+}
+
+.nav-elements ul a.active {
+  font-weight: 700;
+  position: relative;
+  color: #fec300;
+}
+.drop_active {
+  font-weight: 700;
+  position: relative;
+  color: #fec300;
+  background-color: transparent;
+}
+.drop_unactive {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+}
+@media (max-width: 768px) {
+  .nav-elements ul li:not(:last-child, ) {
+    margin-right: 30px;
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hamburger_menu {
+    display: block;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+    .Logo {
+      width: 190px;
+    }
+  }
+
+  .nav-elements {
+    position: absolute;
+    right: -50px;
+    top: 70px;
+    background-color: #eaf8f9;
+    width: 0px;
+    height: calc(100vh - 60px);
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+    z-index: 30;
+  }
+
+  .nav-elements.active {
+    width: 270px;
+    right: 0px;
+    padding: 10px 80px;
+  }
+
+  .nav-elements ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-elements ul li {
+    margin-right: unset;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Logo {
+    align-items: center;
+    width: 190px;
+    font-size: 30px;
+  }
+}
+
+.dropbtn {
+  background-color: #4caf4f00;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9 !important;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 40;
+  left: -45px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  margin-top: 30px;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e4100;
+}
