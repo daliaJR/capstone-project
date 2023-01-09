@@ -13,6 +13,7 @@ import AddNewCard from './pages/AddNewCard';
 import Payment from './pages/Payment';
 import BuyTicket from './pages/BuyTicket';
 import Career from './pages/Career';
+import CareerTest from './pages/CareerTest';
 import TherapistProfile from './pages/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
 import RequirementsPage from './pages/RequirementsPage';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/buyticket" element={<BuyTicket />} />
           <Route path="/career" element={<Career />} />
+          <Route path="/careertest" element={<CareerTest />} />
           <Route path="/therapistcreate" element={<TherapistCreate />} />
           <Route path="/addnewcard" element={<AddNewCard />} />
         </Routes>
