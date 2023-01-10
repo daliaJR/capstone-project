@@ -1,7 +1,9 @@
 import React from 'react';
 import Button from '../components/Button';
+import Position  from '../components/Position';
 
-export default function Career() {
+export default function CareerTest() { 
+  
   return (
     <div className="w-screen">
       <MainSection />
@@ -57,89 +59,4 @@ function PhilosophySection() {
     </div>
   );
 }
-const positionsData = [
-  {
-    title: 'Senior Software Developer | Backend | Remote in the USA',
-    describtion:
-      'Moz is looking for a Senior Software Developer to join our Application Development team.',
-    major: 'Engineering',
-    position: 'Application Development',
-  },
-  {
-    title:
-      'Moz is looking for a Senior Software Developer to join our Application Development team.',
-    describtion:
-      'Moz is looking for a Senior Software Developer to join our Rapid Prototyping Team (RPT). This team is responsible for working closely with product managers to take ideas for new features and quickly validate their technical and business feasibility.',
-    major: 'Engineering',
-    position: 'Rapid Prototyping',
-  },
-  {
-    title: 'Senior Product Analyst | Remote in Canada',
-    describtion:
-      'Moz is looking for a Product Analyst to define our suite of product metrics.',
-    major: 'Engineering',
-    position: 'Business Intelligence',
-  },
-  {
-    title: 'Engineering Manager | Remote in Canada',
-    describtion:
-      'Moz is seeking an Engineering Manager within our Application Development team.',
-    major: 'Engineering',
-    position: ' ',
-  },
-  {
-    title: 'Sr. Data Engineer | Remote in Canada',
-    describtion:
-      'Moz is looking for a talented Senior Software Developer to join our Data Collection team.',
-    major: 'Engineering',
-    position: 'Data Collection',
-  },
-  {
-    title: 'Sr. Data Engineer | Remote in Canada',
-    describtion:
-      'Moz is looking for a talented Senior Software Developer to join our Data Collection team.',
-    major: 'Engineering',
-    position: 'Data Collection',
-  },
-];
 
-function Position() {
-  return (
-    <section className="flex justify-center flex-col items-center">
-      <div className="w-4/5 mt-10">
-        <h1 className="md:text-4xl text-2xl text-dark-gray">
-          CURRENT OPEN POSITIONS
-        </h1>
-        <p className="text-secondary">
-          Please send us an email with the application title as the subject with
-          an attached CV in PDF format!
-        </p>
-      </div>
-
-      <div className="w-4/5 my-10">
-        {positionsData.map((vacancy) => {
-          return (
-            <div className="md:flex justify-between border-b  border-black my-3 ">
-              <div className="w-4/5 md:my-0 my-3 md:mb-2">
-                <h1 className="text-light-blue md:text-2xl text-xl">
-                  {vacancy.title}
-                </h1>
-                <p className="text-dark-gray md:text-xl text-sm">
-                  {vacancy.describtion}
-                </p>
-              </div>
-              <div className="w-1/6 md:my-0 my-3 md:mb-2">
-                <h1 className="text-light-blue md:text-2xl text-xl">
-                  {vacancy.major}
-                </h1>
-                <p className="text-dark-gray md:text-xl text-sm">
-                  {vacancy.position}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
