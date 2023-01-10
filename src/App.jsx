@@ -17,6 +17,7 @@ import TherapistProfile from './pages/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
 import RequirementsPage from './pages/RequirementsPage';
 import Navbar from './components/Navbar';
+import AuthProvider from './pages/Authentic';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/career" element={<Career />} />
           <Route path="/therapistcreate" element={<TherapistCreate />} />
           <Route path="/addnewcard" element={<AddNewCard />} />
+          <Route path="/AuthProvider " element={<AuthProvider />} />
         </Routes>
       </Router>
       <Footer />

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, googleProvider, facebookProvider } from '../firebase';
 import Simg from '../images/Simg.png';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
 
 export default function Signup() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
@@ -14,6 +16,18 @@ export default function Signup() {
       .catch(() => {});
     navigate('/');
   }
+
+  const Signfun = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   function signInWithFacebook() {
     signInWithPopup(auth, facebookProvider)
       .then(() => {})
@@ -56,6 +70,8 @@ export default function Signup() {
           <input
             type="text"
             placeholder="Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  w-full text-xl border-light-gray border-2 shadow-lg focus:outline-none inline-flex justify-center items-center"
           />
           <input
@@ -67,6 +83,8 @@ export default function Signup() {
             <input
               type="text"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none w-1/2"
             />
             <input
@@ -88,9 +106,6 @@ export default function Signup() {
               <button
                 className="text-black font-semibold opacity-50 inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2"
                 type="button"
-                onClick={() => {
-                  navigate('/login');
-                }}
               >
                 Login
               </button>
@@ -99,6 +114,7 @@ export default function Signup() {
               <button
                 className="opacity-50 text-black font-semibold  inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2 -ml-4 "
                 type="button"
+                onClick={Signfun}
               >
                 Signup
               </button>
