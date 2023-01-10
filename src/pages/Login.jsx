@@ -49,6 +49,9 @@ export default function Login() {
                   <button
                     className="text-black font-semibold opacity-50 inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2"
                     type="submit"
+                    onClick={() => {
+                      navigate('/');
+                    }}
                   >
                     Login
                   </button>
@@ -57,9 +60,6 @@ export default function Login() {
                   <button
                     className="opacity-50 text-black font-semibold  inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2 -ml-4 "
                     type="button"
-                    onClick={() => {
-                      navigate('/signup');
-                    }}
                   >
                     Signup
                   </button>
