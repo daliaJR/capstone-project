@@ -12,13 +12,13 @@ export default function Login() {
   const navigate = useNavigate();
   const signIn = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    signInWithEmailAndPassword(auth, email, password);
+    // .then((userCredential) => {
+    //   console.log(userCredential);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
   };
 
   return (
@@ -59,7 +59,10 @@ export default function Login() {
                 <div>
                   <button
                     className="opacity-50 text-black font-semibold  inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2 -ml-4 "
-                    type="button"
+                    type="submit"
+                    onClick={() => {
+                      navigate('/signup');
+                    }}
                   >
                     Signup
                   </button>

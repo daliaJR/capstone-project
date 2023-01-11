@@ -19,13 +19,13 @@ export default function Signup() {
 
   const Signfun = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    createUserWithEmailAndPassword(auth, email, password);
+    // .then((userCredential) => {
+    //   console.log(userCredential);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
     navigate('/');
   };
 
@@ -107,6 +107,9 @@ export default function Signup() {
               <button
                 className="text-black font-semibold opacity-50 inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2"
                 type="button"
+                onClick={() => {
+                  navigate('/login');
+                }}
               >
                 Login
               </button>
