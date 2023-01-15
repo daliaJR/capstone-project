@@ -27,7 +27,7 @@ export default function Position() {
     }, []);
    
     return (
-      <section data-testid="position-section" className="flex justify-center flex-col items-center">
+      <section data-testid="section-wrapper" className="flex justify-center flex-col items-center">
         <div className="w-4/5 mt-10">
           <h1 className="md:text-4xl text-2xl text-dark-gray">
             CURRENT OPEN POSITIONS
@@ -39,9 +39,9 @@ export default function Position() {
         </div>
   
         <div className="w-4/5 my-10">
-          {position.map((vacancy, index) => {
+          {position.map((vacancy) => {
             return (
-              <div data-testid={`${index}`} key={vacancy.id} className="md:flex justify-between border-b  border-black my-3 ">
+              <div data-testid="position-section" key={vacancy.id} className="md:flex justify-between border-b  border-black my-3 ">
                 <div className="w-4/5 md:my-0 my-3 md:mb-2">
                   <h1 className="text-light-blue md:text-2xl text-xl">
                     {vacancy.title}

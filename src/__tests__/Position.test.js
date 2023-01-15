@@ -3,19 +3,14 @@ import Position from '../components/Position';
 
 test('should render position component', async () => {
   render(<Position />);
-  const positionComponent = await screen.getByTestId("position-section");
-  expect(positionComponent).toBeInTheDocument();
+  const section = screen.getByTestId("section-wrapper");
+  expect(section).toBeInTheDocument();
 });
 
-
-// import { render, screen } from '@testing-library/react';
-// import Position from '../components/Position';
-
-// describe("Career Position", () => {
-//     test('should render positions fetched from firestore', () => {
-//         render(<Position />);
-//         const positionDivElement = screen.getByTestId('position-section');
-//         expect(positionDivElement).toBeInTheDocument();
-//       });
-// })
+// test('should render position component', async () => {
+//   render(<Position />);
+//   const positionComponent = await screen.findAllByLabelText("position-section");
+//   // const positionComponent = await screen.findByTestId("position-section", undefined, {timeout: 3000});
+//   expect(positionComponent).toBeInTheDocument();
+// });
 
