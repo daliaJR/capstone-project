@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import log from '../images/log.png';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
@@ -10,15 +9,24 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
   const signIn = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password);
-    // .then((userCredential) => {
-    //   console.log(userCredential);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user, 'logged in');
+        navigate('/');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        console.log(errorCode, errorMessage);
+      });
   };
 
   return (
@@ -30,14 +38,14 @@ export default function Login() {
           <form onSubmit={signIn}>
             <div className="flex flex-col gap-6 shadow-2xl w-96 h-[404px] py-10 px-10  ">
               <input
-                type="text"
+                type="email"
                 placeholder="Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none"
               />
               <input
-                type="text"
+                type="password"
                 placeholder="Your Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -49,9 +57,9 @@ export default function Login() {
                   <button
                     className="text-black font-semibold opacity-50 inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2"
                     type="submit"
-                    onClick={() => {
-                      navigate('/');
-                    }}
+                    // onClick={() => {
+                    //   navigate('/');
+                    // }}
                   >
                     Login
                   </button>
