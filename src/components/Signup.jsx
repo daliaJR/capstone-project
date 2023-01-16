@@ -114,7 +114,7 @@ export default function Signup() {
                 Login
               </button>
             </div>
-            {/* <div className="signup button">
+            <div className="signup button">
               <button
                 className="opacity-50 text-black font-semibold  inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2 -ml-4 "
                 type="button"
@@ -122,7 +122,7 @@ export default function Signup() {
               >
                 Signup
               </button>
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="justify-center items-center pt-3 px-12">
