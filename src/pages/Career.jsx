@@ -5,7 +5,7 @@ import Position  from '../components/Position';
 export default function CareerTest() { 
   
   return (
-    <div className="w-screen">
+    <div data-testid="div-wrapper" className="w-screen">
       <MainSection />
       <PhilosophySection />
       <Position />
