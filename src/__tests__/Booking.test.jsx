@@ -1,7 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import Booking from '../components/booking/Booking';
 import { useNavigate } from 'react-router-dom';
 import { userEvent } from '@testing-library/user-event';
+import { async } from '@firebase/util';
 
 jest.mock('react-router-dom', () => {
   const originalModule = jest.requireActual('react-router-dom');
@@ -20,24 +21,37 @@ describe('Booking', () => {
     expect(headerText).toBeDefined();
   });
 
-  test('When NEXT button is pressed, it should go to the next question', () => {
+  test('When NEXT button is pressed, it should go to the next question', async () => {
     render(<Booking />);
 
     const btn = screen.getByText('NEXT');
-    fireEvent.click(btn);
+    const option = screen.getByTestId('Individual counseling');
+    fireEvent.click(option);
+    await act(async () => {
+      await fireEvent.click(btn);
+    });
     const question = screen.getByText('What is your relationship status?');
+
     expect(question).toBeDefined();
   });
 
-  // test('changes to the next question when the next button is clicked', () => {
-  //   const { getByText, getByTestId } = render(<Booking />);
-  //   const nextButton = getByText('Next');
-  //   const currentQuestion = getByTestId('current-question');
-  //   expect(currentQuestion.textContent).toEqual('Question 1');
+  test('When PREVIOUS button is pressed, it should go back to the previous question', async () => {
+    render(<Booking />);
 
-  //   fireEvent.click(nextButton);
+    const nextBtn = screen.getByText('NEXT');
+    const option = screen.getByTestId('Individual counseling');
+    fireEvent.click(option);
+    await act(async () => {
+      await fireEvent.click(nextBtn);
+    });
+    const backBtn = screen.getByText('PREVIOUS');
+    await act(async () => {
+      await fireEvent.click(backBtn);
+    });
+    const question = screen.getByText(
+      'What type of counseling are you looking for?'
+    );
 
-  //   const updatedQuestion = getByTestId('current-question');
-  //   expect(updatedQuestion.textContent).toEqual('Question 2');
-  // });
+    expect(question).toBeDefined();
+  });
 });

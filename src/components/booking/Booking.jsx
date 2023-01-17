@@ -105,7 +105,7 @@ function Steps({ steps }) {
                 <div className="w-full">
                   {steps.map((question, index) => {
                     return currentStep === index ? (
-                      <div className=" h-full ">
+                      <div className=" h-full " key={question.name}>
                         <h1 className="text-3xl font-poppins">
                           {question.title}
                         </h1>
@@ -113,8 +113,9 @@ function Steps({ steps }) {
                           <div>
                             {question.options.map((option) => {
                               return (
-                                <div className="my-5">
+                                <div className="my-5" key={option}>
                                   <input
+                                    data-testid={option}
                                     key={enteredData}
                                     type={
                                       question.isMultiple ? 'checkbox' : 'radio'
