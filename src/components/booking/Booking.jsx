@@ -23,7 +23,7 @@ function Steps({ steps }) {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="mainPage min-h-screen">
       {currentStep <= 4 && (
         <div className="w-3/4 flex flex-col mx-16 my-8 ">
           <h1 className="md:text-5xl text-2xl font-poppins mb-3">
@@ -203,6 +203,7 @@ function Steps({ steps }) {
             )}
             {isCompleted && !isSubmited ? (
               <Button
+                data-testid="nextBtn"
                 text="SUBMIT"
                 onClick={async () => {
                   await addDoc(collection(db, 'meetings'), enteredData);
