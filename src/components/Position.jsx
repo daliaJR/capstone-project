@@ -27,7 +27,7 @@ export default function Position() {
     }, []);
    
     return (
-      <section className="flex justify-center flex-col items-center">
+      <section data-testid="section-wrapper" className="flex justify-center flex-col items-center">
         <div className="w-4/5 mt-10">
           <h1 className="md:text-4xl text-2xl text-dark-gray">
             CURRENT OPEN POSITIONS
