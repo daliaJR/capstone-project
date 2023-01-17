@@ -9,7 +9,7 @@ import { AuthContext } from '../pages/Authentic';
 
 const Navbar = () => {
   const user = useContext(AuthContext);
-  console.log(user, 'user in nav');
+  // console.log(user, 'user in nav');
 
   const [showNavbar, setShowNavbar] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState({
@@ -81,7 +81,7 @@ const Navbar = () => {
                 <NavLink to="/contact">Contact</NavLink>
               </button>
             </li>
-            {!user.user ? (
+            {!user.authUser ? (
               <li>
                 <div className="loginbtn">
                   <NavLink to="/login" id="login">
@@ -94,7 +94,7 @@ const Navbar = () => {
                 <button
                   type="button"
                   className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                  onClick={user.onSignOut}
+                  onClick={user.userSignOut}
                 >
                   signout
                 </button>

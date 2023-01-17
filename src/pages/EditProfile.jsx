@@ -1,7 +1,7 @@
 import { React, useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { getAuth, deleteUser } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 import profileImg from '../images/profileImg.png';
 import lock from '../images/lock.svg';

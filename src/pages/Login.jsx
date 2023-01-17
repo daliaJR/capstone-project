@@ -17,7 +17,7 @@ export default function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+        const { user } = userCredential;
         console.log(user, 'logged in');
         navigate('/');
       })
