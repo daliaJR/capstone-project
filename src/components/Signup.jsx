@@ -82,7 +82,7 @@ export default function Signup() {
           />
           <div className="pass div flex justify-between">
             <input
-              type="text"
+              type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
