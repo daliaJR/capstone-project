@@ -18,7 +18,6 @@ import TherapistProfile from './pages/TherapistProfile';
 import TherapistCreate from './pages/TherapistCreate';
 import RequirementsPage from './pages/RequirementsPage';
 import Navbar from './components/Navbar';
-import AuthProvider from './pages/Authentic';
 
 function App() {
   return (
@@ -26,26 +25,24 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} /> {/* fixed */}
           <Route path="/requirements" element={<RequirementsPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/editprofile" element={<EditProfile />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/resource" element={<Resource />} />
-          <Route path="/thankyou" element={<ThankYou />} />
-          <Route path="/footer" element={<Footer />} />
-          <Route path="/booking" element={<Booking />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About />} /> {/* fixed */}
+          <Route path="/editprofile" element={<EditProfile />} /> {/* fixed */}
+          <Route path="/contact" element={<Contact />} /> {/* fixed */}
+          <Route path="/resource" element={<Resource />} /> {/* fixed */}
+          <Route path="/thankyou" element={<ThankYou />} /> {/* fixed */}
+          <Route path="/booking" element={<Booking />} /> {/* fixed */}
           <Route path="/therapistprofile" element={<TherapistProfile />} />
+          {/* fixed */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/addnewcard" element={<AddNewCard />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/buyticket" element={<BuyTicket />} />
-          <Route path="/career" element={<Career />} />
+          <Route path="/payment" element={<Payment />} /> {/* fixed */}
+          <Route path="/buyticket" element={<BuyTicket />} /> {/* fixed */}
+          <Route path="/career" element={<Career />} /> {/* fixed */}
           <Route path="/therapistcreate" element={<TherapistCreate />} />
-          <Route path="/addnewcard" element={<AddNewCard />} />
-          <Route path="/AuthProvider " element={<AuthProvider />} />
+          {/* fixed */}
         </Routes>
       </Router>
       <Footer />

@@ -6,15 +6,15 @@ import editProfile from '../images/editProfileImg.png';
 
 export default function EditProfile() {
   return (
-    <div>
+    <div className="font-poppins">
       <div className="flex justify-center self-center px-8 pt-8">
         <p className="text-red-500">
           Please fill all the fields with correct and valid details to complete
           your profile.
         </p>
       </div>
-      <div className="flex justify-center flex-col lg:flex-row space-y-10 lg:space-y-0 space-x-0 lg:space-x-40 p-5 lg:p-[5rem] xl:p-[8rem]">
-        <div className="flex justify-center">
+      <div className="flex justify-center flex-col items-center lg:items-start lg:flex-row space-y-10 lg:space-y-0 space-x-0 lg:space-x-36 p-5 lg:p-[5rem] xl:p-[8rem]">
+        <div className="flex justify-center ">
           <div className=" relative left-0 bottom-0 m-0 p-0">
             <img
               src={profileImg}
@@ -35,7 +35,7 @@ export default function EditProfile() {
                         </div>
                     </div>  */}
         </div>
-        <div className="inputDataField  p-4 flex-shrink-0">
+        <div className="inputDataField  p-0 flex-shrink-0 ">
           <form className="flex flex-col gap-6">
             <div className="flex flex-col gap-[2rem]">
               <h2 className="uppercase font-bold text-4xl">profile info</h2>

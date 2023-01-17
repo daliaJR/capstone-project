@@ -1,11 +1,10 @@
 import React from 'react';
 import Button from '../components/Button';
-import Position  from '../components/Position';
+import Position from '../components/Position';
 
-export default function CareerTest() { 
-  
+export default function CareerTest() {
   return (
-    <div className="w-screen">
+    <div className="w-screen font-poppins">
       <MainSection />
       <PhilosophySection />
       <Position />
@@ -59,4 +58,3 @@ function PhilosophySection() {
     </div>
   );
 }
-

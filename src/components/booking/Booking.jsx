@@ -23,9 +23,9 @@ function Steps({ steps }) {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen max-w-7xl mx-auto">
       {currentStep <= 4 && (
-        <div className="w-3/4 flex flex-col mx-16 my-8 ">
+        <div className=" flex flex-col px-5 mx-auto py-8 ">
           <h1 className="md:text-5xl text-2xl font-poppins mb-3">
             let&apos;s match you with the right therapist
           </h1>
@@ -74,7 +74,7 @@ function Steps({ steps }) {
 
       <div style={{ height: '60vh' }} className="flex justify-center min-h-fit">
         <div
-          className="w-3/5 justify-between p-16 shadow-lg flex flex-col my-5 h-full"
+          className=" justify-between p-16 shadow-lg flex flex-col my-5 h-full"
           style={{ borderRadius: 6 }}
         >
           <div className="flex h-full justify-center">

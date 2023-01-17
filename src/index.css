@@ -26,6 +26,9 @@ code {
   .blue_button {
     @apply bg-light-blue text-2xl font-normal uppercase px-6 py-3 rounded-md cursor-pointer;
   }
+  .white_button {
+    @apply border-2 border-light-blue text-light-blue text-2xl font-normal uppercase px-6 py-2.5 rounded-md cursor-pointer;
+  }
   .hide_scrollbar::-webkit-scrollbar {
     display: none;
   }

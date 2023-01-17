@@ -13,14 +13,14 @@ export default function About() {
     <div data-testid="about-page">
       <AboutHeader />
       <AboutBody />
-      <div className="flex flex-col gap-3 px-[8rem] py-[4rem]">
+      <div className="flex max-w-7xl mx-auto flex-col gap-3 px-5 py-[4rem] font-poppins">
         <h3 className="text-3xl lg:text-5xl font-bold uppercase self-center lg:self-start">
           we are healing, nice to meet you!
         </h3>
         <p className="text-gray-700 py-8 text-2xl lg:text-3xl self-center lg:self-start">
           Meet the Teem!
         </p>
-        <div className="flex flex-col justify-center gap-4 lg:flex-wrap lg:flex-row lg:gap-2">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-wrap sm:flex-row sm:gap-2">
           <Team img={dalia} name="Dalia Jaber" title="FE Developer" />
           <Team img={noor} name="Noor Ridha" title="FE Developer" />
           <Team img={mhamad} name="Mhamad Othman" title="FE Developer" />
