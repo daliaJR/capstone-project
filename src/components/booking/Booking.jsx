@@ -23,7 +23,7 @@ function Steps({ steps }) {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="mainPage min-h-screen">
       {currentStep <= 4 && (
         <div className="w-3/4 flex flex-col mx-16 my-8 ">
           <h1 className="md:text-5xl text-2xl font-poppins mb-3">
@@ -105,7 +105,7 @@ function Steps({ steps }) {
                 <div className="w-full">
                   {steps.map((question, index) => {
                     return currentStep === index ? (
-                      <div className=" h-full ">
+                      <div className=" h-full " key={question.name}>
                         <h1 className="text-3xl font-poppins">
                           {question.title}
                         </h1>
@@ -113,8 +113,9 @@ function Steps({ steps }) {
                           <div>
                             {question.options.map((option) => {
                               return (
-                                <div className="my-5">
+                                <div className="my-5" key={option}>
                                   <input
+                                    data-testid={option}
                                     key={enteredData}
                                     type={
                                       question.isMultiple ? 'checkbox' : 'radio'
@@ -203,6 +204,7 @@ function Steps({ steps }) {
             )}
             {isCompleted && !isSubmited ? (
               <Button
+                data-testid="nextBtn"
                 text="SUBMIT"
                 onClick={async () => {
                   await addDoc(collection(db, 'meetings'), enteredData);
