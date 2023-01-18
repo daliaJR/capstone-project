@@ -10,14 +10,6 @@ import rec2 from '../images/Rectangle 41.svg';
 import next from '../images/next.svg';
 import prev from '../images/prev.svg';
 
-/* 
-position: absolute;
-width: 1440px;
-height: 745px;
-left: 0px;
-top: 106px;
-
-*/
 export default function Home() {
   function moveRight() {
     const carousel = document.querySelector('.hide_scrollbar');

@@ -22,34 +22,38 @@ import AuthProvider from './pages/Authentic';
 
 function App() {
   return (
-    <div className="">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/requirements" element={<RequirementsPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/editprofile" element={<EditProfile />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/resource" element={<Resource />} />
-          <Route path="/thankyou" element={<ThankYou />} />
-          <Route path="/footer" element={<Footer />} />
-          <Route path="/booking" element={<Booking />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/therapistprofile" element={<TherapistProfile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/addnewcard" element={<AddNewCard />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/buyticket" element={<BuyTicket />} />
-          <Route path="/career" element={<Career />} />
-          <Route path="/therapistcreate" element={<TherapistCreate />} />
-          <Route path="/addnewcard" element={<AddNewCard />} />
-          <Route path="/AuthProvider " element={<AuthProvider />} />
-        </Routes>
-      </Router>
-      <Footer />
-    </div>
+
+    <Router>
+      <AuthProvider>
+        <div className="">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/requirements" element={<RequirementsPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/editprofile" element={<EditProfile />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/resource" element={<Resource />} />
+            <Route path="/thankyou" element={<ThankYou />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/therapistprofile" element={<TherapistProfile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/addnewcard" element={<AddNewCard />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/buyticket" element={<BuyTicket />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/therapistcreate" element={<TherapistCreate />} />
+            <Route path="/addnewcard" element={<AddNewCard />} />
+            {/* <Route path="/AuthProvider " element={<AuthProvider />} /> */}
+          </Routes>
+          {/* </Router> */}
+          <Footer />
+        </div>
+      </AuthProvider>
+    </Router>
+
   );
 }
 
