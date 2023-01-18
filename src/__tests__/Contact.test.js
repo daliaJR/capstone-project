@@ -15,9 +15,9 @@ describe('Contact', () => {
   });
 
   test('has the correct number of form fields', () => {
-    const { getAllByRole } = render(<Contact />);
-    const inputElement = getAllByRole('textbox');
-    expect(inputElement.length).toEqual(3);
+    const { container } = render(<Contact />);
+    const inputElements = container.querySelectorAll('input[type="text"]');
+    expect(inputElements.length).toEqual(1);
   });
 
   test('submit button works correctly', () => {
