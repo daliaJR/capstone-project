@@ -22,6 +22,7 @@ import AuthProvider from './pages/Authentic';
 
 function App() {
   return (
+
     <Router>
       <AuthProvider>
         <div className="">
@@ -52,6 +53,7 @@ function App() {
         </div>
       </AuthProvider>
     </Router>
+
   );
 }
 

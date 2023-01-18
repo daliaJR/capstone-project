@@ -30,4 +30,6 @@ export const db = getFirestore(app);
 export const colRef = collection(db, 'positions');
 export const googleProvider = new GoogleAuthProvider();
 export const facebookProvider = new FacebookAuthProvider();
+
 export const storage = getStorage(app);
+
