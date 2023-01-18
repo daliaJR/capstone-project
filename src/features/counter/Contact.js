@@ -8,7 +8,10 @@ export default function contact() {
         <h1 data-testid="headerText" className="md:text-5xl text-3xl mb-2 ">
           SEND US YOUR REQUEST!
         </h1>
-        <p className="text-secondary md:text-2xl text-xl">
+        <p
+          data-testid="paragraphText"
+          className="text-secondary md:text-2xl text-xl"
+        >
           Do you have a question, concern, idea, feedback, or problem? If you
           need assistance, please fill out the form below and we&apos;be happy
           to help!
@@ -81,6 +84,7 @@ export default function contact() {
             <p className="mb-2 ml-1">Full Name:</p>
             <input
               type="text"
+              role="textbox"
               id="name"
               placeholder="Enter your full name here..."
               className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
@@ -91,6 +95,7 @@ export default function contact() {
             <p className="mb-2 ml-1">Email:</p>
             <input
               type="email"
+              role="textbox"
               id="email"
               placeholder="Enter your email address here..."
               className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
@@ -101,6 +106,7 @@ export default function contact() {
             <p className="mb-2 ml-1">Details:</p>
             <textarea
               type="text"
+              role="textbox"
               id="details"
               placeholder="Enter your details here..."
               className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline resize-none"
