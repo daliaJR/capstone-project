@@ -7,7 +7,7 @@ import PhilosophySection  from '../components/PhilosophySection';
 export default function CareerTest() { 
   
   return (
-    <div data-testid="div-wrapper" className="w-screen">
+    <div className="w-screen">
       <MainSection />
       <PhilosophySection />
       <Position />

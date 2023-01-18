@@ -2,7 +2,7 @@ import React from "react";
 
 export default function PhilosophySection() {
     return (
-      <div className="bg-light-yellow w-screen flex flex-col items-center py-4 text-dark-gray">
+      <div data-testid="div-wrapper" className="bg-light-yellow w-screen flex flex-col items-center py-4 text-dark-gray">
         <h1 className="md:text-4xl text-2xl w-3/4">OUR HIRING PHILOSOPHY</h1>
         <p className="w-3/4 md:text-xl text-sm">
           To build the very best SEO tools, we need a workforce that reflects the
