@@ -4,122 +4,121 @@ import ca2 from '../images/ca2.png';
 
 export default function AddNewCard() {
   return (
-    <div className="main div h-screen items-center px-2">
-      <div className="px-5">
-        <h1 className=" font-Poppins text-4xl ">ADD CARD DETAILS</h1>
-        <p className="text-stone-600 opacity: 50% ">
+    <div className="flex flex-col min-h-screen lg:items-start items-center px-2 font-poppins max-w-7xl mx-auto py-20">
+      <div className="px-5 mb-20">
+        <h1 className="font-Poppins text-6xl mb-5">ADD CARD DETAILS</h1>
+        <p className="text-stone-600 opacity: 50% text-2xl">
           Please make sure all of the info you enter are the same as your card
           registration info.
         </p>
       </div>
 
-      <div className="flex justify-around h-screen w-full items-center">
-        <div className="flex flex-row w-full justify-around">
-          <div className="main form div flex flex-col w-2/6">
-            <div className="firstname div w[233px] h[50] w-1/2">
-              <h1 className="text-stone-600 ">Supported card types</h1>
-              <div className=" flex justify-around  ">
-                <div className="box-content text-center h-8 w-full color-cyan-400 border-2 justify-items-stretch   ">
-                  <p className="text-cyan-400">Visa</p>
+      <div className="flex flex-col md:flex-row justify-around w-full items-center">
+        <div className="flex flex-col xl:flex-row xl:space-x-20 space-y-10 xl:space-y-0">
+          <div className=" flex flex-col py-0">
+            <div className=" ">
+              <h1 className="text-black/40 text-2xl mb-2">
+                Supported card types
+              </h1>
+              <div className=" flex justify-around  xl:mb-5">
+                <div className="box-content text-center h-8 w-[13.5rem] border-2 border-light-blue   ">
+                  <p className="text-cyan-400 text-2xl mb-2">Visa</p>
                 </div>
-                <div className="box-content text-center h-8 w-full border-2 justify-items-stretch">
-                  <p className="text-cyan-400">Mastercard</p>
+                <div className="box-content text-center h-8 w-[13.5rem] -ml-0.5 border-2 border-light-blue ">
+                  <p className="text-cyan-400 text-2xl mb-2">Mastercard</p>
                 </div>
               </div>
             </div>
-            <p className="pt-8 text-stone-600 "> Card Number</p>
+            <p className="pt-8 text-black/40 text-2xl mb-2"> Card Number</p>
             <input
               type="text"
               placeholder="4287 8876 8699 3434"
-              className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-m text-xl border-light-gray border-2 shadow-lg focus:outline-none"
+              className="rounded-lg py-2 px-3 h-14   text-xl border-black/30 border-2 shadow-lg focus:outline-none"
             />
 
             <div className="inline-flex pt-8">
-              <div className=" max-w-m h[50] w-1/2">
-                <p className="">Expiry Date</p>
+              <div className=" ">
+                <p className="text-black/40 text-2xl mb-2">Expiry Date</p>
                 <input
                   type="text"
                   placeholder="MM / YY"
-                  className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none"
+                  className="rounded-lg py-2 px-3 h-14  max-w-[13rem] text-xl border-black/30 border-2 shadow-lg focus:outline-none"
                 />
               </div>
 
-              <div>
-                <p>CVV Code</p>
+              <div className="ml-5">
+                <p className="text-black/40 text-2xl mb-2">CVV Code</p>
                 <input
                   type="text"
                   placeholder="***"
-                  className="rounded-xl py-3 px-4 h-14 shadow-lg max-w-xs text-xl border-light-gray border-2 focus:outline-none"
+                  className="rounded-lg py-3 px-4 h-14 shadow-lg max-w-[13rem] text-xl border-black/30 border-2 focus:outline-none"
                 />
               </div>
             </div>
 
-            <p className="pt-8 text-stone-600">Name On Card</p>
+            <p className="pt-8 text-black/40 text-2xl mb-2">Name On Card</p>
             <input
               type="text"
               placeholder="Ayla Ronny"
-              className="rounded-xl py-3 px-4 h-14 shadow-lg max-w-m text-xl border-light-gray border-2 focus:outline-none"
+              className="rounded-lg py-3 px-4 h-14 shadow-lg max-w-m text-xl border-black/30 border-2 focus:outline-none"
             />
-
-            <button
-              className="text-black font-semibold opacity-50 inline-flex justify-center items-center w-48 h-14 mt-4 rounded-xl bg-light-blue border-light-gray border-2"
-              type="submit"
-            >
-              ADD CARD
-            </button>
           </div>
 
-          <div className="flex flex-col w-2/6">
+          <div className="flex flex-col ">
             <div>
-              <p className="text-stone-600 "> Country</p>
-              <input
-                type="text"
-                placeholder="US"
-                className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none"
-              />
+              <p className="text-black/40 text-2xl mb-2"> Country</p>
+              <select
+                name=""
+                id=""
+                className="rounded-lg py-2 px-5 h-14 w-full text-black/40  max-w-xs text-xl bg-white border-black/30 border-2 shadow-lg focus:outline-none"
+              >
+                <option value="USA">united stated</option>
+                <option value="IRAQ">Iraq</option>
+                <option value="IRAN">Iran</option>
+              </select>
             </div>
             <div>
-              <p className="pt-8 text-stone-600 "> Zip Code</p>
+              <p className="pt-8 text-black/40 text-2xl mb-2"> Zip Code</p>
               <input
                 type="text"
                 placeholder="12345-4567"
-                className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none"
+                className="rounded-lg py-2 px-3 h-14  max-w-xs text-xl border-black/30 border-2 shadow-lg focus:outline-none"
               />
             </div>
             <div>
-              <p className="pt-8 text-stone-600 "> City</p>
-              <input
-                type="text"
-                placeholder="SF"
-                className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none"
-              />
+              <p className="pt-8 text-black/40 text-2xl mb-2"> City</p>
+              <select
+                name=""
+                id=""
+                className="rounded-lg py-2 px-5 h-14 w-full text-black/40  max-w-xs text-xl bg-white border-black/30 border-2 shadow-lg focus:outline-none"
+              >
+                <option value="USA">Sulaimani</option>
+                <option value="BAGDAD">Bagdad</option>
+                <option value="BASRA">Basra</option>
+              </select>
             </div>
             <div>
-              <p className="pt-8 text-stone-600 "> Adress</p>
+              <p className="pt-8 text-black/40 text-2xl mb-2"> Adress</p>
               <input
                 type="text"
                 placeholder="NewYork 430 ST."
-                className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none"
+                className="rounded-lg py-2 px-3 h-14  max-w-xs text-xl border-black/30 border-2 shadow-lg focus:outline-none"
               />
             </div>
           </div>
-
-          {/* <div className="w-2/6">
-        <img className="card1" src={card1} alt="visa card" />
-        <img className="card2" src={card2} alt="visa card" />
-      </div> */}
         </div>
 
-        <div className="w-2/6">
+        <div className=" flex-col justify-center hidden md:flex items-center md:pt-6 xl:pt-20 md:self-start">
           <img className="card1" src={ca1} alt="visa card" />
           <img className="card2" src={ca2} alt="visa card" />
         </div>
       </div>
-
-      {/* <div className="">
-        <img className="card1" src={card1} alt="visa card" />
-        <img className="card2" src={card2} alt="visa card" />
-      </div> */}
+      <button
+        className="blue_button px-10 mt-14 xl:mt-0 lg:ml-20 xl:ml-3"
+        type="submit"
+      >
+        ADD CARD
+      </button>
     </div>
   );
 }

@@ -45,7 +45,7 @@ export default function Home() {
         />
       </section>
       <section className="bg-light-yellow">
-        <div className="font-poppins py-20 max-w-6xl mx-auto px-7">
+        <div className="font-poppins py-20 max-w-7xl mx-auto px-7">
           <h2 className="text-4xl md:text-5xl uppercase leading-12 lg:leading-18 mb-7 ">
             Professional, licensed, and vetted
             <br className="hidden lg:block" /> therapists that you can trust
@@ -60,7 +60,7 @@ export default function Home() {
         </div>
       </section>
       <section className=" bg-white">
-        <div className="font-poppins py-24 max-w-6xl mx-auto px-7">
+        <div className="font-poppins py-24 max-w-7xl mx-auto px-7">
           <h2 className="text-5xl uppercase leading-18 mb-20 mt-5 ">
             we can communicate through
           </h2>
@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </section>
       <section className="bg-white">
-        <div className="font-poppins py-16 max-w-6xl mx-auto px-7">
+        <div className="font-poppins py-16 max-w-7xl mx-auto px-7">
           <h2 className="text-5xl uppercase leading-18">Purchase tickets</h2>
           <h3 className="text-2xl uppercase  mb-7">
             purchase tickets that can be used to book appointments!

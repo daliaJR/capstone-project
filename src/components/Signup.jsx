@@ -36,7 +36,7 @@ export default function Signup() {
   }
 
   return (
-    <div className="maindiv max-w-7xl mx-auto flex flex-col space-x-10 px-2 xl:flex-row justify-around items-center py-16 font-poppins">
+    <div className=" max-w-7xl mx-auto flex flex-col space-x-10 px-2 xl:flex-row justify-around items-center py-16 font-poppins">
       {/* the div that contain SIGNUP NOW, SIGNUP CONTAINER, SOCIAL MADEA */}
       {/* image div */}
       <div className="object-left mb-12 xl:mb-0">
@@ -49,14 +49,14 @@ export default function Signup() {
         {/* input div */}
         <div className="flex flex-col gap-6 shadow-lg max-w-2xl pb-10 pt-16 sm:px-14  px-3">
           <div className="inline-flex space-x-5 items-center ">
-            <div className="firstname ">
+            <div className=" ">
               <input
                 type="text"
                 placeholder="First Name"
                 className="rounded-xl py-4 px-3 h-14 max-w-[12rem] md:max-w-[16rem]  text-xl border-black/30 border-2 shadow-lg focus:outline-none"
               />
             </div>
-            <div className="lastname">
+            <div className="">
               <input
                 type="text"
                 placeholder="Last Name"

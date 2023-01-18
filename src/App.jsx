@@ -27,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> {/* fixed */}
           <Route path="/requirements" element={<RequirementsPage />} />
+          {/* fixed */}
           <Route path="/about" element={<About />} /> {/* fixed */}
           <Route path="/editprofile" element={<EditProfile />} /> {/* fixed */}
           <Route path="/contact" element={<Contact />} /> {/* fixed */}
@@ -35,9 +36,9 @@ function App() {
           <Route path="/booking" element={<Booking />} /> {/* fixed */}
           <Route path="/therapistprofile" element={<TherapistProfile />} />
           {/* fixed */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/addnewcard" element={<AddNewCard />} />
+          <Route path="/login" element={<Login />} /> {/* fixed */}
+          <Route path="/signup" element={<Signup />} /> {/* fixed */}
+          <Route path="/addnewcard" element={<AddNewCard />} /> {/* fixed */}
           <Route path="/payment" element={<Payment />} /> {/* fixed */}
           <Route path="/buyticket" element={<BuyTicket />} /> {/* fixed */}
           <Route path="/career" element={<Career />} /> {/* fixed */}
