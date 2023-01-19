@@ -1,8 +1,11 @@
 import { React, useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { v4 } from 'uuid';
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { getAuth, deleteUser } from 'firebase/auth';
-import { db } from '../firebase';
+import { useNavigate } from 'react-router-dom';
+import { db, storage } from '../firebase';
 import profileImg from '../images/profileImg.png';
 import lock from '../images/lock.svg';
 import plus from '../images/plus.svg';
@@ -113,6 +116,42 @@ export default function EditProfile() {
     // });
   };
 
+  // profire picture
+
+  const [imageUpload, setImageUpload] = useState(null);
+  const [url, setUrl] = useState(null);
+
+  useEffect(() => {
+    // const uploadImg = () => {
+
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then(() => {
+      // alert('Image Uploded');
+
+      getDownloadURL(imageRef).then((url1) => {
+        setUrl(url1);
+      });
+
+      setImageUpload(null);
+    });
+    // };
+  }, [imageUpload]);
+
+  // const uploadImg = () => {
+  //   if (imageUpload == null) return;
+  //   const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+  //   uploadBytes(imageRef, imageUpload).then(() => {
+  //     // alert('Image Uploded');
+
+  //     getDownloadURL(imageRef).then((url1) => {
+  //       setUrl(url1);
+  //     });
+
+  //     setImageUpload(null);
+  //   });
+  // };
+
   return (
     <div>
       <div className="flex justify-center self-center px-8 pt-8">
@@ -125,16 +164,41 @@ export default function EditProfile() {
       <div className="flex justify-center flex-col lg:flex-row space-y-10 lg:space-y-0 space-x-0 lg:space-x-40 p-5 lg:p-[5rem] xl:p-[8rem]">
         <div className="flex justify-center">
           <div className=" relative left-0 bottom-0 m-0 p-0">
-            <img
-              src={profileImg}
-              alt="prfileImage"
-              className="w-56 h-56 m-0 pl-7 relative top-0 left-0 bottom-0 z-10"
-            />
-            <img
-              src={editProfile}
-              alt="editProfile"
-              className="w-12 h-12 absolute bg-white rounded-3xl top-44 left-[6rem]  z-20"
-            />
+            {url === undefined ? (
+              <img
+                src={profileImg}
+                alt="prfileImage"
+                className="w-56 h-56 m-0 pl-7 relative top-0 left-0 bottom-0 z-10"
+              />
+            ) : (
+              <Avatar
+                alt="profile image"
+                src={url}
+                sx={{ width: 150, height: 150 }}
+              />
+            )}
+
+            <div>
+              <label className="text-center" htmlFor="file-input">
+                <img
+                  src={editProfile}
+                  alt="editProfile"
+                  className="w-[200] h-12  bg-white rounded-3xl m-0 pl-7 relative top-0 left-0 bottom-0 z-10 cursor-pointer "
+                />
+              </label>
+              <input
+                id="file-input"
+                className="hidden"
+                type="file"
+                onChange={(event) => {
+                  setImageUpload(event.target.files[0]);
+                }}
+              />
+            </div>
+
+            {/* <button onClick={uploadImg}>
+              
+            </button> */}
           </div>
           {/* <div className="relative p-0 m-0">
                         <div className="hidden lg:flex relative p-0 m-0">
