@@ -1,26 +1,32 @@
 import { React, useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import { ref, uploadBytes, getDownloadURL, listAll, deleteObject } from 'firebase/storage';
+import { v4 } from 'uuid';
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { getAuth, deleteUser } from 'firebase/auth';
-import { db } from '../firebase';
+import { useNavigate } from 'react-router-dom';
+import { db, storage } from '../firebase';
 import profileImg from '../images/profileImg.png';
 import lock from '../images/lock.svg';
 import plus from '../images/plus.svg';
 import editProfile from '../images/editProfileImg.png';
 import { AuthContext } from './Authentic';
 
+/* eslint no-underscore-dangle: 0 */
+
 export default function EditProfile() {
   const navigate = useNavigate();
 
   // get user from context
   const user = useContext(AuthContext);
-  const userId = user.uid;
-  // let currentUser =
+  
+  const { userId } = user;
   const collection = 'users';
 
   const [currentUser, setCurrentUser] = useState(user);
-  // here
   const [message, setMessage] = useState(null);
+
+
   const [name, setName] = useState('');
   const [education, setEducation] = useState('');
   const [hobby, setHobby] = useState('');
@@ -32,18 +38,53 @@ export default function EditProfile() {
   const [pass, setPass] = useState('');
   const [userObject, setUserObject] = useState({});
 
+
+
+  const [imageUpload, setImageUpload] = useState(null);
+  const [url, setUrl] = useState(null);
+
   useEffect(() => {
     const auth = getAuth();
     const u = auth.currentUser;
 
+
     if (u) {
       setCurrentUser(u);
-    }
+    // }
 
     // get document information if it exists
+  
     (async () => {
+      
+      try {
+      
       const docRef = doc(db, collection, userId);
       const docSnap = await getDoc(docRef);
+      
+
+      // const storage = getStorage();
+
+       // Create a reference under which you want to list
+       const listRef = ref(storage, `images/${userId}`);
+
+       // Find all the prefixes and items.
+      listAll(listRef)
+      .then((res) => {
+       
+        getDownloadURL(ref(storage, res.items[0]._location.path_))
+        .then((imgUrl) => {
+         
+          setUrl(imgUrl);
+        })
+
+        
+       
+       }).catch((error) => {
+          throw new Error(error.message);
+
+       });
+
+
 
       if (docSnap.exists()) {
         const userData = docSnap.data();
@@ -72,7 +113,13 @@ export default function EditProfile() {
       } else {
         // console.log('no data exists');
       }
+
+    } catch(err) {
+        throw new Error(err.message);
+    }
     })();
+
+  }
 
     // return cleanUp
   }, [userId]);
@@ -80,6 +127,7 @@ export default function EditProfile() {
   // set new form data
   const handleForm = async (e) => {
     e.preventDefault();
+
 
     try {
       await setDoc(doc(db, collection, userId), {
@@ -113,6 +161,43 @@ export default function EditProfile() {
     // });
   };
 
+  
+
+
+  useEffect(() => {
+    
+    // save old url to use to delete old profile picture if one exists
+    const oldUrl = url;
+    
+
+    if (imageUpload == null) return;
+
+    const imageRef = ref(storage, `images/${userId}/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then(() => {
+      // alert('Image Uploded');
+
+      getDownloadURL(imageRef).then((url1) => {
+
+        setUrl(url1);
+      });
+
+      setImageUpload(null);
+    });
+
+
+    // if a profile pic already exists delete it
+    if(oldUrl) {
+
+      deleteObject(ref(storage, oldUrl)).then(() => {
+        
+      });
+
+    }
+   
+  }, [imageUpload]);
+
+  
+
   return (
     <div>
       <div className="flex justify-center self-center px-8 pt-8">
@@ -125,16 +210,41 @@ export default function EditProfile() {
       <div className="flex justify-center flex-col lg:flex-row space-y-10 lg:space-y-0 space-x-0 lg:space-x-40 p-5 lg:p-[5rem] xl:p-[8rem]">
         <div className="flex justify-center">
           <div className=" relative left-0 bottom-0 m-0 p-0">
-            <img
-              src={profileImg}
-              alt="prfileImage"
-              className="w-56 h-56 m-0 pl-7 relative top-0 left-0 bottom-0 z-10"
-            />
-            <img
-              src={editProfile}
-              alt="editProfile"
-              className="w-12 h-12 absolute bg-white rounded-3xl top-44 left-[6rem]  z-20"
-            />
+            {url === undefined ? (
+              <img
+                src={profileImg}
+                alt="prfileImage"
+                className="w-56 h-56 m-0 pl-7 relative top-0 left-0 bottom-0 z-10"
+              />
+            ) : (
+              <Avatar
+                alt="profile image"
+                src={url}
+                sx={{ width: 200, height: 200 }}
+              />
+            )}
+
+            <div>
+              <label className="text-center" htmlFor="file-input">
+                <img
+                  src={editProfile}
+                  alt="editProfile"
+                  className="w-[100] h-8 mx-2 bg-white rounded-3xl m-0 pl-7 relative top-0 left-0 bottom-0 z-10 cursor-pointer "
+                />
+              </label>
+              <input
+                id="file-input"
+                className="hidden"
+                type="file"
+                onChange={(event) => {
+                  setImageUpload(event.target.files[0]);
+                }}
+              />
+            </div>
+
+            {/* <button onClick={uploadImg}>
+              
+            </button> */}
           </div>
           {/* <div className="relative p-0 m-0">
                         <div className="hidden lg:flex relative p-0 m-0">
@@ -236,7 +346,7 @@ export default function EditProfile() {
                   onChange={(e) => setGen(e.target.value)}
                 >
                   <option value="gender">{}</option>
-                  <option value="Woman">Wonan</option>
+                  <option value="Woman">Woman</option>
                   <option value="Man">Man</option>
                   <option value="nonbinary">Nonbinary</option>
                   <option value="prefernottosay">Prefer Not To Say</option>
@@ -299,7 +409,7 @@ export default function EditProfile() {
                     className="border rounded-md focus:shadow-outline w-[20rem] pl-7 m-0 h-6"
                     name="uploadId"
                     id="uploadId"
-                    type="text"
+                    type="file"
                   />
                   <img
                     src={plus}
