@@ -5,8 +5,13 @@ export default function contact() {
   return (
     <div className="main flex-col p-12 ">
       <section className="section1 mb-10">
-        <h1 className="md:text-5xl text-3xl mb-2 ">SEND US YOUR REQUEST!</h1>
-        <p className="text-secondary md:text-2xl text-xl">
+        <h1 data-testid="headerText" className="md:text-5xl text-3xl mb-2 ">
+          SEND US YOUR REQUEST!
+        </h1>
+        <p
+          data-testid="paragraphText"
+          className="text-secondary md:text-2xl text-xl"
+        >
           Do you have a question, concern, idea, feedback, or problem? If you
           need assistance, please fill out the form below and we&apos;be happy
           to help!

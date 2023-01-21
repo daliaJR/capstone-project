@@ -89,7 +89,7 @@ export default function Signup() {
               className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none w-1/2"
             />
             <input
-              type="text"
+              type="password"
               placeholder="Confirm Password"
               className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg w-1/2 focus:outline-none"
             />

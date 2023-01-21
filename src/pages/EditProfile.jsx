@@ -1,6 +1,8 @@
 import { React, useEffect, useState, useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
+
 import { ref, uploadBytes, getDownloadURL, listAll, deleteObject } from 'firebase/storage';
+
 import { v4 } from 'uuid';
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { getAuth, deleteUser } from 'firebase/auth';
@@ -173,16 +175,20 @@ export default function EditProfile() {
     if (imageUpload == null) return;
 
     const imageRef = ref(storage, `images/${userId}/${imageUpload.name + v4()}`);
+
     uploadBytes(imageRef, imageUpload).then(() => {
       // alert('Image Uploded');
 
       getDownloadURL(imageRef).then((url1) => {
+
+
 
         setUrl(url1);
       });
 
       setImageUpload(null);
     });
+
 
 
     // if a profile pic already exists delete it
@@ -197,6 +203,7 @@ export default function EditProfile() {
   }, [imageUpload]);
 
   
+
 
   return (
     <div>
@@ -220,7 +227,9 @@ export default function EditProfile() {
               <Avatar
                 alt="profile image"
                 src={url}
+
                 sx={{ width: 200, height: 200 }}
+
               />
             )}
 
@@ -229,7 +238,9 @@ export default function EditProfile() {
                 <img
                   src={editProfile}
                   alt="editProfile"
+
                   className="w-[100] h-8 mx-2 bg-white rounded-3xl m-0 pl-7 relative top-0 left-0 bottom-0 z-10 cursor-pointer "
+
                 />
               </label>
               <input

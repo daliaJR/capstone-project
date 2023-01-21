@@ -5,7 +5,7 @@ export default function TherapistCreate() {
     <div>
       <section className="font-poppins py-6">
         <div className="max-w-7xl  px-5 mx-auto ">
-          <form action="" className="flex flex-col max-w-fit">
+          <form name="form" action="" className="flex flex-col max-w-fit">
             <h2 className="text-5xl uppercase leading-18 mb-8">
               CREATE AN ACCOUNT
             </h2>
@@ -18,6 +18,7 @@ export default function TherapistCreate() {
             <input
               type="text"
               id="username"
+              aria-label="username"
               className="mb-2 focus:outline-none border border-black/20 h-10 rounded-sm px-3 max-w-md"
             />
             <label
@@ -29,6 +30,7 @@ export default function TherapistCreate() {
             <input
               type="text"
               id="email"
+              aria-label="email"
               className="mb-2 focus:outline-none border border-black/20 h-10 rounded-sm px-3 max-w-md"
             />
             <label
