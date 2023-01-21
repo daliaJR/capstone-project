@@ -31,7 +31,7 @@ function App() {
           <Route path="/about" element={<About />} /> {/* fixed */}
           <Route path="/editprofile" element={<EditProfile />} /> {/* fixed */}
           <Route path="/contact" element={<Contact />} /> {/* fixed */}
-          <Route path="/resource" element={<Resource />} /> {/* fixed */}
+          <Route path="/blog" element={<Resource />} /> {/* fixed */}
           <Route path="/thankyou" element={<ThankYou />} /> {/* fixed */}
           <Route path="/booking" element={<Booking />} /> {/* fixed */}
           <Route path="/therapistprofile" element={<TherapistProfile />} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../imgs/contact.png';
+import img from '../../images/contact.png';
 
 export default function contact() {
   return (

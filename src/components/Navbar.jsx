@@ -1,12 +1,25 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeSignedToFalse } from '../features/signed/signedUserSlice';
+import { auth } from '../firebase';
 import { ReactComponent as Hamburger } from '../images/HB.svg';
 import { ReactComponent as Brand } from '../images/Logo.svg';
 import { ReactComponent as Dropdown } from '../images/Dropdown.svg';
 import '../styles/Navstyle.css';
 
 const Navbar = () => {
+  const isSigned = useSelector((state) => state.signed.signed);
   const [showNavbar, setShowNavbar] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  function signUserOut() {
+    signOut(auth).then(() => {
+      localStorage.removeItem('isauthenticated');
+      dispatch(changeSignedToFalse());
+    });
+  }
   const [activeDropdown, setActiveDropdown] = useState({
     text: 'About',
     classForCss: 'drop_unactive',
@@ -78,9 +91,19 @@ const Navbar = () => {
             </li>
             <li>
               <div className="loginbtn">
-                <NavLink to="/login" id="login">
-                  Login
-                </NavLink>
+                {isSigned ? (
+                  <button type="button" onClick={signUserOut}>
+                    Sign out
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    id="login"
+                    onClick={() => navigate('./login')}
+                  >
+                    Login
+                  </button>
+                )}
               </div>
             </li>
           </ul>

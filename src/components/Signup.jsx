@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { changeSignedToTrue } from '../features/signed/signedUserSlice';
 import { auth, googleProvider, facebookProvider } from '../firebase';
 import Simg from '../images/Simg.png';
 import fb from '../images/fb.png';
@@ -10,23 +12,25 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
-      .then(() => {})
+      .then(() => {
+        dispatch(changeSignedToTrue());
+        localStorage.setItem('isauthenticated', true);
+        navigate('/');
+      })
       .catch(() => {});
-    navigate('/');
   }
 
   const Signfun = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password);
-    // .then((userCredential) => {
-    //   console.log(userCredential);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
-    navigate('/');
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        localStorage.setItem('isauthenticated', true);
+        navigate('/');
+      })
+      .catch(() => {});
   };
 
   function signInWithFacebook() {
