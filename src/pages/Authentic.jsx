@@ -18,10 +18,10 @@ const AuthProvider = ({ children }) => {
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
         setAuthUser(user);
-        console.log('uid', user.uid);
+        // console.log('uid', user.uid);
         setUserId(user.uid);
       } else {
-        console.log('user logged out in context');
+       // console.log('user logged out in context');
         setAuthUser(null);
       }
     });
@@ -33,10 +33,10 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const userSignOut = () => {
-    console.log('user signed outtttt');
+    // console.log('user signed outtttt');
     signOut(auth).then(() => {
       navigate('/');
-      console.log('user signed out');
+      // console.log('user signed out');
     });
   };
 

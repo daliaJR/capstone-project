@@ -42,15 +42,15 @@ export default function Signup() {
          email: email1,
         
       }).then(() => {
-          console.log('document has been created');
+         // console.log('document has been created');
       })
    
 
 
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    // .catch((error) => {
+     // console.log(error);
+    // });
     navigate('/');
   };
 
