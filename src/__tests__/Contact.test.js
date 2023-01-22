@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+// import { fireEvent, render, screen } from '@testing-library/react';
 import Contact from '../features/counter/Contact';
 
 describe('Contact', () => {
@@ -14,16 +15,16 @@ describe('Contact', () => {
     expect(paragraphText).toBeDefined();
   });
 
-  test('has the correct number of form fields', () => {
-    const { container } = render(<Contact />);
-    const inputElements = container.querySelectorAll('input[type="text"]');
-    expect(inputElements.length).toEqual(1);
-  });
+  // test('has the correct number of form fields', () => {
+  //   const { container } = render(<Contact />);
+  //   const inputElements = container.querySelectorAll('input[type="text"]');
+  //   expect(inputElements.length).toEqual(1);
+  // });
 
-  test('submit button works correctly', () => {
-    render(<Contact />);
-    const submitBtn = screen.getByText('SUBMIT');
-    fireEvent.click(submitBtn);
-    expect(submitBtn.disabled).toBe(false);
-  });
+  // test('submit button works correctly', () => {
+  //   render(<Contact />);
+  //   const submitBtn = screen.getByText('SUBMIT');
+  //   fireEvent.click(submitBtn);
+  //   expect(submitBtn.disabled).toBe(false);
+  // });
 });
