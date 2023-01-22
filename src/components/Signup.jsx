@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, googleProvider, facebookProvider } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, googleProvider, facebookProvider, db } from '../firebase';
 import Simg from '../images/Simg.png';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
 
 export default function Signup() {
-  const [email, setEmail] = useState('');
+  const [email1, setEmail1] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  // const [confEmail, setConfEmail] = useState('');
+  const[birthD, setBirthD] = useState('');
+  
+  
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
       .then(() => {})
@@ -19,13 +29,28 @@ export default function Signup() {
 
   const Signfun = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password);
-    // .then((userCredential) => {
-    //   console.log(userCredential);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+
+    createUserWithEmailAndPassword(auth, email1, password)
+    .then((userCredential) => {
+      // after the user is created get the ID from their object and the data from the form and create a document
+      const userId = userCredential.user.uid;
+      const collection = 'users';
+    
+      setDoc(doc(db, collection, userId), {
+        fullname: firstName + lastName,
+         date: birthD ,
+         email: email1,
+        
+      }).then(() => {
+          console.log('document has been created');
+      })
+   
+
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     navigate('/');
   };
 
@@ -57,6 +82,8 @@ export default function Signup() {
               <input
                 type="text"
                 placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  text-xl border-light-gray border-2 shadow-lg focus:outline-none"
               />
             </div>
@@ -64,6 +91,8 @@ export default function Signup() {
               <input
                 type="text"
                 placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 className="rounded-xl py-3 px-4 h-14 shadow-lg  text-xl border-light-gray border-2 focus:outline-none"
               />
             </div>
@@ -71,8 +100,8 @@ export default function Signup() {
           <input
             type="text"
             placeholder="Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={email1}
+            onChange={(e) => setEmail1(e.target.value)}
             className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  w-full text-xl border-light-gray border-2 shadow-lg focus:outline-none inline-flex justify-center items-center"
           />
           <input
@@ -89,17 +118,39 @@ export default function Signup() {
               className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none w-1/2"
             />
             <input
-              type="text"
+              type="password"
               placeholder="Confirm Password"
               className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg w-1/2 focus:outline-none"
             />
           </div>
           {/* birthday div */}
           <div>
-            <p>Birthday Date</p>
-            <input type="text" placeholder="DD" />
-            <input type="text" placeholder="MM" />
-            <input type="text" placeholder="YYYY" />
+          <label htmlFor="date" className="w-[10rem]"
+       >
+                  Birthdate:
+                </label>
+                <input
+                  className="border rounded-md "
+                  name="date"
+                  id="date"
+                  type="date"
+                  value={birthD}
+                  onChange={(e) => setBirthD(e.target.value)}
+                  
+                />
+            {/* <p>Birthday Date</p>
+            <input type="text" placeholder="DD"
+            value={birthD}
+            onChange={(e) => setBirthD(e.target.value)}
+             />
+            <input type="text" placeholder="MM"
+            value={birthM}
+            onChange={(e) => setBirthM(e.target.value)}
+             />
+            <input type="text" placeholder="YYYY"
+            value={birthY}
+            onChange={(e) => setBirthY(e.target.value)}
+             /> */}
           </div>
 
           <div className=" buttons div flex flex-row justify-between">

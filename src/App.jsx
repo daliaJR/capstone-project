@@ -7,7 +7,7 @@ import About from './pages/About';
 import EditProfile from './pages/EditProfile';
 import ThankYou from './pages/ThankYou';
 import Footer from './components/Footer';
-import Booking from './components/booking/Booking';
+import Booking from './components/Booking';
 import Login from './pages/Login';
 import Signup from './components/Signup';
 import AddNewCard from './pages/AddNewCard';

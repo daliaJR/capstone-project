@@ -17,6 +17,7 @@ import { AuthContext } from './Authentic';
 export default function EditProfile() {
   const navigate = useNavigate();
 
+
   // get user from context
   const user = useContext(AuthContext);
   
@@ -50,7 +51,6 @@ export default function EditProfile() {
 
     if (u) {
       setCurrentUser(u);
-    // }
 
     // get document information if it exists
   
@@ -66,7 +66,11 @@ export default function EditProfile() {
 
        // Create a reference under which you want to list
        const listRef = ref(storage, `images/${userId}`);
+       
+       // test the reference to see if the image exists in storage
+       // if it doesn't then skip this block of code
 
+      if(listRef) {
        // Find all the prefixes and items.
       listAll(listRef)
       .then((res) => {
@@ -84,20 +88,24 @@ export default function EditProfile() {
 
        });
 
+     };
+
 
 
       if (docSnap.exists()) {
         const userData = docSnap.data();
-        // here
-        setName(userData.fullname);
-        setEducation(userData.educationlevel);
-        setHobby(userData.hobbies);
-        setFamSize(userData.familySize);
-        setGen(userData.gender);
-        setBth(userData.date);
-        setEmi(userData.email);
-        setNum(userData.phone);
-        setPass(userData.password);
+        
+        // this is setting things to undefined if they are blank
+        // firebase is sending back undefined so we change it to an empty string if it is undefined 
+        setName(userData.fullname || '');
+        setEducation(userData.educationlevel || '');
+        setHobby(userData.hobbies || '');
+        setFamSize(userData.familySize || '');
+        setGen(userData.gender || '');
+        setBth(userData.date || '');
+        setEmi(userData.email || '');
+        setNum(userData.phone || '');
+        setPass(userData.password || '');
 
         setUserObject({
           fullname: userData.fullname,
@@ -128,7 +136,7 @@ export default function EditProfile() {
   const handleForm = async (e) => {
     e.preventDefault();
 
-
+    console.log('handleform');
     try {
       await setDoc(doc(db, collection, userId), {
         fullname: name,
@@ -141,11 +149,11 @@ export default function EditProfile() {
         phone: num,
         password: pass,
       }).then(() => {
-        // console.log('success!');
+        console.log('success!');
         setMessage('data has been changed');
       });
     } catch (err) {
-      // console.log(err);
+      console.log(err.message);
     }
   };
 
@@ -196,8 +204,6 @@ export default function EditProfile() {
    
   }, [imageUpload]);
 
-  
-
   return (
     <div>
       <div className="flex justify-center self-center px-8 pt-8">
@@ -220,7 +226,7 @@ export default function EditProfile() {
               <Avatar
                 alt="profile image"
                 src={url}
-                sx={{ width: 200, height: 200 }}
+                sx={{ width: 150, height: 150 }}
               />
             )}
 
@@ -229,7 +235,7 @@ export default function EditProfile() {
                 <img
                   src={editProfile}
                   alt="editProfile"
-                  className="w-[100] h-8 mx-2 bg-white rounded-3xl m-0 pl-7 relative top-0 left-0 bottom-0 z-10 cursor-pointer "
+                  className="w-[200] h-12  bg-white rounded-3xl m-0 pl-7 relative top-0 left-0 bottom-0 z-10 cursor-pointer "
                 />
               </label>
               <input
@@ -246,6 +252,7 @@ export default function EditProfile() {
               
             </button> */}
           </div>
+          
           {/* <div className="relative p-0 m-0">
                         <div className="hidden lg:flex relative p-0 m-0">
                             
@@ -283,8 +290,8 @@ export default function EditProfile() {
                   className="form-select border rounded-md focus:shadow-outline w-[20rem]"
                   name="education"
                   id="education"
-                  placeholder={userObject.educationlevel}
-                  value={education}
+                  placeholder={userObject.educationlevel ? userObject.educationlevel : ''}
+                  value={education || ''}
                   onChange={(e) => setEducation(e.target.value)}
                 >
                   <option value="educational-level">{}</option>
@@ -307,7 +314,7 @@ export default function EditProfile() {
                   name="hobbies"
                   id="hobbies"
                   type="text"
-                  value={hobby}
+                  value={hobby || ''}
                   placeholder={userObject.hobbies}
                   onChange={(e) => setHobby(e.target.value)}
                 />
@@ -324,8 +331,8 @@ export default function EditProfile() {
                     name="familySize"
                     id="familySize"
                     type="number"
-                    value={famSize}
-                    placeholder={userObject.familySize}
+                    value={famSize || ''}
+                    placeholder={userObject.familySize ? userObject.familySize : ''}
                     onChange={(e) => setFamSize(e.target.value)}
                   />
                   <span className="px-2">Member(s)</span>
@@ -341,12 +348,12 @@ export default function EditProfile() {
                   className="form-select border rounded-md focus:shadow-outline w-[20rem]"
                   name="gender"
                   id="gender"
-                  value={gen}
-                  placeholder={userObject.gender}
+                  value={gen || ''}
+                  placeholder={userObject.gender ? userObject.gender : ''}
                   onChange={(e) => setGen(e.target.value)}
                 >
                   <option value="gender">{}</option>
-                  <option value="Woman">Woman</option>
+                  <option value="Woman">Wonan</option>
                   <option value="Man">Man</option>
                   <option value="nonbinary">Nonbinary</option>
                   <option value="prefernottosay">Prefer Not To Say</option>
@@ -363,12 +370,11 @@ export default function EditProfile() {
                   name="date"
                   id="date"
                   type="date"
-                  value={bth}
-                  placeholder={userObject.date}
+                  value={bth || ''}
+                  placeholder={userObject.date ? userObject.date : ''}
                   onChange={(e) => setBth(e.target.value)}
                 />
               </div>
-
               {/* Email */}
               <div className="flex justify-between">
                 <label htmlFor="email" className="w-[10rem]">
@@ -379,8 +385,8 @@ export default function EditProfile() {
                   name="email"
                   id="email"
                   type="email"
-                  value={emi}
-                  placeholder={userObject.email}
+                  value={emi || ''}
+                  placeholder={userObject.email ? userObject.email : ''}
                   onChange={(e) => setEmi(e.target.value)}
                 />
               </div>
@@ -395,8 +401,8 @@ export default function EditProfile() {
                   name="phone"
                   id="phone"
                   type="number"
-                  value={num}
-                  placeholder={userObject.phone}
+                  value={num || ''}
+                  placeholder={userObject.phone ? userObject.phone : ''}
                   onChange={(e) => setNum(e.target.value)}
                 />
               </div>
@@ -409,7 +415,7 @@ export default function EditProfile() {
                     className="border rounded-md focus:shadow-outline w-[20rem] pl-7 m-0 h-6"
                     name="uploadId"
                     id="uploadId"
-                    type="file"
+                    type="text"
                   />
                   <img
                     src={plus}
@@ -433,8 +439,8 @@ export default function EditProfile() {
                     name="password"
                     id="password"
                     type="password"
-                    value={pass}
-                    placeholder={userObject.password}
+                    value={pass || ''}
+                    placeholder={userObject.password ? userObject.password : ''}
                     onChange={(e) => setPass(e.target.value)}
                   />
                   <img

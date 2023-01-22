@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../../firebase';
+import { db } from '../firebase';
 
-import Button from '../Button';
+import Button from './Button';
 
 function Steps({ steps }) {
   const [currentStep, setCurrentStep] = useState(0);
