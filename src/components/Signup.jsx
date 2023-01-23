@@ -18,8 +18,8 @@ export default function Signup() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   // const [confEmail, setConfEmail] = useState('');
-  const[birthD, setBirthD] = useState('');
-  
+  const [birthD, setBirthD] = useState('');
+
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
       .then(() => {
@@ -32,24 +32,22 @@ export default function Signup() {
 
   const Signfun = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
+    createUserWithEmailAndPassword(auth, email1, password)
+      .then((userCredential) => {
         localStorage.setItem('isauthenticated', true);
-        const userId  = userCredential.user.uid;
-      const collection = 'users';
-    
-      setDoc(doc(db, collection, userId), {
-        fullname: firstName + lastName,
-         date: birthD ,
-         email: email1,
-        
-      }).then(() => {
-         //   console.log('document has been created');
-      })
-      navigate('/');
+        const userId = userCredential.user.uid;
+        const collection = 'users';
+
+        setDoc(doc(db, collection, userId), {
+          fullname: firstName + lastName,
+          date: birthD,
+          email: email1,
+        }).then(() => {
+          //   console.log('document has been created');
+        });
+        navigate('/');
       })
       .catch(() => {});
-
   };
 
   function signInWithFacebook() {
@@ -79,7 +77,6 @@ export default function Signup() {
                 className="rounded-xl py-4 px-3 h-14 max-w-[12rem] md:max-w-[16rem]  text-xl border-black/30 border-2 shadow-lg focus:outline-none"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                 className="rounded-xl py-4 px-3 h-14 max-w-[12rem] md:max-w-[16rem]  text-xl border-black/30 border-2 shadow-lg focus:outline-none"
               />
             </div>
             <div className="">
@@ -119,7 +116,7 @@ export default function Signup() {
             />
           </div>
           {/* birthday div */}
-        {/*  <div className="flex justify-between items-center">
+          {/*  <div className="flex justify-between items-center">
             <p className="pl-1 text-xl text-black/40">Birthday Date</p>
             <div className="flex space-x-10 justify-end">
               <input
@@ -139,19 +136,17 @@ export default function Signup() {
               />
             </div> */}
           <div>
-          <label htmlFor="date" className="w-[10rem]"
-       >
-                  Birthdate:
-                </label>
-                <input
-                  className="border rounded-md "
-                  name="date"
-                  id="date"
-                  type="date"
-                  value={birthD}
-                  onChange={(e) => setBirthD(e.target.value)}
-                  
-                />
+            <label htmlFor="date" className="w-[10rem]">
+              Birthdate:
+            </label>
+            <input
+              className="border rounded-md "
+              name="date"
+              id="date"
+              type="date"
+              value={birthD}
+              onChange={(e) => setBirthD(e.target.value)}
+            />
             {/* <p>Birthday Date</p>
             <input type="text" placeholder="DD"
             value={birthD}

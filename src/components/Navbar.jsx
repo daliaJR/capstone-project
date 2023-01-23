@@ -9,8 +9,6 @@ import { ReactComponent as Brand } from '../images/Logo.svg';
 import { ReactComponent as Dropdown } from '../images/Dropdown.svg';
 import '../styles/Navstyle.css';
 
-import { AuthContext } from '../pages/Authentic';
-
 const Navbar = () => {
   const isSigned = useSelector((state) => state.signed.signed);
   const [showNavbar, setShowNavbar] = useState(false);

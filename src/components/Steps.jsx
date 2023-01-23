@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import Button from './Button';
 
@@ -9,6 +10,9 @@ function Steps({ steps }) {
   const [enteredData, setEnteredData] = useState({});
   const [isCompleted, setIsCompleted] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
+  const [email, setEmail] = useState('');
+  const [displayName, setDisplayName] = useState('');
+
   const navigate = useNavigate();
   function removeItemFromArray(arr, value) {
     if (arr) {
@@ -18,13 +22,22 @@ function Steps({ steps }) {
       }
       return arr;
     }
+
     return [];
   }
+  const auth = getAuth();
+  const user = auth.currentUser;
+  useEffect(() => {
+    if (user !== null) {
+      setDisplayName(user.displayName);
+      setEmail(user.email);
+    }
+  }, [user]);
 
   return (
-    <div className="min-h-screen max-w-7xl mx-auto">
+    <div className="mainPage min-h-screen">
       {currentStep <= 4 && (
-        <div className=" flex flex-col px-5 mx-auto py-8 ">
+        <div className="w-3/4 flex flex-col mx-16 my-8 ">
           <h1 className="md:text-5xl text-2xl font-poppins mb-3">
             let&apos;s match you with the right therapist
           </h1>
@@ -73,7 +86,7 @@ function Steps({ steps }) {
 
       <div style={{ height: '60vh' }} className="flex justify-center min-h-fit">
         <div
-          className=" justify-between p-16 shadow-lg flex flex-col my-5 h-full"
+          className="w-3/5 justify-between p-16 shadow-lg flex flex-col my-5 h-full"
           style={{ borderRadius: 6 }}
         >
           <div className="flex h-full justify-center">
@@ -104,7 +117,7 @@ function Steps({ steps }) {
                 <div className="w-full">
                   {steps.map((question, index) => {
                     return currentStep === index ? (
-                      <div className=" h-full ">
+                      <div className=" h-full " key={question.name}>
                         <h1 className="text-3xl font-poppins">
                           {question.title}
                         </h1>
@@ -112,8 +125,9 @@ function Steps({ steps }) {
                           <div>
                             {question.options.map((option) => {
                               return (
-                                <div className="my-5">
+                                <div className="my-5" key={option}>
                                   <input
+                                    data-testid={option}
                                     key={enteredData}
                                     type={
                                       question.isMultiple ? 'checkbox' : 'radio'
@@ -202,9 +216,14 @@ function Steps({ steps }) {
             )}
             {isCompleted && !isSubmited ? (
               <Button
+                data-testid="nextBtn"
                 text="SUBMIT"
                 onClick={async () => {
-                  await addDoc(collection(db, 'meetings'), enteredData);
+                  await addDoc(collection(db, 'meetings'), {
+                    ...enteredData,
+                    email,
+                    name: displayName,
+                  });
                   setIsSubmited(true);
                 }}
               />

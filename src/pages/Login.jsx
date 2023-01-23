@@ -46,7 +46,7 @@ export default function Login() {
                   className="rounded-lg py-4 px-3 h-14  max-w-xs text-xl border-black/30 border-2 shadow-lg focus:outline-none"
                 />
                 <input
-                  ype="password"
+                  type="password"
                   placeholder="Your Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -55,10 +55,7 @@ export default function Login() {
 
                 <div className="flex flex-row justify-between">
                   <div className=" space-x-10 flex ">
-                    <button
-                      className="blue_button"
-                      type="submit"
-                    >
+                    <button className="blue_button" type="submit">
                       Login
                     </button>
                   </div>
