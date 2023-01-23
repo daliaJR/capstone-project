@@ -1,47 +1,59 @@
 import { React, useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import rec2 from '../images/Rectangle 42.png';
-import rec3 from '../images/Rectangle 41.svg';
 import twitter from '../images/twitter.png';
 
 export default function Resource() {
-  // const { id } = useParams();
-  const id = 0;
-  const [blogs, setBlogs] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [blogs, setBlogs] = useState({
+    allBlogs: [],
+    relatedBlogs: [],
+  });
   const styles = {
-    paragraph: 'text-xl font-light uppercase mb-14 max-w-5xl pr-5',
+    paragraph: 'text-xl font-light uppercase mb-14 max-w-6xl',
     heading2:
       'text-3xl md:text-4xl font-light uppercase leading-12 lg:leading-18 mb-2 ',
   };
+  function getTwoRandomBlogs(arrayOfBlogs) {
+    const array = arrayOfBlogs;
+    const n = 2;
+    const shuffledArray = array.sort(() => 0.5 - Math.random());
+    const result = shuffledArray.slice(0, n);
+    return result;
+  }
+  const blogsCollectionRef = collection(db, 'blogs');
   useEffect(() => {
-    async function waitForData() {
-      const data = await getDocs(collection(db, 'blogs'));
-      setBlogs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      // console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }
-    waitForData();
-    // console.log(blogs);
-  }, []);
+    const getBlogs = async () => {
+      const data = await getDocs(blogsCollectionRef);
+      const allBlogs = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      const currentBlog = allBlogs.filter((blog) => blog.id === id);
+      const relatedBlogs = getTwoRandomBlogs(
+        allBlogs.filter((blog) => blog.id !== id)
+      );
+      setBlogs({ currentBlog: currentBlog[0], relatedBlogs });
+    };
+    getBlogs();
+  }, [id]);
 
   return (
     <div className="py-16 font-poppins">
       <section className=" ">
-        <div className="max-w-6xl px-5 mx-auto">
-          <div className="mb-20">
+        <div className="max-w-7xl px-5 mx-auto">
+          <div className="mb-20  mx-auto max-w-6xl">
             <img
-              src={blogs[id].image}
+              src={blogs.currentBlog?.image}
               alt=""
-              className="w-full h-auto max-h-[20rem]"
+              className="w-full h-auto max-h-[30rem]"
             />
           </div>
           <div className="">
             <h2 className="text-4xl md:text-5xl uppercase leading-12 lg:leading-18 mb-8 ">
-              {blogs[id].title}
+              {blogs.currentBlog?.title}
             </h2>
             <div>
-              {blogs[id].content.map((cont) => {
+              {blogs.currentBlog?.content.map((cont) => {
                 return <div className={styles[cont.type]}>{cont.data}</div>;
               })}
             </div>
@@ -71,12 +83,24 @@ export default function Resource() {
       </section>
       <section>
         <div className="max-w-6xl px-5 mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light uppercase leading-12 lg:leading-18 mb-5 ">
-            Sign up for The Healing blog
+          <h2 className="text-2xl md:text-3xl font-light uppercase leading-12 lg:leading-18 mb-5 ">
+            Recommended for you
           </h2>
-          <div className="flex space-x-0 md:space-x-7 space-y-7 md:space-y-0  md:flex-row flex-col">
-            <img src={rec2} alt="" className="w-full md:w-1/2" />
-            <img src={rec3} alt="" className="w-full md:w-1/2" />
+          <div className="flex space-x-0 md:space-x-7 space-y-7 md:space-y-0  md:flex-row flex-col mx-auto md:mx-0">
+            {blogs.relatedBlogs?.map((blog) => {
+              return (
+                <button
+                  className="w-full md:w-1/2"
+                  type="button"
+                  onClick={() => {
+                    navigate(`/blogs/${blog.id}`);
+                    window.location.reload(false);
+                  }}
+                >
+                  <img src={blog?.image} alt="" className="w-full h-full" />
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -62,10 +62,9 @@ const Navbar = () => {
             </li>
             <li>
               <button type="button" onClick={deActiveate}>
-                <NavLink to="/blogs">Blogs</NavLink>
+                <NavLink to={`/blogs/${'KpOg9FnStfRokLpIh2dW'}`}>Blogs</NavLink>
               </button>
             </li>
-
             <li>
               <div className="dropdown">
                 <button className={activeDropdown.classForCss} type="button">
@@ -78,7 +77,7 @@ const Navbar = () => {
                   type="button"
                 >
                   <NavLink to="/about">About</NavLink>
-                  <NavLink to="/story">Story</NavLink>
+                  <NavLink to="/editprofile">Profile</NavLink>
                   <NavLink to="/team">Team</NavLink>
                 </button>
               </div>

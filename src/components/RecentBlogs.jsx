@@ -1,15 +1,25 @@
-import { React, useCallback, useState } from 'react';
+import { React, useCallback, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { collection, getDocs } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
+import { db } from '../firebase';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
-import card1 from '../images/Rectangle 40.svg';
-import card2 from '../images/Rectangle 41.svg';
 import next from '../images/next.svg';
 import prev from '../images/prev.svg';
 
 export default function RecentBlogs() {
   const [swiperRef, setSwiperRef] = useState(true);
-
+  const [blogs, setBlogs] = useState([]);
+  const blogsCollectionRef = collection(db, 'blogs');
+  useEffect(() => {
+    const getBlogs = async () => {
+      const data = await getDocs(blogsCollectionRef);
+      const allBlogs = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setBlogs(allBlogs);
+    };
+    getBlogs();
+  }, []);
   const handleLeftClick = useCallback(() => {
     if (!swiperRef) return;
     swiperRef.slidePrev();
@@ -49,18 +59,15 @@ export default function RecentBlogs() {
           },
         }}
       >
-        <SwiperSlide>
-          <img src={card1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={card2} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={card1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={card2} alt="" />
-        </SwiperSlide>
+        {blogs.map((blog) => {
+          return (
+            <SwiperSlide>
+              <Link to={`/blogs/${blog.id}`}>
+                <img src={blog?.image} alt="" className="h-60" />
+              </Link>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
       <button
         onClick={handleRightClick}
