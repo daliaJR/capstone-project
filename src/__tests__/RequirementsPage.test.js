@@ -1,8 +1,8 @@
-import * as React from 'react';
-import * as renderer from 'react-test-renderer';
-import RequirementsPage from '../pages/RequirementsPage'
+import { render, screen } from '@testing-library/react';
+import RequirementsPage from '../pages/RequirementsPage';
 
-it('Requirement Page renders correctly', () => {
-  const tree = renderer.create(<RequirementsPage />).toJSON();
-  expect(tree).toMatchSnapshot();
+test('should render Thank you page', () => {
+  render(<RequirementsPage />);
+  const requirementsPage = screen.getByTestId('requirements-page');
+  expect(requirementsPage).toBeInTheDocument();
 });

@@ -5,7 +5,10 @@ import '../styles/RequirementPage.css';
 
 export default function RequirementsPage() {
   return (
-    <div className="max-w-7xl mx-auto main font-poppins py-16">
+    <div
+      className="max-w-7xl mx-auto main font-poppins py-16"
+      data-testid="requirements-page"
+    >
       <div className="flex flex-col lg:flex-row space-x-10">
         <div className="content">
           <h1 className="headline uppercase">Why work with Healing?</h1>
