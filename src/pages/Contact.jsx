@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 import img from '../images/contact.png';
 import { db } from '../firebase';
 
@@ -8,6 +9,7 @@ export default function contact() {
   const [details, setDetails] = useState('');
   const [email, setEmail] = useState('');
   const [type, setType] = useState('');
+  const navigate = useNavigate();
 
   const handleOnChangeType = (event) => {
     const value1 = event.target.value;
@@ -28,15 +30,17 @@ export default function contact() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await addDoc(collection(db, 'contacts'), {
+    addDoc(collection(db, 'contacts'), {
       email,
       name,
       details,
       type,
+    }).then(() => {
+      navigate('/thankyou');
+      setEmail('');
+      setName('');
+      setDetails('');
     });
-    setEmail('');
-    setName('');
-    setDetails('');
   };
 
   return (
