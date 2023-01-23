@@ -1,6 +1,6 @@
 import React from 'react';
-import { steps } from '../../staticData/bookingPage';
-import Steps from '../Steps';
+import { steps } from '../staticData/bookingPage';
+import Steps from '../components/Steps';
 
 export default function Booking() {
   return (

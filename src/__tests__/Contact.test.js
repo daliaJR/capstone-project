@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-// import { fireEvent, render, screen } from '@testing-library/react';
-import Contact from '../features/counter/Contact';
+import Contact from '../pages/Contact';
 
 describe('Contact', () => {
   test('should render the header test', () => {

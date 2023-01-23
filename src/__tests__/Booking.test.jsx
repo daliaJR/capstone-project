@@ -1,8 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import Booking from '../components/booking/Booking';
-import { useNavigate } from 'react-router-dom';
-import { userEvent } from '@testing-library/user-event';
-import { async } from '@firebase/util';
+import Booking from '../pages/Booking';
 
 jest.mock('react-router-dom', () => {
   const originalModule = jest.requireActual('react-router-dom');

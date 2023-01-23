@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
-import { collection, addDoc } from "firebase/firestore";
-import img from '../../images/contact.png';
-import { db } from '../../firebase';
+import React, { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import img from '../images/contact.png';
+import { db } from '../firebase';
 
 export default function contact() {
-
-  const [name, setName] = useState("");
-  const [details, setDetails] = useState("");
-  const [email, setEmail] = useState("");
-  const [type, setType] = useState("");
+  const [name, setName] = useState('');
+  const [details, setDetails] = useState('');
+  const [email, setEmail] = useState('');
+  const [type, setType] = useState('');
 
   const handleOnChangeType = (event) => {
     const value1 = event.target.value;
@@ -27,17 +26,17 @@ export default function contact() {
     setEmail(value1);
   };
 
-  
   const handleSubmit = async (event) => {
-    event.preventDefault();   
+    event.preventDefault();
     await addDoc(collection(db, 'contacts'), {
-      email,name,details,type
-    });  
+      email,
+      name,
+      details,
+      type,
+    });
     setEmail('');
     setName('');
     setDetails('');
-    
-         
   };
 
   return (
@@ -133,7 +132,7 @@ export default function contact() {
                 type="text"
                 id="name"
                 onChange={handleOnChangeName}
-                value= {name}
+                value={name}
                 placeholder="En"
                 className="placeholder-gray-500 shadoter your full name here...w appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
               />
@@ -143,7 +142,7 @@ export default function contact() {
               <input
                 type="email"
                 id="email"
-                value= {email}
+                value={email}
                 onChange={handleOnChangeEmail}
                 placeholder="Enter your email address here..."
                 className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
@@ -155,7 +154,7 @@ export default function contact() {
               <textarea
                 type="text"
                 id="details"
-                value= {details}
+                value={details}
                 onChange={handleOnChangeDetails}
                 placeholder="Enter your details here..."
                 className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline resize-none"
