@@ -29,7 +29,7 @@ function FooterSection() {
 
   return (
     <div className="bg-light-yellow py-8 font-poppins">
-      <div className=" flex max-w-6xl mx-auto flex-col md:flex-row">
+      <div className=" flex max-w-7xl mx-auto flex-col md:flex-row">
         <div className="w-3/4 md:w-1/2 mx-auto md:mx-0 text-center md:text-start mb-5 md:mb-0 pl-0 md:pl-10">
           <h1 className="text-2xl font-semibold">Subscribe</h1>
           <p className="text-lg text-black opacity-50 font-medium mb-1">

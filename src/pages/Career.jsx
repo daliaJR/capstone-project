@@ -1,19 +1,14 @@
 import React from 'react';
-import Position  from '../components/Position';
-import MainSection  from '../components/MainSection';
-import PhilosophySection  from '../components/PhilosophySection';
+import Position from '../components/Position';
+import MainSection from '../components/CareerMainSection';
+import PhilosophySection from '../components/PhilosophySection';
 
-
-export default function CareerTest() { 
-  
+export default function CareerTest() {
   return (
-    <div className="w-screen">
+    <div className="w-screen font-poppins">
       <MainSection />
       <PhilosophySection />
       <Position />
     </div>
   );
 }
-
-
-

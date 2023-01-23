@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { collection, addDoc } from "firebase/firestore";
-import img from '../imgs/contact.png';
+import img from '../../images/contact.png';
 import { db } from '../../firebase';
 
 export default function contact() {
@@ -138,7 +138,6 @@ export default function contact() {
                 className="placeholder-gray-500 shadoter your full name here...w appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
               />
             </div>
-
             <div className="mb-5 w-full">
               <p className="mb-2 ml-1">Email:</p>
               <input

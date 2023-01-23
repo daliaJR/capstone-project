@@ -1,17 +1,25 @@
-import { useState, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { signOut } from 'firebase/auth';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeSignedToFalse } from '../features/signed/signedUserSlice';
+import { auth } from '../firebase';
 import { ReactComponent as Hamburger } from '../images/HB.svg';
 import { ReactComponent as Brand } from '../images/Logo.svg';
 import { ReactComponent as Dropdown } from '../images/Dropdown.svg';
 import '../styles/Navstyle.css';
 
-import { AuthContext } from '../pages/Authentic';
-
 const Navbar = () => {
-  const user = useContext(AuthContext);
-  // console.log(user, 'user in nav');
-
+  const isSigned = useSelector((state) => state.signed.signed);
   const [showNavbar, setShowNavbar] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  function signUserOut() {
+    signOut(auth).then(() => {
+      localStorage.removeItem('isauthenticated');
+      dispatch(changeSignedToFalse());
+    });
+  }
   const [activeDropdown, setActiveDropdown] = useState({
     text: 'About',
     classForCss: 'drop_unactive',
@@ -54,10 +62,9 @@ const Navbar = () => {
             </li>
             <li>
               <button type="button" onClick={deActiveate}>
-                <NavLink to="/blogs">Blogs</NavLink>
+                <NavLink to={`/blogs/${'KpOg9FnStfRokLpIh2dW'}`}>Blogs</NavLink>
               </button>
             </li>
-
             <li>
               <div className="dropdown">
                 <button className={activeDropdown.classForCss} type="button">
@@ -70,7 +77,7 @@ const Navbar = () => {
                   type="button"
                 >
                   <NavLink to="/about">About</NavLink>
-                  <NavLink to="/story">Story</NavLink>
+                  <NavLink to="/editprofile">Profile</NavLink>
                   <NavLink to="/team">Team</NavLink>
                 </button>
               </div>
@@ -81,25 +88,23 @@ const Navbar = () => {
                 <NavLink to="/contact">Contact</NavLink>
               </button>
             </li>
-            {!user.authUser ? (
-              <li>
-                <div className="loginbtn">
-                  <NavLink to="/login" id="login">
+            <li>
+              <div className="loginbtn">
+                {isSigned ? (
+                  <button type="button" onClick={signUserOut}>
+                    Sign out
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    id="login"
+                    onClick={() => navigate('./login')}
+                  >
                     Login
-                  </NavLink>
-                </div>
-              </li>
-            ) : (
-              <li>
-                <button
-                  type="button"
-                  className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                  onClick={user.userSignOut}
-                >
-                  signout
-                </button>
-              </li>
-            )}
+                  </button>
+                )}
+              </div>
+            </li>
           </ul>
         </div>
       </div>

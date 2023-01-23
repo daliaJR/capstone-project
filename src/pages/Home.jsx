@@ -5,20 +5,10 @@ import imageMembers from '../images/image 8.png';
 import phone from '../images/phone.png';
 import video from '../images/video.png';
 import msg from '../images/msg.png';
-import rec1 from '../images/Rectangle 40.svg';
-import rec2 from '../images/Rectangle 41.svg';
-import next from '../images/next.svg';
-import prev from '../images/prev.svg';
+import RecentBlogs from '../components/RecentBlogs';
+import { data } from '../staticData/homePage';
 
 export default function Home() {
-  function moveRight() {
-    const carousel = document.querySelector('.hide_scrollbar');
-    carousel.scrollBy(395, 0);
-  }
-  function moveLeft() {
-    const carousel = document.querySelector('.hide_scrollbar');
-    carousel.scrollBy(-395, 0);
-  }
   return (
     <div>
       <section className="relative min-h-[90vh] ">
@@ -47,30 +37,22 @@ export default function Home() {
         />
       </section>
       <section className="bg-light-yellow">
-        <div className="font-poppins py-20 max-w-6xl mx-auto px-7">
+        <div className="font-poppins py-20 max-w-7xl mx-auto px-7">
           <h2 className="text-4xl md:text-5xl uppercase leading-12 lg:leading-18 mb-7 ">
             Professional, licensed, and vetted
             <br className="hidden lg:block" /> therapists that you can trust
           </h2>
           <div className="flex space-x-4 mb-12">
             <img src={imageMembers} alt="" className="" />
-            {/* <img src={imageGirl} alt="" className="h-32 rounded-full border border-blue-500" /> */}
           </div>
-          <p className="text-xl font-light lowercase mb-28">
-            Tap into the worlds largest network of licensed, accredited, and
-            experienced therapists who can help you with a range of issues
-            including depression, anxiety, relationships, trauma, grief, and
-            more. with our therapists, you get the same professionalism and
-            quality you would expect from an in-office therapist, but with the
-            ability to communicate whenever and however you want.
-          </p>
+          <p className="text-xl font-light lowercase mb-28">{data.longText1}</p>
           <button className="blue_button mb-8" type="button">
             Book an appointment
           </button>
         </div>
       </section>
       <section className=" bg-white">
-        <div className="font-poppins py-24 max-w-6xl mx-auto px-7">
+        <div className="font-poppins py-24 max-w-7xl mx-auto px-7">
           <h2 className="text-5xl uppercase leading-18 mb-20 mt-5 ">
             we can communicate through
           </h2>
@@ -108,47 +90,11 @@ export default function Home() {
           <h2 className="text-5xl uppercase font-medium leading-18 mx-7">
             Recent BLOGs
           </h2>
-          <div
-            className="flex space-x-3 overflow-x-scroll px-3 hide_scrollbar scroll-smooth"
-            id="iid"
-          >
-            <button
-              className="absolute z-10 -left-10 md:-left-14 top-1/2 "
-              type="button"
-              onClick={moveLeft}
-            >
-              <img src={prev} alt="" />
-            </button>
-            <button
-              type="button"
-              className="absolute z-10 -right-10 md:-right-14 top-1/2 "
-              onClick={moveRight}
-            >
-              <img src={next} alt="" />
-            </button>
-            <div className="w-90 flex-shrink-0">
-              <img src={rec1} alt="" className="w-full" />
-            </div>
-            <div className="w-90 flex-shrink-0">
-              <img src={rec2} alt="" className="w-full" />
-            </div>
-            <div className="w-90 flex-shrink-0">
-              <img src={rec1} alt="" className="w-full" />
-            </div>
-            <div className="w-90 flex-shrink-0">
-              <img src={rec2} alt="" className="w-full" />
-            </div>
-            <div className="w-90 flex-shrink-0">
-              <img src={rec1} alt="" className="w-full" />
-            </div>
-            <div className="w-90 flex-shrink-0">
-              <img src={rec2} alt="" className="w-full" />
-            </div>
-          </div>
+          <RecentBlogs />
         </div>
       </section>
       <section className="bg-white">
-        <div className="font-poppins py-16 max-w-6xl mx-auto px-7">
+        <div className="font-poppins py-16 max-w-7xl mx-auto px-7">
           <h2 className="text-5xl uppercase leading-18">Purchase tickets</h2>
           <h3 className="text-2xl uppercase  mb-7">
             purchase tickets that can be used to book appointments!
@@ -185,9 +131,7 @@ export default function Home() {
           <div className="card px-6 mb-5">
             <h2 className="text-5xl mb-7 uppercase">Are you a counselor?</h2>
             <p className="text-xl font-light lowercase mb-7">
-              Interested in joining our mental health platform? You decide your
-              schedule and how much you want to work, we’ll take care of the
-              client referrals and billing details!
+              {data.longText2}
             </p>
             <button className="blue_button mx-auto" type="button">
               Learn More

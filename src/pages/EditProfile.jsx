@@ -1,8 +1,12 @@
 import { React, useEffect, useState, useContext } from 'react';
-import Avatar from '@mui/material/Avatar';
-
-import { ref, uploadBytes, getDownloadURL, listAll, deleteObject } from 'firebase/storage';
-
+import { Avatar } from '@mui/material';
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  deleteObject,
+} from 'firebase/storage';
 import { v4 } from 'uuid';
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { getAuth, deleteUser } from 'firebase/auth';
@@ -21,13 +25,12 @@ export default function EditProfile() {
 
   // get user from context
   const user = useContext(AuthContext);
-  
+
   const { userId } = user;
   const collection = 'users';
 
   const [currentUser, setCurrentUser] = useState(user);
   const [message, setMessage] = useState(null);
-
 
   const [name, setName] = useState('');
   const [education, setEducation] = useState('');
@@ -40,8 +43,6 @@ export default function EditProfile() {
   const [pass, setPass] = useState('');
   const [userObject, setUserObject] = useState({});
 
-
-
   const [imageUpload, setImageUpload] = useState(null);
   const [url, setUrl] = useState(null);
 
@@ -49,79 +50,67 @@ export default function EditProfile() {
     const auth = getAuth();
     const u = auth.currentUser;
 
-
     if (u) {
       setCurrentUser(u);
-    // }
+      // }
 
-    // get document information if it exists
-  
-    (async () => {
-      
-      try {
-      
-      const docRef = doc(db, collection, userId);
-      const docSnap = await getDoc(docRef);
-      
+      // get document information if it exists
 
-      // const storage = getStorage();
+      (async () => {
+        try {
+          const docRef = doc(db, collection, userId);
+          const docSnap = await getDoc(docRef);
 
-       // Create a reference under which you want to list
-       const listRef = ref(storage, `images/${userId}`);
+          // const storage = getStorage();
 
-       // Find all the prefixes and items.
-      listAll(listRef)
-      .then((res) => {
-       
-        getDownloadURL(ref(storage, res.items[0]._location.path_))
-        .then((imgUrl) => {
-         
-          setUrl(imgUrl);
-        })
+          // Create a reference under which you want to list
+          const listRef = ref(storage, `images/${userId}`);
 
-        
-       
-       }).catch((error) => {
-          throw new Error(error.message);
+          // Find all the prefixes and items.
+          listAll(listRef)
+            .then((res) => {
+              getDownloadURL(ref(storage, res.items[0]._location.path_)).then(
+                (imgUrl) => {
+                  setUrl(imgUrl);
+                }
+              );
+            })
+            .catch((error) => {
+              throw new Error(error.message);
+            });
 
-       });
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            // here
+            setName(userData.fullname);
+            setEducation(userData.educationlevel);
+            setHobby(userData.hobbies);
+            setFamSize(userData.familySize);
+            setGen(userData.gender);
+            setBth(userData.date);
+            setEmi(userData.email);
+            setNum(userData.phone);
+            setPass(userData.password);
 
-
-
-      if (docSnap.exists()) {
-        const userData = docSnap.data();
-        // here
-        setName(userData.fullname);
-        setEducation(userData.educationlevel);
-        setHobby(userData.hobbies);
-        setFamSize(userData.familySize);
-        setGen(userData.gender);
-        setBth(userData.date);
-        setEmi(userData.email);
-        setNum(userData.phone);
-        setPass(userData.password);
-
-        setUserObject({
-          fullname: userData.fullname,
-          educationlevel: userData.educationlevel,
-          hobbies: userData.hobbies,
-          familySize: userData.familySize,
-          gender: userData.gender,
-          date: userData.date,
-          email: userData.email,
-          phone: userData.phone,
-          password: userData.password,
-        });
-      } else {
-        // console.log('no data exists');
-      }
-
-    } catch(err) {
-        throw new Error(err.message);
+            setUserObject({
+              fullname: userData.fullname,
+              educationlevel: userData.educationlevel,
+              hobbies: userData.hobbies,
+              familySize: userData.familySize,
+              gender: userData.gender,
+              date: userData.date,
+              email: userData.email,
+              phone: userData.phone,
+              password: userData.password,
+            });
+          } else {
+            // console.log('no data exists');
+          }
+        } catch (err) {
+          throw new Error(err.message);
+        }
+      })();
     }
-    })();
-
-  }
 
     // return cleanUp
   }, [userId]);
@@ -129,7 +118,6 @@ export default function EditProfile() {
   // set new form data
   const handleForm = async (e) => {
     e.preventDefault();
-
 
     try {
       await setDoc(doc(db, collection, userId), {
@@ -163,50 +151,35 @@ export default function EditProfile() {
     // });
   };
 
-  
-
-
   useEffect(() => {
-    
     // save old url to use to delete old profile picture if one exists
     const oldUrl = url;
-    
 
     if (imageUpload == null) return;
 
-    const imageRef = ref(storage, `images/${userId}/${imageUpload.name + v4()}`);
+    const imageRef = ref(
+      storage,
+      `images/${userId}/${imageUpload.name + v4()}`
+    );
 
     uploadBytes(imageRef, imageUpload).then(() => {
       // alert('Image Uploded');
 
       getDownloadURL(imageRef).then((url1) => {
-
-
-
         setUrl(url1);
       });
 
       setImageUpload(null);
     });
 
-
-
     // if a profile pic already exists delete it
-    if(oldUrl) {
-
-      deleteObject(ref(storage, oldUrl)).then(() => {
-        
-      });
-
+    if (oldUrl) {
+      deleteObject(ref(storage, oldUrl)).then(() => {});
     }
-   
   }, [imageUpload]);
 
-  
-
-
   return (
-    <div>
+    <div className="font-poppins">
       <div className="flex justify-center self-center px-8 pt-8">
         <p className="text-red-500">
           Please fill all the fields with correct and valid details to complete
@@ -214,8 +187,8 @@ export default function EditProfile() {
         </p>
         <p>{message}</p>
       </div>
-      <div className="flex justify-center flex-col lg:flex-row space-y-10 lg:space-y-0 space-x-0 lg:space-x-40 p-5 lg:p-[5rem] xl:p-[8rem]">
-        <div className="flex justify-center">
+      <div className="flex justify-center flex-col items-center lg:items-start lg:flex-row space-y-10 lg:space-y-0 space-x-0 lg:space-x-36 p-5 lg:p-[5rem] xl:p-[8rem]">
+        <div className="flex justify-center ">
           <div className=" relative left-0 bottom-0 m-0 p-0">
             {url === undefined ? (
               <img
@@ -227,9 +200,7 @@ export default function EditProfile() {
               <Avatar
                 alt="profile image"
                 src={url}
-
                 sx={{ width: 200, height: 200 }}
-
               />
             )}
 
@@ -238,9 +209,7 @@ export default function EditProfile() {
                 <img
                   src={editProfile}
                   alt="editProfile"
-
                   className="w-[100] h-8 mx-2 bg-white rounded-3xl m-0 pl-7 relative top-0 left-0 bottom-0 z-10 cursor-pointer "
-
                 />
               </label>
               <input
@@ -265,7 +234,7 @@ export default function EditProfile() {
                         </div>
                     </div>  */}
         </div>
-        <div className="inputDataField  p-4 flex-shrink-0">
+        <div className="inputDataField  p-0 flex-shrink-0 ">
           <form className="flex flex-col gap-6" onSubmit={handleForm}>
             <div className="flex flex-col gap-[2rem]">
               <h2 className="uppercase font-bold text-4xl">profile info</h2>

@@ -4,10 +4,10 @@ import editProfile from '../images/editProfileImg.png';
 
 export default function TherapistEdit() {
   return (
-    <div>
-      <div className="flex justify-center gap-[8rem] p-[8rem]">
-        <div className="hidden md:flex">
-          <div className=" relative left-0 bottom-0">
+    <div className="font-poppins">
+      <div className="flex justify-center flex-col items-center lg:flex-row lg:items-start gap-[8rem] py-16  lg:px-[5rem] xl:px-[8rem]">
+        <div className="">
+          <div className=" relative left-0 bottom-0 flex-shrink-0">
             <img
               src={profileImg}
               alt="prfileImage"

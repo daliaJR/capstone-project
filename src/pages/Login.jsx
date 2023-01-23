@@ -30,74 +30,90 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-around h-screen items-center pb-44">
-      <div>
-        <h1 className="text-3xl font-simibold pb-16">LOG IN</h1>
-        {/* input div */}
+    <div className=" font-poppins max-w-7xl mx-auto">
+      <div className="flex flex-col xl:flex-row justify-around min-h-screen items-center pb-44 pt-10">
         <div>
-          <form onSubmit={signIn}>
-            <div className="flex flex-col gap-6 shadow-2xl w-96 h-[404px] py-10 px-10  ">
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="rounded-xl py-2 px-3 pt-2 pb-3 h-14  max-w-xs text-xl border-light-gray border-2 shadow-lg focus:outline-none"
-              />
-              <input
-                type="password"
-                placeholder="Your Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="rounded-xl py-3 px-4 h-14 shadow-lg max-w-xs text-xl border-light-gray border-2 focus:outline-none"
-              />
+          <h1 className="text-5xl font-simibold pb-10">LOG IN</h1>
+          {/* input div */}
+          <div>
+            <form onSubmit={signIn}>
+              <div className="flex flex-col space-y-8 shadow-lg w-96  pt-10 pb-20 px-10  ">
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="rounded-lg py-4 px-3 h-14  max-w-xs text-xl border-black/30 border-2 shadow-lg focus:outline-none"
+                />
+                <input
+                  type="password"
+                  placeholder="Your Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="rounded-lg py-4 px-4 h-14 shadow-lg max-w-xs text-xl border-black/30 border-2 focus:outline-none"
+                />
 
-              <div className="flex flex-row justify-between">
-                <div className=" ml-12">
-                  <button
-                    className="text-black font-semibold opacity-50 inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2"
-                    type="submit"
-                    // onClick={() => {
-                    //   navigate('/');
-                    // }}
-                  >
-                    Login
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="opacity-50 text-black font-semibold  inline-flex justify-center items-center w-16 h-14 rounded-xl bg-light-blue border-light-gray border-2 -ml-4 "
-                    type="submit"
-                    onClick={() => {
-                      navigate('/signup');
-                    }}
-                  >
-                    Signup
-                  </button>
+                <div className="flex flex-row justify-between">
+                  <div className=" space-x-10 flex ">
+                    <button className="blue_button" type="submit">
+                      Login
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="white_button"
+                      type="button"
+                      onClick={() => {
+                        navigate('/signup');
+                      }}
+                    >
+                      Signup
+                    </button>
+                  </div>
                 </div>
               </div>
+            </form>
+          </div>
+          <div className="justify-center items-center pt-3 px-16 mt-8">
+            <div className="border-b-2 border-light-blue relative">
+              <span className="absolute left-1/2 -translate-x-1/2 -bottom-3 bg-white px-1">
+                or
+              </span>
             </div>
-          </form>
+          </div>
+          <div className="flex space-x-5 mx-auto mt-5 justify-center items-center px-16 ">
+            <button type="submit">
+              <img
+                className="facebook"
+                src={fb}
+                alt="facebook"
+                style={{
+                  filter:
+                    'invert(83%)  sepia(29%) saturate(2123%) hue-rotate(146deg) brightness(90%) contrast(99%)',
+                }}
+              />
+            </button>
+            <button type="submit">
+              <img
+                className="google"
+                src={google1}
+                alt="google"
+                style={{
+                  filter:
+                    'invert(83%)  sepia(29%) saturate(2123%) hue-rotate(146deg) brightness(90%) contrast(99%)',
+                }}
+              />
+            </button>
+          </div>
         </div>
-        <div className="justify-center items-center pt-3 px-16">
-          <p>_______________ Or _______________</p>
-        </div>
-        <div className="flex space-x-5 mx-auto mt-5 justify-center items-center px-16 ">
-          <button type="submit">
-            <img className="facebook" src={fb} alt="facebook" />
-          </button>
-          <button type="submit">
-            <img className="google" src={google1} alt="google" />
-          </button>
-        </div>
-      </div>
 
-      <div className="pt-16">
-        <img
-          className="relative w-[600px] h-[400px] object-right "
-          src={log}
-          alt="login"
-        />
+        <div className="pt-16">
+          <img
+            className="relative w-[600px] h-[400px] object-right "
+            src={log}
+            alt="login"
+          />
+        </div>
       </div>
     </div>
   );
