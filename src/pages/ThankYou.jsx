@@ -1,8 +1,10 @@
 import { React } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { data } from '../staticData/thankYouPage';
 
 export default function ThankYou() {
   const texts = data;
+  const navigate = useNavigate();
   return (
     <div data-testid="thank-you-page">
       <section className="font-poppins min-h-[70vh]">
@@ -14,7 +16,11 @@ export default function ThankYou() {
           >
             {texts.cardThanks}
           </p>
-          <button className="blue_button " type="button">
+          <button
+            onClick={() => navigate('/')}
+            className="blue_button "
+            type="button"
+          >
             Go back to home
           </button>
         </div>
