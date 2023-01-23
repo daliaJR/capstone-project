@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import log from '../images/log.png';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
@@ -10,14 +9,23 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
   const signIn = (e) => {
     e.preventDefault();
+    const auth = getAuth();
+
     signInWithEmailAndPassword(auth, email, password);
     // .then((userCredential) => {
-    //   console.log(userCredential);
+    // Signed in
+    // const { user } = userCredential;
+    //  console.log(user, 'logged in');
+    // navigate('/');
     // })
     // .catch((error) => {
-    //   console.log(error);
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+
+    // console.log(errorCode, errorMessage);
     // });
   };
 
@@ -31,14 +39,14 @@ export default function Login() {
             <form onSubmit={signIn}>
               <div className="flex flex-col space-y-8 shadow-lg w-96  pt-10 pb-20 px-10  ">
                 <input
-                  type="text"
+                  type="email"
                   placeholder="Your Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="rounded-lg py-4 px-3 h-14  max-w-xs text-xl border-black/30 border-2 shadow-lg focus:outline-none"
                 />
                 <input
-                  type="text"
+                  ype="password"
                   placeholder="Your Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -50,9 +58,6 @@ export default function Login() {
                     <button
                       className="blue_button"
                       type="submit"
-                      onClick={() => {
-                        navigate('/');
-                      }}
                     >
                       Login
                     </button>
@@ -60,7 +65,7 @@ export default function Login() {
                   <div>
                     <button
                       className="white_button"
-                      type="submit"
+                      type="button"
                       onClick={() => {
                         navigate('/signup');
                       }}

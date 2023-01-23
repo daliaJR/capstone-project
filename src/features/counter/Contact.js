@@ -1,80 +1,127 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { collection, addDoc } from "firebase/firestore";
 import img from '../../images/contact.png';
+import { db } from '../../firebase';
 
 export default function contact() {
+
+  const [name, setName] = useState("");
+  const [details, setDetails] = useState("");
+  const [email, setEmail] = useState("");
+  const [type, setType] = useState("");
+
+  const handleOnChangeType = (event) => {
+    const value1 = event.target.value;
+    setType(value1);
+  };
+  const handleOnChangeName = (event) => {
+    const value1 = event.target.value;
+    setName(value1);
+  };
+  const handleOnChangeDetails = (event) => {
+    const value1 = event.target.value;
+    setDetails(value1);
+  };
+  const handleOnChangeEmail = (event) => {
+    const value1 = event.target.value;
+    setEmail(value1);
+  };
+
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();   
+    await addDoc(collection(db, 'contacts'), {
+      email,name,details,type
+    });  
+    setEmail('');
+    setName('');
+    setDetails('');
+    
+         
+  };
+
   return (
-    <div className="main font-poppins">
-      <div className="max-w-7xl mx-auto flex-col p-5 py-14 font-poppins">
-        <section className="section1 mb-10">
-          <h1 className="md:text-5xl text-3xl mb-2 ">SEND US YOUR REQUEST!</h1>
-          <p className="text-secondary md:text-2xl text-xl">
-            Do you have a question, concern, idea, feedback, or problem? If you
-            need assistance, please fill out the form below and we&apos;be happy
-            to help!
-          </p>
-        </section>
-        <section className="section2 flex flex-col lg:flex-row justify-between mb-20">
-          <div className="radioSelect mb-10 lg:mb-0">
-            <form action="/action_page.php">
+    <div className="main flex-col p-12 ">
+      <section className="section1 mb-10">
+        <h1 data-testid="headerText" className="md:text-5xl text-3xl mb-2 ">
+          SEND US YOUR REQUEST!
+        </h1>
+        <p
+          data-testid="paragraphText"
+          className="text-secondary md:text-2xl text-xl"
+        >
+          Do you have a question, concern, idea, feedback, or problem? If you
+          need assistance, please fill out the form below and we&apos;be happy
+          to help!
+        </p>
+      </section>
+      <form onSubmit={handleSubmit}>
+        <section className="section2 flex justify-between mb-20">
+          <div className="radioSelect w-full md:w-1/2 ">
+            <div>
               <p className="text-2xl font-semibold mb-4">Type of contact</p>
               <input
                 type="radio"
-                value="service"
+                value="I have a question about the service."
                 name="contact"
+                onChange={handleOnChangeType}
                 className="mt-3 mb-3 text-xl"
-              />
+                checked
+              />{' '}
               I have a question about the service. <br />
               <input
                 type="radio"
-                value="clientSupport"
+                value=" I am a registered client and I need support."
                 name="contact"
+                onChange={handleOnChangeType}
                 className="mt-3 mb-3 text-xl"
-              />
+              />{' '}
               I&apos;m a registered client and I need support. <br />
               <input
                 type="radio"
-                value="counselorInterested"
+                value="I am a counsellor interested in joining."
                 name="contact"
+                onChange={handleOnChangeType}
                 className="mt-3 mb-3 text-xl"
-              />
+              />{' '}
               I&apos;m a counsellor interested in joining. <br />
               <input
                 type="radio"
-                value="registeredCounselor"
+                value=" I am a registered counselor and I need support."
                 name="contact"
+                onChange={handleOnChangeType}
                 className="mt-3 mb-3 text-xl"
-              />
+              />{' '}
               I&apos;m a registered counselor and I need support. <br />
               <input
                 type="radio"
-                value="businessRelated"
+                value="I have a business-related inquiry."
                 name="contact"
+                onChange={handleOnChangeType}
                 className="mt-3 mb-3 text-xl"
-              />
+              />{' '}
               I have a business-related inquiry. <br />
               <input
                 type="radio"
-                value="interestedInHealing"
+                value="I am interested in Healing Online for my organization. "
                 name="contact"
+                onChange={handleOnChangeType}
                 className="mt-3 mb-3 text-xl"
-              />
+              />{' '}
               I&apos;m interested in Healing Online for my organization. <br />
               <input
                 type="radio"
-                value="BillingRelated"
+                value="I have a billing related question."
                 name="contact"
+                onChange={handleOnChangeType}
                 className="mt-3 mb-3 text-2xl"
-              />
+              />{' '}
               I have a billing related question. <br />
-            </form>
+            </div>
           </div>
 
-          <div className="image  justify-end ">
-            <img
-              src={img}
-              alt="img"
-              className="object-cover md:max-w-lg max-w-md"
-            />
+          <div className="image w-1/2 md:flex hidden  justify-end ">
+            <img src={img} alt="img" className="object-cover w-1/2" />
           </div>
         </section>
 
@@ -85,16 +132,19 @@ export default function contact() {
               <input
                 type="text"
                 id="name"
-                placeholder="Enter your full name here..."
-                className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
+                onChange={handleOnChangeName}
+                value= {name}
+                placeholder="En"
+                className="placeholder-gray-500 shadoter your full name here...w appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
               />
             </div>
-
             <div className="mb-5 w-full">
               <p className="mb-2 ml-1">Email:</p>
               <input
                 type="email"
                 id="email"
+                value= {email}
+                onChange={handleOnChangeEmail}
                 placeholder="Enter your email address here..."
                 className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
               />
@@ -105,12 +155,14 @@ export default function contact() {
               <textarea
                 type="text"
                 id="details"
+                value= {details}
+                onChange={handleOnChangeDetails}
                 placeholder="Enter your details here..."
                 className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline resize-none"
               />
             </div>
             <button
-              type="button"
+              type="submit"
               className="bg-buttoncolor text-black py-2 px-4 border rounded w-32 font-extralight mb-7 md:mb-0"
             >
               SUBMIT
@@ -131,7 +183,7 @@ export default function contact() {
             </div>
           </div>
         </section>
-      </div>
+      </form>
     </div>
   );
 }

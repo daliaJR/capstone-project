@@ -1,10 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { addDoc } from "firebase/firestore";
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
 import tele from '../images/tele.png';
 import twitter from '../images/twitter.png';
+import {colRefSub} from '../firebase';
+
 
 function FooterSection() {
+
+  const [email, setEmail] = useState("");
+
+  const handleOnChange = (event) => {
+    // const keyName = event.target.name;
+    const value1 = event.target.value;
+    setEmail(value1);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();   
+    await addDoc(colRefSub, {
+      email,
+    });  
+    setEmail('');
+         
+  };
+
+
   return (
     <div className="bg-light-yellow py-8 font-poppins">
       <div className=" flex max-w-7xl mx-auto flex-col md:flex-row">
@@ -13,19 +35,22 @@ function FooterSection() {
           <p className="text-lg text-black opacity-50 font-medium mb-1">
             We will never to spam you or share your email
           </p>
-          <div className="flex items-center max-w-fit mx-auto md:mx-0">
+          <form className="flex items-center max-w-fit mx-auto md:mx-0" onSubmit={handleSubmit}>
             <input
-              type="text"
+              type="email"
+              name="email"
+              value= {email}
+              onChange={handleOnChange}
               placeholder="Enter your e-mail"
               className="rounded-l-md py-3 px-4 h-14 max-w-xs text-xl border-light-gray border-2 focus:outline-none"
             />
             <button
-              type="button"
+              type="submit"
               className="inline-flex justify-center items-center w-16 h-14 rounded-r-md bg-light-blue border-light-gray border-2 -ml-2"
             >
               <img src={tele} alt="" />
             </button>
-          </div>
+          </form>
         </div>
 
         <div className="w-3/4 lg:w-1/2 mx-auto md:mx-0 flex flex-col justify-center">
@@ -54,3 +79,48 @@ function FooterSection() {
   );
 }
 export default FooterSection;
+
+// const handleChange =  (event)=>{
+//   event.preventDefault();
+//   const {name ,value} = event.target;
+//   setEmail(() => {
+//     return {[name] : value};
+//   })
+  
+//   const handleOnChange = (event) => {
+//     const keyName = event.target.name;
+//     const value = event.target.value;
+//     setNewMovieInput((prev) => {
+//       // Copy the previous object (state) and only change the keyName that I want
+//       // prev is aka newMovieInput
+//       return { ...prev, [keyName]: value };
+//     });
+//   };
+// const handleSubmit = async (event) => {
+//   event.preventDefault();
+//   // instead of saving new items to our state
+//   // we will create a post request to add items to our database
+//   await addDoc(colRefSub, {
+//     email,
+//   });
+//   // Clear the form
+//   setEmail(() =>{
+//     return email = "";
+//   })
+// };
+
+
+//  // const docRef =  addDoc(colRefSub, {
+//   //   email: ""
+//   // })
+// }
+// // const addDoc = (event) => {
+// //   event.preventDefault();
+// //   colRefSub.add({
+// //     email: event.target,
+// //   }).then(() => {
+
+// //   }).catch(() =>{
+
+// //   })
+// // }

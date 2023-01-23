@@ -8,14 +8,6 @@ import msg from '../images/msg.png';
 import RecentBlogs from '../components/RecentBlogs';
 import { data } from '../staticData/homePage';
 
-/* 
-position: absolute;
-width: 1440px;
-height: 745px;
-left: 0px;
-top: 106px;
-
-*/
 export default function Home() {
   return (
     <div>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
 import { db } from '../../firebase';
+
 import Button from '../Button';
 
 function Steps({ steps }) {
@@ -10,9 +10,6 @@ function Steps({ steps }) {
   const [enteredData, setEnteredData] = useState({});
   const [isCompleted, setIsCompleted] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
-  const [email, setEmail] = useState('');
-  const [displayName, setDisplayName] = useState('');
-
   const navigate = useNavigate();
   function removeItemFromArray(arr, value) {
     if (arr) {
@@ -22,17 +19,8 @@ function Steps({ steps }) {
       }
       return arr;
     }
-
     return [];
   }
-  const auth = getAuth();
-  const user = auth.currentUser;
-  useEffect(() => {
-    if (user !== null) {
-      setDisplayName(user.displayName);
-      setEmail(user.email);
-    }
-  }, [user]);
 
   return (
     <div className="mainPage min-h-screen">
@@ -219,11 +207,7 @@ function Steps({ steps }) {
                 data-testid="nextBtn"
                 text="SUBMIT"
                 onClick={async () => {
-                  await addDoc(collection(db, 'meetings'), {
-                    ...enteredData,
-                    email,
-                    name: displayName,
-                  });
+                  await addDoc(collection(db, 'meetings'), enteredData);
                   setIsSubmited(true);
                 }}
               />
