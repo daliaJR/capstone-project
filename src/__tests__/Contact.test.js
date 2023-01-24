@@ -1,15 +1,25 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Contact from '../pages/Contact';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Contact', () => {
   test('should render the header test', () => {
-    render(<Contact />);
+    render(
+      <BrowserRouter>
+        <Contact />
+      </BrowserRouter>
+    );
     const headerText = screen.getByText('SEND US YOUR REQUEST!');
     expect(headerText).toBeDefined();
   });
 
   test('should render the paragraph of the component', () => {
-    render(<Contact />);
+    render(
+      <BrowserRouter>
+        <Contact />
+      </BrowserRouter>
+    );
     const paragraphText = screen.getByTestId('paragraphText');
     expect(paragraphText).toBeDefined();
   });

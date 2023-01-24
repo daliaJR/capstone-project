@@ -36,10 +36,10 @@ export default function contact() {
       details,
       type,
     }).then(() => {
-      navigate('/thankyou');
       setEmail('');
       setName('');
       setDetails('');
+      navigate('/thankyou');
     });
   };
 
