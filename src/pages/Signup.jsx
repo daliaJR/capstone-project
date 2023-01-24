@@ -89,7 +89,7 @@ export default function Signup() {
               <input
                 type="text"
                 placeholder="First Name"
-                className="rounded-xl py-4 px-3 h-14 max-w-[12rem] md:max-w-[16rem]  text-xl border-black/30 border-2 shadow-lg focus:outline-none"
+                className="rounded-xl py-4 px-3 h-14 max-w-[12rem] md:max-w-[16rem]  text-xl border-light-gray border-2 shadow-lg focus:outline-none"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -100,7 +100,7 @@ export default function Signup() {
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="rounded-xl py-4 px-4 h-14 shadow-lg max-w-[12rem] md:max-w-[16rem]   text-xl border-black/30 border-2 focus:outline-none"
+                className="rounded-xl py-4 px-4 h-14 shadow-lg max-w-[12rem] md:max-w-[16rem]   text-xl border-light-gray border-2 focus:outline-none"
               />
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function Signup() {
             placeholder="Your Email"
             value={email1}
             onChange={(e) => setEmail1(e.target.value)}
-            className="rounded-xl py-4 px-3 h-14  w-full text-xl border-black/30 border-2 shadow-lg focus:outline-none inline-flex justify-center items-center"
+            className="rounded-xl py-4 px-3 h-14  w-full text-xl border-light-gray border-2 shadow-lg focus:outline-none inline-flex justify-center items-center"
           />
           <input
             key={emailMatch}
@@ -118,9 +118,9 @@ export default function Signup() {
             placeholder="Confirm Email"
             onChange={(e) => setConfirmEmail(e.target.value)}
             style={{
-              borderColor: emailMatch ? 'black' : 'red',
+              borderColor: emailMatch ? '#878787' : 'red',
             }}
-            className="rounded-xl py-4 px-3  h-14 w-full  text-xl border-black/30 border-2 shadow-lg focus:outline-none "
+            className="rounded-xl py-4 px-3  h-14 w-full  text-xl border-light-gray border-2 shadow-lg focus:outline-none "
           />
           <div className="flex space-x-5">
             <input
@@ -128,7 +128,7 @@ export default function Signup() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-black/30 border-2 shadow-lg focus:outline-none"
+              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg focus:outline-none"
             />
             <input
               key={passwordMatch}
@@ -137,18 +137,15 @@ export default function Signup() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               style={{
-                borderColor: passwordMatch ? 'black' : 'red',
+                borderColor: passwordMatch ? '#878787' : 'red',
               }}
-              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-black/30 border-2 shadow-lg  focus:outline-none "
+              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg  focus:outline-none "
             />
           </div>
 
           <div>
-            <label htmlFor="date" className="w-[10rem]">
-              Birthdate:
-            </label>
             <input
-              className="border rounded-md "
+              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg  focus:outline-none "
               name="date"
               id="date"
               type="date"
