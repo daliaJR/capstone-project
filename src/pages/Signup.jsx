@@ -17,8 +17,11 @@ export default function Signup() {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  // const [confEmail, setConfEmail] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
   const [birthD, setBirthD] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(true);
+  const [emailMatch, setEmailMatch] = useState(true);
 
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
@@ -30,24 +33,38 @@ export default function Signup() {
       .catch(() => {});
   }
 
+  function isConfirmed() {
+    if (password !== confirmPassword) {
+      setPasswordMatch(false);
+    } else {
+      setPasswordMatch(true);
+    }
+    if (email1 !== confirmEmail) {
+      setEmailMatch(false);
+    } else {
+      setEmailMatch(true);
+    }
+    return passwordMatch && emailMatch;
+  }
+
   const Signfun = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email1, password)
-      .then((userCredential) => {
-        localStorage.setItem('isauthenticated', true);
-        const userId = userCredential.user.uid;
-        const collection = 'users';
+    if (isConfirmed()) {
+      createUserWithEmailAndPassword(auth, email1, password)
+        .then((userCredential) => {
+          localStorage.setItem('isauthenticated', true);
+          const userId = userCredential.user.uid;
+          const collection = 'users';
 
-        setDoc(doc(db, collection, userId), {
-          fullname: firstName + lastName,
-          date: birthD,
-          email: email1,
-        }).then(() => {
-          //   console.log('document has been created');
-        });
-        navigate('/');
-      })
-      .catch(() => {});
+          setDoc(doc(db, collection, userId), {
+            fullname: firstName + lastName,
+            date: birthD,
+            email: email1,
+          }).then(() => {});
+          navigate('/');
+        })
+        .catch(() => {});
+    }
   };
 
   function signInWithFacebook() {
@@ -58,8 +75,6 @@ export default function Signup() {
 
   return (
     <div className=" max-w-7xl mx-auto flex flex-col space-x-10 px-2 xl:flex-row justify-around items-center py-16 font-poppins">
-      {/* the div that contain SIGNUP NOW, SIGNUP CONTAINER, SOCIAL MADEA */}
-      {/* image div */}
       <div className="object-left mb-12 xl:mb-0">
         <img className="relative  object-left" src={Simg} alt="signup" />
       </div>
@@ -74,7 +89,7 @@ export default function Signup() {
               <input
                 type="text"
                 placeholder="First Name"
-                className="rounded-xl py-4 px-3 h-14 max-w-[12rem] md:max-w-[16rem]  text-xl border-black/30 border-2 shadow-lg focus:outline-none"
+                className="rounded-xl py-4 px-3 h-14 max-w-[12rem] md:max-w-[16rem]  text-xl border-light-gray border-2 shadow-lg focus:outline-none"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -85,7 +100,7 @@ export default function Signup() {
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="rounded-xl py-4 px-4 h-14 shadow-lg max-w-[12rem] md:max-w-[16rem]   text-xl border-black/30 border-2 focus:outline-none"
+                className="rounded-xl py-4 px-4 h-14 shadow-lg max-w-[12rem] md:max-w-[16rem]   text-xl border-light-gray border-2 focus:outline-none"
               />
             </div>
           </div>
@@ -94,12 +109,18 @@ export default function Signup() {
             placeholder="Your Email"
             value={email1}
             onChange={(e) => setEmail1(e.target.value)}
-            className="rounded-xl py-4 px-3 h-14  w-full text-xl border-black/30 border-2 shadow-lg focus:outline-none inline-flex justify-center items-center"
+            className="rounded-xl py-4 px-3 h-14  w-full text-xl border-light-gray border-2 shadow-lg focus:outline-none inline-flex justify-center items-center"
           />
           <input
+            key={emailMatch}
             type="text"
+            value={confirmEmail}
             placeholder="Confirm Email"
-            className="rounded-xl py-4 px-3  h-14 w-full  text-xl border-black/30 border-2 shadow-lg focus:outline-none"
+            onChange={(e) => setConfirmEmail(e.target.value)}
+            style={{
+              borderColor: emailMatch ? '#878787' : 'red',
+            }}
+            className="rounded-xl py-4 px-3  h-14 w-full  text-xl border-light-gray border-2 shadow-lg focus:outline-none "
           />
           <div className="flex space-x-5">
             <input
@@ -107,59 +128,30 @@ export default function Signup() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-black/30 border-2 shadow-lg focus:outline-none"
+              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg focus:outline-none"
             />
             <input
+              key={passwordMatch}
               type="password"
               placeholder="Confirm Password"
-              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-black/30 border-2 shadow-lg  focus:outline-none"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              style={{
+                borderColor: passwordMatch ? '#878787' : 'red',
+              }}
+              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg  focus:outline-none "
             />
           </div>
-          {/* birthday div */}
-          {/*  <div className="flex justify-between items-center">
-            <p className="pl-1 text-xl text-black/40">Birthday Date</p>
-            <div className="flex space-x-10 justify-end">
-              <input
-                type="text"
-                placeholder="DD"
-                className="w-14 rounded-lg py-2 px-1 h-14 text-xl border-black/30 border-2 shadow-lg  focus:outline-none"
-              />
-              <input
-                type="text"
-                placeholder="MM"
-                className="w-14 rounded-lg py-2 px-1  h-14 text-xl border-black/30 border-2 shadow-lg  focus:outline-none"
-              />
-              <input
-                type="text"
-                placeholder="YYYY"
-                className="w-28 rounded-lg py-2 px-1 h-14 text-xl border-black/30 border-2 shadow-lg  focus:outline-none"
-              />
-            </div> */}
+
           <div>
-            <label htmlFor="date" className="w-[10rem]">
-              Birthdate:
-            </label>
             <input
-              className="border rounded-md "
+              className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg  focus:outline-none "
               name="date"
               id="date"
               type="date"
               value={birthD}
               onChange={(e) => setBirthD(e.target.value)}
             />
-            {/* <p>Birthday Date</p>
-            <input type="text" placeholder="DD"
-            value={birthD}
-            onChange={(e) => setBirthD(e.target.value)}
-             />
-            <input type="text" placeholder="MM"
-            value={birthM}
-            onChange={(e) => setBirthM(e.target.value)}
-             />
-            <input type="text" placeholder="YYYY"
-            value={birthY}
-            onChange={(e) => setBirthY(e.target.value)}
-             /> */}
           </div>
           <div className=" buttons div flex flex-row justify-center space-x-10">
             <div className="">
