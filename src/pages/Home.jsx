@@ -1,4 +1,5 @@
 import { React } from 'react';
+import { NavLink } from 'react-router-dom';
 import image1 from '../images/image 1.svg';
 import image5 from '../images/image 5.svg';
 import imageMembers from '../images/image 8.png';
@@ -21,8 +22,10 @@ export default function Home() {
               Help
             </h1>
             <button className="blue_button mx-auto min-w-min" type="button">
-              Book an appointment
+              
+              <NavLink to="/booking">Book an appointment</NavLink>
             </button>
+            
           </div>
           <img
             src={image1}

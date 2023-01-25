@@ -1,29 +1,20 @@
-import { useState } from 'react';
-import { signOut } from 'firebase/auth';
+import { useState, useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { changeSignedToFalse } from '../features/signed/signedUserSlice';
-import { auth } from '../firebase';
 import { ReactComponent as Hamburger } from '../images/HB.svg';
 import { ReactComponent as Brand } from '../images/Logo.svg';
 import { ReactComponent as Dropdown } from '../images/Dropdown.svg';
 import '../styles/Navstyle.css';
+import { AuthContext } from '../pages/Authentic';
 
 const Navbar = () => {
-  const isSigned = useSelector((state) => state.signed.signed);
+  const user = useContext(AuthContext);
   const [showNavbar, setShowNavbar] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  function signUserOut() {
-    signOut(auth).then(() => {
-      localStorage.removeItem('isauthenticated');
-      dispatch(changeSignedToFalse());
-    });
-  }
   const [activeDropdown, setActiveDropdown] = useState({
     text: 'About',
     classForCss: 'drop_unactive',
   });
+
   function changeActive(event) {
     setActiveDropdown({
       text: event.target.innerText,
@@ -77,8 +68,15 @@ const Navbar = () => {
                   type="button"
                 >
                   <NavLink to="/about">About</NavLink>
-                  <NavLink to="/editprofile">Profile</NavLink>
-                  <NavLink to="/team">Team</NavLink>
+                  {user.authUser && (
+                    <NavLink to="/editprofile">Profile</NavLink>
+                  )}
+                  <NavLink to="/therapistcreate">Create Therapist</NavLink>
+                  <NavLink to="/therapistprofile">Therapist Profile</NavLink>
+                  <NavLink to="/career">Career</NavLink>
+                  <NavLink to="/addnewcard">new Card</NavLink>
+                  <NavLink to="/payment">Payment</NavLink>
+                  <NavLink to="/buyticket">Buy Ticket</NavLink>
                 </button>
               </div>
             </li>
@@ -90,17 +88,17 @@ const Navbar = () => {
             </li>
             <li>
               <div className="loginbtn">
-                {isSigned ? (
-                  <button type="button" onClick={signUserOut}>
-                    Sign out
-                  </button>
-                ) : (
+                {!user.authUser ? (
                   <button
                     type="button"
                     id="login"
                     onClick={() => navigate('./login')}
                   >
                     Login
+                  </button>
+                ) : (
+                  <button type="button" onClick={user.userSignOut}>
+                    Sign out
                   </button>
                 )}
               </div>
