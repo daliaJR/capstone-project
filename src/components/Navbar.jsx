@@ -24,18 +24,13 @@ const Navbar = () => {
     text: 'About',
     classForCss: 'drop_unactive',
   });
-  function changeActive() {
+  
+  function changeActive(event) {
     setActiveDropdown({
-      text: 'About',
+      text: event.target.innerText,
       classForCss: 'drop_active',
     });
   }
-  // function changeActive(event) {
-  //   setActiveDropdown({
-  //     text: event.target.innerText,
-  //     classForCss: 'drop_active',
-  //   });
-  // }
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar);
   };
@@ -86,6 +81,7 @@ const Navbar = () => {
                   <NavLink to="/editprofile">Profile</NavLink>
                   <NavLink to="/therapistcreate">Create Therapist</NavLink>
                   <NavLink to="/therapistprofile">Therapist Profile</NavLink>
+                  <NavLink to="/career">Career</NavLink>
                   <NavLink to="/addnewcard">new Card</NavLink>
                   <NavLink to="/payment">Payment</NavLink>
                   <NavLink to="/buyticket">Buy Ticket</NavLink>
