@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
 import { doc, setDoc } from 'firebase/firestore';
-import { changeSignedToTrue } from '../features/signed/signedUserSlice';
 import { auth, googleProvider, facebookProvider, db } from '../firebase';
 import Simg from '../images/Simg.png';
 import fb from '../images/fb.png';
@@ -13,7 +11,6 @@ export default function Signup() {
   const [email1, setEmail1] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -25,10 +22,13 @@ export default function Signup() {
 
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
-      .then(() => {
-        dispatch(changeSignedToTrue());
-        localStorage.setItem('isauthenticated', true);
-        navigate('/');
+      .then((userCredential) => {
+        const userId = userCredential.user.uid;
+        const collection = 'users';
+
+        setDoc(doc(db, collection, userId), {}).then(() => {
+          navigate('/');
+        });
       })
       .catch(() => {});
   }
@@ -52,7 +52,6 @@ export default function Signup() {
     if (isConfirmed()) {
       createUserWithEmailAndPassword(auth, email1, password)
         .then((userCredential) => {
-          localStorage.setItem('isauthenticated', true);
           const userId = userCredential.user.uid;
           const collection = 'users';
 
@@ -60,8 +59,9 @@ export default function Signup() {
             fullname: firstName + lastName,
             date: birthD,
             email: email1,
-          }).then(() => {});
-          navigate('/');
+          }).then(() => {
+            navigate('/');
+          });
         })
         .catch(() => {});
     }
@@ -69,7 +69,14 @@ export default function Signup() {
 
   function signInWithFacebook() {
     signInWithPopup(auth, facebookProvider)
-      .then(() => {})
+      .then((userCredential) => {
+        const userId = userCredential.user.uid;
+        const collection = 'users';
+
+        setDoc(doc(db, collection, userId), {}).then(() => {
+          navigate('/');
+        });
+      })
       .catch(() => {});
   }
 
