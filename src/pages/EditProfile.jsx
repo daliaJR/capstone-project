@@ -143,7 +143,7 @@ export default function EditProfile() {
           navigate(`/thankyou/editThanks`);
         });
       } catch (err) {
-        console.log(err.message);
+       // console.log(err.message);
       }
     }
   };

@@ -9,6 +9,7 @@ import google1 from '../images/google.png';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(null);
   const navigate = useNavigate();
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
@@ -24,7 +25,11 @@ export default function Login() {
       .then(() => {
         navigate('/');
       })
-      .catch(() => {});
+      .catch((error) => {
+        if(error) {
+          setMessage('wrong email or password');
+        }
+      });
   };
   function signInWithFacebook() {
     signInWithPopup(auth, facebookProvider)
@@ -39,6 +44,7 @@ export default function Login() {
       <div className="flex flex-col xl:flex-row justify-around min-h-screen items-center pb-44 pt-10">
         <div>
           <h1 className="text-5xl font-simibold pb-10">LOG IN</h1>
+          <p className='text-red-500'>{message || ''}</p>
           {/* input div */}
           <div>
             <form onSubmit={signIn}>
