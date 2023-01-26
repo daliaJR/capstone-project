@@ -139,6 +139,7 @@ export default function contact() {
                 value={name}
                 placeholder="En"
                 className="placeholder-gray-500 shadoter your full name here...w appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
+                required
               />
             </div>
             <div className="mb-5 w-full">
@@ -150,6 +151,7 @@ export default function contact() {
                 onChange={handleOnChangeEmail}
                 placeholder="Enter your email address here..."
                 className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline"
+                required
               />
             </div>
 
@@ -162,6 +164,7 @@ export default function contact() {
                 onChange={handleOnChangeDetails}
                 placeholder="Enter your details here..."
                 className="placeholder-gray-500 shadow appearance-none border rounded-md w-full py-1 px-3 text-gray-700 leading-8 focus:outline-none focus:shadow-outline resize-none"
+                required
               />
             </div>
             <button
