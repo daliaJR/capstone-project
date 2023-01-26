@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
@@ -44,22 +44,25 @@ export default function Signup() {
     } else {
       setEmailMatch(true);
     }
-    return passwordMatch && emailMatch;
   }
 
+  useEffect(() => {
+    isConfirmed();
+  }, [email1, password, confirmEmail, confirmPassword]);
   const Signfun = (e) => {
     e.preventDefault();
-    if (isConfirmed()) {
+    if (passwordMatch && emailMatch) {
       createUserWithEmailAndPassword(auth, email1, password)
         .then((userCredential) => {
           const userId = userCredential.user.uid;
           const collection = 'users';
-
           setDoc(doc(db, collection, userId), {
             fullname: firstName + lastName,
             date: birthD,
             email: email1,
           }).then(() => {
+            dispatch(changeSignedToTrue());
+            localStorage.setItem('isauthenticated', true);
             navigate('/');
           });
         })
@@ -149,6 +152,9 @@ export default function Signup() {
               className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg  focus:outline-none "
             />
           </div>
+          <p className="text-sm text-red-700 text-opacity-50">
+            Password should be equal or more than 6 digits
+          </p>
 
           <div>
             <input
