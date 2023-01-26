@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { addDoc } from "firebase/firestore";
+import { NavLink } from 'react-router-dom';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
 import tele from '../images/tele.png';
@@ -56,16 +57,16 @@ function FooterSection() {
         <div className="w-3/4 lg:w-1/2 mx-auto md:mx-0 flex flex-col justify-center">
           <div className="flex space-x-10 mx-auto">
             <button className="text-black opacity-50 " type="submit">
-              Home
+              <NavLink to="/">Home</NavLink>
             </button>
             <button className="text-black opacity-50" type="submit">
-              Blogs
+              <NavLink to={`/blogs/${'KpOg9FnStfRokLpIh2dW'}`}>Blogs</NavLink>
             </button>
             <button className="text-black opacity-50" type="submit">
-              About
+              <NavLink to="/about">About</NavLink>
             </button>
             <button className="text-black opacity-50" type="submit">
-              Contact
+              <NavLink to="/contact">Contact</NavLink>
             </button>
           </div>
           <div className="flex space-x-10 mx-auto mt-5 ">
