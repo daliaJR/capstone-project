@@ -4,7 +4,7 @@ import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { getAuth, deleteUser } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { db, storage } from '../firebase';
 import profileImg from '../images/profileImg.png';
 import lock from '../images/lock.svg';
@@ -36,6 +36,7 @@ export default function EditProfile() {
   const [num, setNum] = useState('');
   const [pass, setPass] = useState('');
   const [userObject, setUserObject] = useState({});
+  const [cardAmount, setCardAmount] = useState('');
 
   const [imageUpload, setImageUpload] = useState(null);
   const [url, setUrl] = useState(null);
@@ -91,7 +92,8 @@ export default function EditProfile() {
             setEmi(userData.email || '');
             setNum(userData.phone || '');
             setPass(userData.password || '');
-
+            setPass(userData.password || '');
+            setCardAmount(userData.cardAmount || 0);
             setUserObject({
               fullname: userData.fullname,
               educationlevel: userData.educationlevel,
@@ -102,6 +104,7 @@ export default function EditProfile() {
               email: userData.email,
               phone: userData.phone,
               password: userData.password,
+              cardAmount: userData.cardAmount,
             });
           } else {
             // console.log('no data exists');
@@ -118,23 +121,30 @@ export default function EditProfile() {
   // set new form data
   const handleForm = async (e) => {
     e.preventDefault();
+    const collRef = doc(db, 'users', userId);
+    const docData = await getDoc(collRef);
+    if (docData.exists()) {
+      const prevAmount =
+        docData.data().cardAmount !== undefined ? docData.data().cardAmount : 0;
 
-    try {
-      await setDoc(doc(db, collection, userId), {
-        fullname: name,
-        educationlevel: education,
-        hobbies: hobby,
-        familySize: famSize,
-        gender: gen,
-        date: bth,
-        email: emi,
-        phone: num,
-        password: pass,
-      }).then(() => {
-        navigate(`/thankyou/editThanks`);
-      });
-    } catch (err) {
-      console.log(err.message);
+      try {
+        await setDoc(doc(db, collection, userId), {
+          fullname: name,
+          educationlevel: education,
+          hobbies: hobby,
+          familySize: famSize,
+          gender: gen,
+          date: bth,
+          email: emi,
+          phone: num,
+          password: pass,
+          cardAmount: prevAmount,
+        }).then(() => {
+          navigate(`/thankyou/editThanks`);
+        });
+      } catch (err) {
+        console.log(err.message);
+      }
     }
   };
 
@@ -467,21 +477,32 @@ export default function EditProfile() {
             </div>
           </form>
           <div>
-            <h2 className="uppercase font-bold py-8 text-xl">
+            <h2 className="uppercase font-bold pt-8 pb-4 text-xl">
               payment methods & tickets
             </h2>
-            <div className="flex justify-around lg:justify-between">
-              <div className="flex flex-col gap-2">
-                <span className="text-sm px-2">3 Cards Added</span>
-                <button className="blue_button mx-2 text-sm " type="button">
-                  show cards
-                </button>
-              </div>
-              <div className="flex flex-col gap-2">
-                <span className="text-sm px-2">10 Tickets Remaining</span>
-                <button className="blue_button mx-2 text-sm " type="button">
-                  buy tickets
-                </button>
+            <div className="flex flex-col justify-around lg:justify-between">
+              <span className="text-lg px-2 pb-3">
+                {cardAmount} Tickets Remaining
+              </span>
+              <div className="flex flex-row gap-2">
+                <Link
+                  className="blue_button mx-2 text-sm max-w-fit"
+                  to="/buyticket/five"
+                >
+                  buy 5 tickets
+                </Link>
+                <Link
+                  className="blue_button mx-2 text-sm max-w-fit"
+                  to="/buyticket/twentyFive"
+                >
+                  buy 25 tickets
+                </Link>
+                <Link
+                  className="blue_button mx-2 text-sm max-w-fit"
+                  to="/buyticket/fifty"
+                >
+                  buy 50 tickets
+                </Link>
               </div>
             </div>
           </div>

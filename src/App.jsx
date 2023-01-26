@@ -44,7 +44,8 @@ function App() {
             <Route path="/signup" element={<Signup />} /> {/* fixed */}
             <Route path="/addnewcard" element={<AddNewCard />} /> {/* fixed */}
             <Route path="/payment" element={<Payment />} /> {/* fixed */}
-            <Route path="/buyticket" element={<BuyTicket />} /> {/* fixed */}
+            <Route path="/buyticket/:type" element={<BuyTicket />} />{' '}
+            {/* fixed */}
             <Route path="/career" element={<Career />} /> {/* fixed */}
             <Route path="/therapistcreate" element={<TherapistCreate />} />
             {/* fixed */}

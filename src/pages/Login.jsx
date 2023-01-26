@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider, facebookProvider } from '../firebase';
 import log from '../images/log.png';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
@@ -9,10 +10,15 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
+  function signInWithGoogle() {
+    signInWithPopup(auth, googleProvider)
+      .then(() => {
+        navigate(`/thankyou/signUpRequest`);
+      })
+      .catch(() => {});
+  }
   const signIn = (e) => {
     e.preventDefault();
-    const auth = getAuth();
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
@@ -20,6 +26,13 @@ export default function Login() {
       })
       .catch(() => {});
   };
+  function signInWithFacebook() {
+    signInWithPopup(auth, facebookProvider)
+      .then(() => {
+        navigate(`/thankyou/signUpRequest`);
+      })
+      .catch(() => {});
+  }
 
   return (
     <div className=" font-poppins max-w-7xl mx-auto">
@@ -74,7 +87,7 @@ export default function Login() {
             </div>
           </div>
           <div className="flex space-x-5 mx-auto mt-5 justify-center items-center px-16 ">
-            <button type="submit">
+            <button type="button" onClick={signInWithFacebook}>
               <img
                 className="facebook"
                 src={fb}
@@ -85,7 +98,7 @@ export default function Login() {
                 }}
               />
             </button>
-            <button type="submit">
+            <button type="button" onClick={signInWithGoogle}>
               <img
                 className="google"
                 src={google1}

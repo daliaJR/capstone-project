@@ -1,5 +1,5 @@
-import { React } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import image1 from '../images/image 1.svg';
 import image5 from '../images/image 5.svg';
 import imageMembers from '../images/image 8.png';
@@ -8,8 +8,10 @@ import video from '../images/video.png';
 import msg from '../images/msg.png';
 import RecentBlogs from '../components/RecentBlogs';
 import { data } from '../staticData/homePage';
+import { AuthContext } from './Authentic';
 
 export default function Home() {
+  const user = useContext(AuthContext);
   return (
     <div>
       <section className="relative min-h-[90vh] ">
@@ -21,11 +23,15 @@ export default function Home() {
             <h1 className="uppercase text-[8rem] leading-[8rem] mx-auto mb-6 xl:mb-16">
               Help
             </h1>
-            <button className="blue_button mx-auto min-w-min" type="button">
-              
-              <NavLink to="/booking">Book an appointment</NavLink>
-            </button>
-            
+            {!user.authUser ? (
+              <Link className="blue_button mx-auto min-w-min" to="/signup">
+                Book an appointment
+              </Link>
+            ) : (
+              <Link className="blue_button mx-auto min-w-min" to="/booking">
+                Book an appointment
+              </Link>
+            )}
           </div>
           <img
             src={image1}
@@ -49,9 +55,15 @@ export default function Home() {
             <img src={imageMembers} alt="" className="" />
           </div>
           <p className="text-xl font-light lowercase mb-28">{data.longText1}</p>
-          <button className="blue_button mb-8" type="button">
-            Book an appointment
-          </button>
+          {!user.authUser ? (
+            <Link className="blue_button mx-auto min-w-min" to="/signup">
+              Book an appointment
+            </Link>
+          ) : (
+            <Link className="blue_button mx-auto min-w-min" to="/booking">
+              Book an appointment
+            </Link>
+          )}
         </div>
       </section>
       <section className=" bg-white">
@@ -108,27 +120,48 @@ export default function Home() {
               <span className="text-4xl leading-3 mb-7 font-light text-dark opacity-50">
                 10$
               </span>
-              <button className="blue_button mx-auto" type="button">
-                Purchase
-              </button>
+              {!user.authUser ? (
+                <Link className="blue_button mx-auto " to="/signup">
+                  Purchase
+                </Link>
+              ) : (
+                <Link className="blue_button mx-auto" to="/buyticket/five">
+                  Purchase
+                </Link>
+              )}
             </div>
             <div className="card flex flex-col py-20">
               <h2 className="text-5xl mb-7 uppercase">25 tickets</h2>
               <span className="text-4xl leading-3 mb-7 font-light text-dark opacity-50">
                 40$
               </span>
-              <button className="blue_button mx-auto" type="button">
-                Purchase
-              </button>
+              {!user.authUser ? (
+                <Link className="blue_button mx-auto " to="/signup">
+                  Purchase
+                </Link>
+              ) : (
+                <Link
+                  className="blue_button mx-auto"
+                  to="/buyticket/twentyFive"
+                >
+                  Purchase
+                </Link>
+              )}
             </div>
             <div className="card flex flex-col py-20">
               <h2 className="text-5xl mb-7 uppercase">50 tickets</h2>
               <span className="text-4xl leading-3 mb-7 font-light text-dark opacity-50">
                 70$
               </span>
-              <button className="blue_button mx-auto" type="button">
-                Purchase
-              </button>
+              {!user.authUser ? (
+                <Link className="blue_button mx-auto " to="/signup">
+                  Purchase
+                </Link>
+              ) : (
+                <Link className="blue_button mx-auto" to="/buyticket/fifty">
+                  Purchase
+                </Link>
+              )}
             </div>
           </div>
           <div className="card px-6 mb-5">
@@ -136,9 +169,9 @@ export default function Home() {
             <p className="text-xl font-light lowercase mb-7">
               {data.longText2}
             </p>
-            <button className="blue_button mx-auto" type="button">
+            <Link className="blue_button mx-auto" to="/requirements">
               Learn More
-            </button>
+            </Link>
           </div>
         </div>
       </section>

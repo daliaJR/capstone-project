@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { data } from '../staticData/requirementsPage';
 import { ReactComponent as Frame } from '../images/Frame.svg';
 import '../styles/RequirementPage.css';
@@ -41,9 +42,9 @@ export default function RequirementsPage() {
             </ul>
           </div>
           <div>
-            <button type="button" className="blue_button">
+            <Link to="/therapistcreate" className="blue_button">
               Get started
-            </button>
+            </Link>
           </div>
         </div>
 
