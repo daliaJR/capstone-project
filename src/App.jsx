@@ -35,7 +35,8 @@ function App() {
             {/* fixed */}
             <Route path="/contact" element={<Contact />} /> {/* fixed */}
             <Route path="/blogs/:id" element={<Resource />} /> {/* fixed */}
-            <Route path="/thankyou" element={<ThankYou />} /> {/* fixed */}
+            <Route path="/thankyou/:type" element={<ThankYou />} />
+            {/* fixed */}
             <Route path="/booking" element={<Booking />} /> {/* fixed */}
             <Route path="/therapistprofile" element={<TherapistProfile />} />
             {/* fixed */}
@@ -43,7 +44,8 @@ function App() {
             <Route path="/signup" element={<Signup />} /> {/* fixed */}
             <Route path="/addnewcard" element={<AddNewCard />} /> {/* fixed */}
             <Route path="/payment" element={<Payment />} /> {/* fixed */}
-            <Route path="/buyticket" element={<BuyTicket />} /> {/* fixed */}
+            <Route path="/buyticket/:type" element={<BuyTicket />} />{' '}
+            {/* fixed */}
             <Route path="/career" element={<Career />} /> {/* fixed */}
             <Route path="/therapistcreate" element={<TherapistCreate />} />
             {/* fixed */}

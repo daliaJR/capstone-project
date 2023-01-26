@@ -39,7 +39,7 @@ export default function contact() {
       setEmail('');
       setName('');
       setDetails('');
-      navigate('/thankyou');
+      navigate(`/thankyou/contactThanks`);
     });
   };
 

@@ -1,7 +1,29 @@
-import { React } from 'react';
+import React, { useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+import { data } from '../staticData/buyTicketPage';
 import Tickets from '../components/Tickets';
+import { AuthContext } from './Authentic';
 
 export default function BuyTicket() {
+  const navigate = useNavigate();
+  const { type } = useParams();
+  const user = useContext(AuthContext);
+  const { userId } = user;
+  const collRef = doc(db, 'users', userId);
+  const buySomeTicket = async () => {
+    const docSnap = await getDoc(collRef);
+
+    if (docSnap.exists()) {
+      let prevAmount =
+        docSnap.data().cardAmount !== undefined ? docSnap.data().cardAmount : 0;
+      await updateDoc(collRef, {
+        cardAmount: (prevAmount += data[type].amount),
+      });
+    }
+    navigate(`/thankyou/ticketThanks`);
+  };
   return (
     <div>
       <section className="font-poppins py-6">
@@ -13,10 +35,14 @@ export default function BuyTicket() {
           <Tickets />
           <div className="flex flex-col mt-20">
             <h2 className="text-3xl uppercase mb-16">
-              Click confirm to use the selected card to purchase 5 tickets for
-              10$
+              Click confirm to use the selected card to purchase{' '}
+              {data[type].amount} tickets for {data[type].price}$
             </h2>
-            <button className="blue_button mb-16 mx-auto" type="button">
+            <button
+              className="blue_button mb-16 mx-auto"
+              type="button"
+              onClick={buySomeTicket}
+            >
               CONFIRM PURCHASE
             </button>
           </div>

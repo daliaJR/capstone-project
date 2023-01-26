@@ -1,16 +1,15 @@
-import React, {useState} from 'react';
-import { addDoc } from "firebase/firestore";
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { addDoc } from 'firebase/firestore';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
 import tele from '../images/tele.png';
 import twitter from '../images/twitter.png';
-import {colRefSub} from '../firebase';
-
+import { colRefSub } from '../firebase';
 
 function FooterSection() {
-
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
 
   const handleOnChange = (event) => {
     // const keyName = event.target.name;
@@ -19,14 +18,13 @@ function FooterSection() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();   
+    event.preventDefault();
     await addDoc(colRefSub, {
       email,
-    });  
+    });
     setEmail('');
-         
+    navigate(`/thankyou/subscribeThanks`);
   };
-
 
   return (
     <div className="bg-light-yellow py-8 font-poppins">
@@ -36,11 +34,14 @@ function FooterSection() {
           <p className="text-lg text-black opacity-50 font-medium mb-1">
             We will never to spam you or share your email
           </p>
-          <form className="flex items-center max-w-fit mx-auto md:mx-0" onSubmit={handleSubmit}>
+          <form
+            className="flex items-center max-w-fit mx-auto md:mx-0"
+            onSubmit={handleSubmit}
+          >
             <input
               type="email"
               name="email"
-              value= {email}
+              value={email}
               onChange={handleOnChange}
               placeholder="Enter your e-mail"
               className="rounded-l-md py-3 px-4 h-14 max-w-xs text-xl border-light-gray border-2 focus:outline-none"
@@ -57,16 +58,16 @@ function FooterSection() {
         <div className="w-3/4 lg:w-1/2 mx-auto md:mx-0 flex flex-col justify-center">
           <div className="flex space-x-10 mx-auto">
             <button className="text-black opacity-50 " type="submit">
-              <NavLink to="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </button>
             <button className="text-black opacity-50" type="submit">
-              <NavLink to={`/blogs/${'KpOg9FnStfRokLpIh2dW'}`}>Blogs</NavLink>
+              <Link to={`/blogs/${'KpOg9FnStfRokLpIh2dW'}`}>Blogs</Link>
             </button>
             <button className="text-black opacity-50" type="submit">
-              <NavLink to="/about">About</NavLink>
+              <Link to="/about">About</Link>
             </button>
             <button className="text-black opacity-50" type="submit">
-              <NavLink to="/contact">Contact</NavLink>
+              <Link to="/contact">Contact</Link>
             </button>
           </div>
           <div className="flex space-x-10 mx-auto mt-5 ">
@@ -87,7 +88,7 @@ export default FooterSection;
 //   setEmail(() => {
 //     return {[name] : value};
 //   })
-  
+
 //   const handleOnChange = (event) => {
 //     const keyName = event.target.name;
 //     const value = event.target.value;
@@ -109,7 +110,6 @@ export default FooterSection;
 //     return email = "";
 //   })
 // };
-
 
 //  // const docRef =  addDoc(colRefSub, {
 //   //   email: ""

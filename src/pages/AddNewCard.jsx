@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ca1 from '../images/ca1.png';
 import ca2 from '../images/ca2.png';
 
 export default function AddNewCard() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col min-h-screen lg:items-start items-center px-2 font-poppins max-w-7xl mx-auto py-20">
       <div className="px-5 mb-20">
@@ -115,7 +117,8 @@ export default function AddNewCard() {
       </div>
       <button
         className="blue_button px-10 mt-14 xl:mt-0 lg:ml-20 xl:ml-3"
-        type="submit"
+        type="button"
+        onClick={() => navigate(`/thankyou/cardThanks`)}
       >
         ADD CARD
       </button>
