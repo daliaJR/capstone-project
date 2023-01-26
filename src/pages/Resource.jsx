@@ -1,10 +1,11 @@
 import { React, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import twitter from '../images/twitter.png';
 
 export default function Resource() {
+  const [email, setEmail] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState({
@@ -15,6 +16,22 @@ export default function Resource() {
     paragraph: 'text-xl font-light uppercase mb-14 max-w-6xl',
     heading2:
       'text-3xl md:text-4xl font-light uppercase leading-12 lg:leading-18 mb-2 ',
+  };
+ 
+
+  const handleOnChange = (event) => {
+    // const keyName = event.target.name;
+    const value1 = event.target.value;
+    setEmail(value1);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();   
+    await addDoc(collection(db,"signups"), {
+      email,
+    });  
+    setEmail('');
+         
   };
   function getTwoRandomBlogs(arrayOfBlogs) {
     const array = arrayOfBlogs;
@@ -65,19 +82,21 @@ export default function Resource() {
             <h4 className="text-xl font-normal uppercase mb-8 max-w-5xl pr-5">
               A weekly, ad-free Blog that helps you stay in the know.
             </h4>
-            <div className="flex items-center max-w-fit">
+            <form className="flex items-center max-w-fit" onSubmit={handleSubmit}>
               <input
-                type="text"
+                type="email"
                 placeholder="Enter your e-mail"
+                value= {email}
+                onChange={handleOnChange}
                 className="rounded-l-md py-3 px-4 h-14 max-w-xs text-xl border-light-gray border-2 focus:outline-none"
               />
               <button
-                type="button"
+                type="submit"
                 className="inline-flex justify-center items-center w-16 h-14 rounded-r-md bg-light-blue border-light-gray border-2 -ml-2"
               >
                 <img src={twitter} alt="" />
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </section>
