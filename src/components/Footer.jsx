@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { addDoc } from 'firebase/firestore';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
@@ -58,16 +58,16 @@ function FooterSection() {
         <div className="w-3/4 lg:w-1/2 mx-auto md:mx-0 flex flex-col justify-center">
           <div className="flex space-x-10 mx-auto">
             <button className="text-black opacity-50 " type="submit">
-              <NavLink to="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </button>
             <button className="text-black opacity-50" type="submit">
-              <NavLink to={`/blogs/${'KpOg9FnStfRokLpIh2dW'}`}>Blogs</NavLink>
+              <Link to={`/blogs/${'KpOg9FnStfRokLpIh2dW'}`}>Blogs</Link>
             </button>
             <button className="text-black opacity-50" type="submit">
-              <NavLink to="/about">About</NavLink>
+              <Link to="/about">About</Link>
             </button>
             <button className="text-black opacity-50" type="submit">
-              <NavLink to="/contact">Contact</NavLink>
+              <Link to="/contact">Contact</Link>
             </button>
           </div>
           <div className="flex space-x-10 mx-auto mt-5 ">
