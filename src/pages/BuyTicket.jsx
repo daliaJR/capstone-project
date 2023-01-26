@@ -1,7 +1,9 @@
 import { React } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Tickets from '../components/Tickets';
 
 export default function BuyTicket() {
+  const navigate = useNavigate();
   return (
     <div>
       <section className="font-poppins py-6">
@@ -16,7 +18,11 @@ export default function BuyTicket() {
               Click confirm to use the selected card to purchase 5 tickets for
               10$
             </h2>
-            <button className="blue_button mb-16 mx-auto" type="button">
+            <button
+              className="blue_button mb-16 mx-auto"
+              type="button"
+              onClick={() => navigate(`/thankyou/ticketThanks`)}
+            >
               CONFIRM PURCHASE
             </button>
           </div>

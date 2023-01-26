@@ -1,8 +1,9 @@
 import { React } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { data } from '../staticData/thankYouPage';
 
 export default function ThankYou() {
+  const { type } = useParams();
   const texts = data;
   const navigate = useNavigate();
   return (
@@ -14,7 +15,7 @@ export default function ThankYou() {
             className="text-black opacity-50 text-lg font-normal mb-8"
             data-testid="paragraph"
           >
-            {texts.cardThanks}
+            {texts[type]}
           </p>
           <button
             onClick={() => navigate('/')}

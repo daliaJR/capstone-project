@@ -27,7 +27,7 @@ export default function Signup() {
         const collection = 'users';
 
         setDoc(doc(db, collection, userId), {}).then(() => {
-          navigate('/');
+          navigate(`/thankyou/signUpRequest`);
         });
       })
       .catch(() => {});
@@ -60,7 +60,7 @@ export default function Signup() {
             date: birthD,
             email: email1,
           }).then(() => {
-            navigate('/');
+            navigate(`/thankyou/signUpRequest`);
           });
         })
         .catch(() => {});
@@ -74,7 +74,7 @@ export default function Signup() {
         const collection = 'users';
 
         setDoc(doc(db, collection, userId), {}).then(() => {
-          navigate('/');
+          navigate(`/thankyou/signUpRequest`);
         });
       })
       .catch(() => {});

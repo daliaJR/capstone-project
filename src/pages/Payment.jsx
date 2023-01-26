@@ -1,8 +1,10 @@
 import { React } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Tickets from '../components/Tickets';
 import plus from '../images/plus.png';
 
 export default function Payment() {
+  const navigate = useNavigate();
   return (
     <div>
       <section className="font-poppins py-6">
@@ -15,6 +17,7 @@ export default function Payment() {
           <button
             className="blue_button mb-8 mt-28 flex justify-center items-center"
             type="button"
+            onClick={() => navigate(`/addnewcard`)}
           >
             <span className="">Add new card</span>
             <img src={plus} alt="" className="inline-block pb-0" />

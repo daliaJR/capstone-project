@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import { addDoc } from "firebase/firestore";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { addDoc } from 'firebase/firestore';
 import fb from '../images/fb.png';
 import google1 from '../images/google.png';
 import tele from '../images/tele.png';
 import twitter from '../images/twitter.png';
-import {colRefSub} from '../firebase';
-
+import { colRefSub } from '../firebase';
 
 function FooterSection() {
-
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
 
   const handleOnChange = (event) => {
     // const keyName = event.target.name;
@@ -18,14 +18,13 @@ function FooterSection() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();   
+    event.preventDefault();
     await addDoc(colRefSub, {
       email,
-    });  
+    });
     setEmail('');
-         
+    navigate(`/thankyou/subscribeThanks`);
   };
-
 
   return (
     <div className="bg-light-yellow py-8 font-poppins">
@@ -35,11 +34,14 @@ function FooterSection() {
           <p className="text-lg text-black opacity-50 font-medium mb-1">
             We will never to spam you or share your email
           </p>
-          <form className="flex items-center max-w-fit mx-auto md:mx-0" onSubmit={handleSubmit}>
+          <form
+            className="flex items-center max-w-fit mx-auto md:mx-0"
+            onSubmit={handleSubmit}
+          >
             <input
               type="email"
               name="email"
-              value= {email}
+              value={email}
               onChange={handleOnChange}
               placeholder="Enter your e-mail"
               className="rounded-l-md py-3 px-4 h-14 max-w-xs text-xl border-light-gray border-2 focus:outline-none"
@@ -86,7 +88,7 @@ export default FooterSection;
 //   setEmail(() => {
 //     return {[name] : value};
 //   })
-  
+
 //   const handleOnChange = (event) => {
 //     const keyName = event.target.name;
 //     const value = event.target.value;
@@ -108,7 +110,6 @@ export default FooterSection;
 //     return email = "";
 //   })
 // };
-
 
 //  // const docRef =  addDoc(colRefSub, {
 //   //   email: ""

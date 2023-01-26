@@ -35,7 +35,8 @@ function App() {
             {/* fixed */}
             <Route path="/contact" element={<Contact />} /> {/* fixed */}
             <Route path="/blogs/:id" element={<Resource />} /> {/* fixed */}
-            <Route path="/thankyou" element={<ThankYou />} /> {/* fixed */}
+            <Route path="/thankyou/:type" element={<ThankYou />} />
+            {/* fixed */}
             <Route path="/booking" element={<Booking />} /> {/* fixed */}
             <Route path="/therapistprofile" element={<TherapistProfile />} />
             {/* fixed */}

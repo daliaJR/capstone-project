@@ -119,7 +119,6 @@ export default function EditProfile() {
   const handleForm = async (e) => {
     e.preventDefault();
 
-    console.log('handleform');
     try {
       await setDoc(doc(db, collection, userId), {
         fullname: name,
@@ -132,8 +131,7 @@ export default function EditProfile() {
         phone: num,
         password: pass,
       }).then(() => {
-        console.log('success!');
-        setMessage('data has been changed');
+        navigate(`/thankyou/editThanks`);
       });
     } catch (err) {
       console.log(err.message);
