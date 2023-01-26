@@ -71,12 +71,9 @@ const Navbar = () => {
                   {user.authUser && (
                     <NavLink to="/editprofile">Profile</NavLink>
                   )}
-                  <NavLink to="/therapistcreate">Create Therapist</NavLink>
                   <NavLink to="/therapistprofile">Therapist Profile</NavLink>
                   <NavLink to="/career">Career</NavLink>
-                  <NavLink to="/addnewcard">new Card</NavLink>
                   <NavLink to="/payment">Payment</NavLink>
-                  <NavLink to="/buyticket">Buy Ticket</NavLink>
                 </button>
               </div>
             </li>

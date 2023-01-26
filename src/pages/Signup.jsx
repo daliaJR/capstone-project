@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
 import { doc, setDoc } from 'firebase/firestore';
-import { changeSignedToTrue } from '../features/signed/signedUserSlice';
 import { auth, googleProvider, facebookProvider, db } from '../firebase';
 import Simg from '../images/Simg.png';
 import fb from '../images/fb.png';
@@ -13,66 +11,59 @@ export default function Signup() {
   const [email1, setEmail1] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [birthD, setBirthD] = useState('');
-  const [passwordMatch, setPasswordMatch] = useState(true);
-  const [emailMatch, setEmailMatch] = useState(true);
+  const [match, setMatch] = useState(true);
 
   function signInWithGoogle() {
     signInWithPopup(auth, googleProvider)
-      .then(() => {
-        dispatch(changeSignedToTrue());
-        localStorage.setItem('isauthenticated', true);
-        navigate('/');
+      .then((userCredential) => {
+        const userId = userCredential.user.uid;
+        const collection = 'users';
+
+        setDoc(doc(db, collection, userId), {}).then(() => {
+          navigate(`/thankyou/signUpRequest`);
+        });
       })
       .catch(() => {});
   }
 
-  function isConfirmed() {
-    if (password !== confirmPassword) {
-      setPasswordMatch(false);
-    } else {
-      setPasswordMatch(true);
-    }
-    if (email1 !== confirmEmail) {
-      setEmailMatch(false);
-    } else {
-      setEmailMatch(true);
-    }
-  }
-
-  useEffect(() => {
-    isConfirmed();
-  }, [email1, password, confirmEmail, confirmPassword]);
   const Signfun = (e) => {
     e.preventDefault();
-    if (passwordMatch && emailMatch) {
+    if (email1 === confirmEmail && password === confirmPassword) {
       createUserWithEmailAndPassword(auth, email1, password)
         .then((userCredential) => {
           const userId = userCredential.user.uid;
           const collection = 'users';
+
           setDoc(doc(db, collection, userId), {
             fullname: firstName + lastName,
             date: birthD,
             email: email1,
           }).then(() => {
-            dispatch(changeSignedToTrue());
-            localStorage.setItem('isauthenticated', true);
-            navigate('/');
+            navigate(`/thankyou/signUpRequest`);
           });
         })
         .catch(() => {});
+    } else {
+      setMatch(false);
     }
   };
 
   function signInWithFacebook() {
     signInWithPopup(auth, facebookProvider)
-      .then(() => {})
+      .then((userCredential) => {
+        const userId = userCredential.user.uid;
+        const collection = 'users';
+
+        setDoc(doc(db, collection, userId), {}).then(() => {
+          navigate(`/thankyou/signUpRequest`);
+        });
+      })
       .catch(() => {});
   }
 
@@ -115,13 +106,13 @@ export default function Signup() {
             className="rounded-xl py-4 px-3 h-14  w-full text-xl border-light-gray border-2 shadow-lg focus:outline-none inline-flex justify-center items-center"
           />
           <input
-            key={emailMatch}
+            key={match}
             type="text"
             value={confirmEmail}
             placeholder="Confirm Email"
             onChange={(e) => setConfirmEmail(e.target.value)}
             style={{
-              borderColor: emailMatch ? '#878787' : 'red',
+              borderColor: match ? '#878787' : 'red',
             }}
             className="rounded-xl py-4 px-3  h-14 w-full  text-xl border-light-gray border-2 shadow-lg focus:outline-none "
           />
@@ -134,20 +125,17 @@ export default function Signup() {
               className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg focus:outline-none"
             />
             <input
-              key={passwordMatch}
+              key={match}
               type="password"
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               style={{
-                borderColor: passwordMatch ? '#878787' : 'red',
+                borderColor: match ? '#878787' : 'red',
               }}
               className="rounded-xl py-4 px-3  h-14  max-w-[12rem] md:max-w-[16rem] text-xl border-light-gray border-2 shadow-lg  focus:outline-none "
             />
           </div>
-          <p className="text-sm text-red-700 text-opacity-50">
-            Password should be equal or more than 6 digits
-          </p>
 
           <div>
             <input
@@ -158,6 +146,13 @@ export default function Signup() {
               value={birthD}
               onChange={(e) => setBirthD(e.target.value)}
             />
+          </div>
+          <div className="py-2">
+            {!match && (
+              <p className="text-lg text-red-700">
+                confirm password or confirm email is wrong
+              </p>
+            )}
           </div>
           <div className=" buttons div flex flex-row justify-center space-x-10">
             <div className="">
